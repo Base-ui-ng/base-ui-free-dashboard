@@ -4,5 +4,13 @@
 /llms.txt     /llms.txt     200
 /og-image.png /og-image.png 200
 
-# SPA fallback — serve index.html for client-side Angular routes
+# Prerendered auth pages — must win over the SPA splat
+/login            /login/index.html            200
+/login/           /login/index.html            200
+/register         /register/index.html         200
+/register/        /register/index.html         200
+/forgot-password  /forgot-password/index.html  200
+/forgot-password/ /forgot-password/index.html  200
+
+# SPA fallback for client-only routes (including /app/**)
 /*    /index.html   200

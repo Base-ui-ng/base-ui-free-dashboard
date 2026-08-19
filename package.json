@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build && node -e \"require('node:fs').copyFileSync('dist/base-ui-free-dashboard/browser/index.csr.html','dist/base-ui-free-dashboard/browser/index.html')\"",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "deploy": "npm run build && wrangler pages deploy dist/base-ui-free-dashboard/browser --project-name=base-ui-free-dashboard-demo",
