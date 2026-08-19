@@ -1,4 +1,5 @@
-import { Injectable, computed, inject, signal } from '@angular/core';
+import { Injectable, PLATFORM_ID, computed, inject, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 
 export interface AuthUser {
@@ -12,6 +13,7 @@ const STORAGE_KEY = 'base-ui-dashboard-auth';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private readonly router = inject(Router);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly _user = signal<AuthUser | null>(this.readStoredUser());
 
   readonly user = this._user.asReadonly();
@@ -31,7 +33,9 @@ export class AuthService {
       initials: this.toInitials(displayName || 'Demo User'),
     };
 
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(authUser));
+    if (this.isBrowser) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(authUser));
+    }
     this._user.set(authUser);
     void this.router.navigateByUrl('/app/dashboard');
   }
@@ -41,12 +45,18 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem(STORAGE_KEY);
+    if (this.isBrowser) {
+      localStorage.removeItem(STORAGE_KEY);
+    }
     this._user.set(null);
     void this.router.navigateByUrl('/login');
   }
 
   private readStoredUser(): AuthUser | null {
+    if (!this.isBrowser) {
+      return null;
+    }
+
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       return raw ? (JSON.parse(raw) as AuthUser) : null;

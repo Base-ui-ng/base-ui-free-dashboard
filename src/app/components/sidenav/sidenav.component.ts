@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import {
   AfterViewInit,
@@ -25,27 +25,20 @@ import { IconStrokedButtonColor, SidenavLayoutMode } from '../types';
 import { cn } from '../tw-merge/tw-merge';
 
 /**
- * In-page section navigation: a left nav rail and scrollable body **inside a page**.
+ * Responsive section shell with a left nav rail and scrollable body.
  * Pair with `base-sidenav-nav` and `base-sidenav-body`. On small screens a
  * hamburger toggles the nav; active label is inferred from `routerLinkActive`.
  *
- * **Use for:** Settings subsections, docs TOC, wizard steps, or any in-page
- * section list rendered within page content.
- *
- * **Do not use for:** primary application / dashboard chrome (sidebar + topbar).
- * Use free `base-app-shell` (`layout-app-shell`) for app frames. For nested
- * multi-level nav or opinionated dashboard pages, see Pro `mega-menu`, `tree`,
- * and `layout-dashboard`.
- *
  * @example
- * <!-- Correct: in-page sections (e.g. Settings) -->
- * <base-sidenav layout="desktop" class="min-h-[28rem] rounded-xl border border-slate-200 dark:border-slate-700">
+ * <base-sidenav>
  *   <base-sidenav-nav>
  *     <base-nav-list>
- *       <button type="button" base-list-item routerLinkActive="!text-blue-500">Profile</button>
+ *       <button base-list-item routerLink="overview" routerLinkActive="text-blue-500!">Overview</button>
  *     </base-nav-list>
  *   </base-sidenav-nav>
- *   <base-sidenav-body>Section content</base-sidenav-body>
+ *   <base-sidenav-body>
+ *     <router-outlet></router-outlet>
+ *   </base-sidenav-body>
  * </base-sidenav>
  *
  * @example
@@ -83,7 +76,7 @@ export class SidenavComponent implements AfterViewInit {
    * @example
    * <base-sidenav color="accent"></base-sidenav>
    */
-  readonly color = input<IconStrokedButtonColor | undefined>();
+  readonly color = input<IconStrokedButtonColor | undefined>(undefined);
 
   /**
    * Layout chrome mode. `auto` follows the viewport `lg` breakpoint;
@@ -109,19 +102,19 @@ export class SidenavComponent implements AfterViewInit {
   readonly mobileBarClass = computed(() => {
     const mode = this.layout();
     if (mode === 'mobile') {
-      return 'flex h-10 w-full flex-shrink-0 items-center justify-start border-b border-slate-200 px-4 dark:border-slate-700';
+      return 'flex h-10 w-full shrink-0 items-center justify-start border-b border-slate-200 px-4 dark:border-slate-700';
     }
     if (mode === 'desktop') {
       return 'hidden';
     }
-    return 'flex h-10 w-full flex-shrink-0 items-center justify-start border-b border-slate-200 px-4 dark:border-slate-700 lg:hidden';
+    return 'flex h-10 w-full shrink-0 items-center justify-start border-b border-slate-200 px-4 dark:border-slate-700 lg:hidden';
   });
 
   readonly navRailClass = computed(() => {
     const open = this.navBarOpen();
     const mode = this.layout();
     const base =
-      'h-full w-60 min-w-60 max-w-60 flex-shrink-0 overflow-y-auto border-r border-slate-200 bg-slate-50 py-4 transition-all duration-300 dark:border-slate-700 dark:bg-slate-900';
+      'h-full w-60 min-w-60 max-w-60 shrink-0 overflow-y-auto border-r border-slate-200 bg-slate-50 py-4 transition-all duration-300 dark:border-slate-700 dark:bg-slate-900';
     if (mode === 'desktop') {
       return cn(base, 'ml-0');
     }

@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { Component, computed, contentChild, input ,
   ChangeDetectionStrategy
@@ -45,8 +45,8 @@ export class InputGroupComponent {
 
   getWrapperClasses(): string {
     return cn(
-      'flex items-center w-full border border-slate-300 dark:border-slate-700 rounded-lg relative bg-white dark:bg-slate-800 focus-within:!border-slate-500',
-      { '!border-red-500': this.showErrors() }
+      'flex items-center w-full border border-slate-300 dark:border-slate-700 rounded-lg relative bg-white dark:bg-slate-800 focus-within:border-slate-500!',
+      { 'border-red-500!': this.showErrors() }
     );
   }
 }

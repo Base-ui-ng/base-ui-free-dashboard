@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import {
   AfterViewInit,
@@ -72,7 +72,7 @@ export class RevealDirective implements AfterViewInit, OnDestroy {
     this.renderer.setStyle(
       node,
       'transition',
-      `opacity ${this.revealDuration()}ms ease-out ${this.revealDelay()}ms, transform ${this.revealDuration()}ms ease-out ${this.revealDelay()}ms`
+      `opacity ${this.revealDuration()}ms ease-out ${this.revealDelay()}ms, transform ${this.revealDuration()}ms ${this.revealDelay()}ms`
     );
     // Next frame so the transition picks up the style change.
     requestAnimationFrame(() => {

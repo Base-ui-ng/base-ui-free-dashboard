@@ -1,11 +1,11 @@
 <!--
   Base UI (free tier) — https://base-ui.net
   Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-  Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+  Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 -->
 <ng-template>
   @if (position() === 'left') {
-  <div class="bg-white dark:bg-slate-900 p-4 fixed top-0 bottom-0 left-0 h-full max-w-[92vw] shadow-lg z-[1000]"
+  <div class="bg-white dark:bg-slate-900 p-4 fixed top-0 bottom-0 left-0 h-full max-w-[92vw] shadow-lg z-1000"
     [@slideLeft] cdkTrapFocus cdkTrapFocusAutoCapture
     role="dialog" aria-modal="true" [attr.aria-label]="drawerLabel()"
     [class.w-[200px]]="size() === 'sm'"
@@ -15,7 +15,7 @@
     <div class="relative w-full h-full">
       @if (close()) {
       <button base-icon-button color="transparent" size="sm" (click)="closed.emit()"
-        class="!absolute top-0 right-0 z-10" aria-label="Close drawer">
+        class="absolute! top-0 right-0 z-10" aria-label="Close drawer">
         <base-icon name="close"></base-icon>
       </button>
       }
@@ -25,7 +25,7 @@
   }
 
   @if (position() === 'right') {
-  <div class="bg-white dark:bg-slate-900 p-4 fixed top-0 bottom-0 right-0 h-full max-w-[92vw] shadow-lg z-[1000]"
+  <div class="bg-white dark:bg-slate-900 p-4 fixed top-0 bottom-0 right-0 h-full max-w-[92vw] shadow-lg z-1000"
     [@slideRight] cdkTrapFocus cdkTrapFocusAutoCapture
     role="dialog" aria-modal="true" [attr.aria-label]="drawerLabel()"
     [class.w-[200px]]="size() === 'sm'"
@@ -35,7 +35,7 @@
     <div class="relative w-full h-full">
       @if (close()) {
       <button base-icon-button color="transparent" size="sm" (click)="closed.emit()"
-        class="!absolute top-0 right-0 z-10" aria-label="Close drawer">
+        class="absolute! top-0 right-0 z-10" aria-label="Close drawer">
         <base-icon name="close"></base-icon>
       </button>
       }
@@ -45,7 +45,7 @@
   }
 
   @if (position() === 'top') {
-  <div class="bg-white dark:bg-slate-900 p-4 fixed top-0 left-0 right-0 w-screen shadow-lg z-[1000]" [@slideTop]
+  <div class="bg-white dark:bg-slate-900 p-4 fixed top-0 left-0 right-0 w-screen shadow-lg z-1000" [@slideTop]
     cdkTrapFocus cdkTrapFocusAutoCapture
     role="dialog" aria-modal="true" [attr.aria-label]="drawerLabel()"
     [class.h-40]="size() === 'sm'"
@@ -55,7 +55,7 @@
     <div class="relative w-full h-full">
       @if (close()) {
       <button base-icon-button color="transparent" size="sm" (click)="closed.emit()"
-        class="!absolute top-0 right-0 z-10" aria-label="Close drawer">
+        class="absolute! top-0 right-0 z-10" aria-label="Close drawer">
         <base-icon name="close"></base-icon>
       </button>
       }
@@ -65,7 +65,7 @@
   }
 
   @if (position() === 'bottom') {
-  <div class="bg-white dark:bg-slate-900 p-4 fixed bottom-0 left-0 right-0 w-screen shadow-lg z-[1000]" [@slideBottom]
+  <div class="bg-white dark:bg-slate-900 p-4 fixed bottom-0 left-0 right-0 w-screen shadow-lg z-1000" [@slideBottom]
     cdkTrapFocus cdkTrapFocusAutoCapture
     role="dialog" aria-modal="true" [attr.aria-label]="drawerLabel()"
     [class.h-40]="size() === 'sm'"
@@ -75,7 +75,7 @@
     <div class="relative w-full h-full">
       @if (close()) {
       <button base-icon-button color="transparent" size="sm" (click)="closed.emit()"
-        class="!absolute top-0 right-0 z-10" aria-label="Close drawer">
+        class="absolute! top-0 right-0 z-10" aria-label="Close drawer">
         <base-icon name="close"></base-icon>
       </button>
       }

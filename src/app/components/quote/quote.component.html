@@ -1,7 +1,7 @@
 <!--
   Base UI (free tier) — https://base-ui.net
   Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-  Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+  Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 -->
 <div [class]="containerClass()">
 
@@ -15,7 +15,7 @@
   @if (variant() === 'avatar-left' && (avatarUrl() || authorName())) {
   <div class="text-center shrink-0 flex items-center gap-2">
     @if (avatarUrl()) {
-    <base-avatar size="md" shape="circle" [avatarUrl]="avatarUrl() || ''"></base-avatar>
+    <base-avatar size="md" shape="circle" [avatarUrl]="avatarUrl()"></base-avatar>
     }
     <div>
       @if (authorName()) {

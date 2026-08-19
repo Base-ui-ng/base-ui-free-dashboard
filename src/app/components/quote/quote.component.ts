@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { Component, input, computed,
   ChangeDetectionStrategy
@@ -29,13 +29,13 @@ export class QuoteComponent {
   readonly variant = input<QuoteVariant>('default');
   
   /** The name of the person being quoted. */
-  readonly authorName = input<string | undefined>();
+  readonly authorName = input<string>();
   
   /** The subtitle or role of the author (e.g. "CEO, Company"). */
-  readonly authorRole = input<string | undefined>();
+  readonly authorRole = input<string>();
   
   /** The URL to the author's avatar image. Primarily used in 'avatar-left' variant. */
-  readonly avatarUrl = input<string | undefined>();
+  readonly avatarUrl = input<string>();
   
   /** The semantic color name for the quote icon. Defaults to 'primary'. */
   readonly iconColor = input<'primary' | 'success' | 'danger' | 'warning' | 'accent' | 'default' | string>('primary');

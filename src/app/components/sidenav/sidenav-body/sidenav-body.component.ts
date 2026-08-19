@@ -1,17 +1,16 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { cn } from '../../tw-merge/tw-merge';
 
 /**
- * Content slot for `base-sidenav` (in-page section body).
- * Not for primary app chrome — use `base-app-shell-content` instead.
+ * Main content slot for `base-sidenav` (typically hosts a router outlet).
  *
  * @example
  * <base-sidenav-body>
- *   Section content
+ *   <router-outlet></router-outlet>
  * </base-sidenav-body>
  */
 @Component({

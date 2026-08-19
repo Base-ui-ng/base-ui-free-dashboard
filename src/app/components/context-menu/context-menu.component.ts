@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import {
   Component,
@@ -14,6 +14,7 @@ import {
 } from '@angular/core';
 import { ContextMenuPanel } from './context-menu-panel';
 import { focusMenuItem, focusMenuItemEdge, getMenuItems } from '../a11y-keyboard/a11y-keyboard';
+import { injectTimers } from '../safe-timer/safe-timer';
 
 let contextMenuIdCounter = 0;
 
@@ -33,13 +34,15 @@ let contextMenuIdCounter = 0;
   templateUrl: './context-menu.component.html',
 })
 export class ContextMenuComponent<T> implements ContextMenuPanel<T> {
+  /** Timers cancelled automatically on destroy — see utils/safe-timer. */
+  private readonly timers = injectTimers();
   /**
    * Optional custom width for the context menu container.
    *
    * @example
    * <base-context-menu size="220px">...</base-context-menu>
    */
-  readonly size = input<string | undefined>();
+  readonly size = input<string>();
 
   readonly templateRef = viewChild.required(TemplateRef);
   readonly menuRoot = viewChild<ElementRef<HTMLElement>>('menuRoot');
@@ -64,7 +67,7 @@ export class ContextMenuComponent<T> implements ContextMenuPanel<T> {
 
   /** Focus the first menu item after the overlay opens. */
   focusFirstItem(): void {
-    setTimeout(() => {
+    this.timers.setTimeout(() => {
       const root = this.menuRoot()?.nativeElement;
       if (!root) return;
       root.focus();

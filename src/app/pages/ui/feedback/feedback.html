@@ -70,10 +70,46 @@
     </div>
   </app-showcase-section>
 
+  <app-showcase-section
+    sectionId="loading-overlay"
+    title="Loading overlay"
+    description="Blocks a region with a spinner, optional message, and aria-busy."
+    componentName="base-loading-overlay">
+    <button type="button" base-button color="primary" (click)="simulateSave()">Simulate save</button>
+    <base-loading-overlay class="min-h-40 rounded-lg" [visible]="saving()" message="Saving changes…">
+      <div class="rounded-lg border border-slate-200 p-4 dark:border-slate-700">
+        <p class="m-0! text-sm font-medium text-slate-900 dark:text-white">Invoice #1842</p>
+        <p class="mt-2 mb-0! text-sm text-slate-600 dark:text-slate-300">
+          Acme Corp — $1,240.00 due on the 24th.
+        </p>
+      </div>
+    </base-loading-overlay>
+  </app-showcase-section>
+
   <app-showcase-section sectionId="empty-state" title="Empty state" componentName="base-empty-state">
     <base-empty-state
       iconName="inbox"
       title="No messages yet"
       description="When teammates mention you, notifications will show up here."></base-empty-state>
+  </app-showcase-section>
+
+  <app-showcase-section
+    sectionId="cookie-banner"
+    title="Cookie banner"
+    description="SSR-safe consent banner. This demo uses a dedicated storage key."
+    componentName="base-cookie-banner">
+    <div class="flex flex-wrap items-center gap-3">
+      <button type="button" base-button color="primary" (click)="resetCookieDemo()">Show banner</button>
+      <p class="m-0! text-sm text-slate-600 dark:text-slate-300">
+        Last choice: {{ lastConsent() ?? 'none' }}
+      </p>
+    </div>
+    <base-cookie-banner
+      #demoBanner
+      storageKey="base-ui-dashboard-gallery-cookies"
+      title="We use cookies"
+      message="This gallery demo stores only a consent flag. Reject non-essential cookies anytime."
+      (consentChange)="lastConsent.set($event)">
+    </base-cookie-banner>
   </app-showcase-section>
 </app-showcase-page>

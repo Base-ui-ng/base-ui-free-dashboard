@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { Component, inject, input, computed ,
   ChangeDetectionStrategy, signal, HostBinding
@@ -27,7 +27,7 @@ import { cn } from '../../tw-merge/tw-merge';
   host: {
     '[class]': 'hostClass()',
     '[class.active]': 'active()',
-    '[class.flex-shrink-0]': '!isCrossfade()',
+    '[class.shrink-0]': '!isCrossfade()',
     '[class.absolute]': 'isCrossfade()',
     '[class.inset-0]': 'isCrossfade()',
     '[class.z-0]': 'isCrossfade() && !active()',

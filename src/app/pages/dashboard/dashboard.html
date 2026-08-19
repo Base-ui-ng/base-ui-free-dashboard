@@ -2,37 +2,33 @@
 <div class="space-y-4 sm:space-y-6">
   <div class="grid gap-3 sm:grid-cols-2 sm:gap-4 xl:grid-cols-4">
     <base-stat-card
+      variant="metric"
       label="Total Revenue"
       value="$48,295"
-      trend="+12.5%"
-      [trendUp]="true"
-      icon="dollar-sign"
-      color="primary"
-      caption="vs last month"></base-stat-card>
+      caption="vs last month"
+      [delta]="0.125"
+      [series]="revenueSeries"></base-stat-card>
     <base-stat-card
+      variant="metric"
       label="Active Users"
       value="2,847"
-      trend="+5.2%"
-      [trendUp]="true"
-      icon="users"
-      color="success"
-      caption="vs last month"></base-stat-card>
+      caption="vs last month"
+      [delta]="0.052"
+      [series]="usersSeries"></base-stat-card>
     <base-stat-card
+      variant="metric"
       label="Sales"
       value="1,204"
-      trend="-2.1%"
-      [trendUp]="false"
-      icon="cart"
-      color="warning"
-      caption="vs last month"></base-stat-card>
+      caption="vs last month"
+      [delta]="-0.021"
+      [series]="salesSeries"></base-stat-card>
     <base-stat-card
+      variant="metric"
       label="Conversion Rate"
       value="3.24%"
-      trend="+0.8%"
-      [trendUp]="true"
-      icon="percent"
-      color="accent"
-      caption="vs last month"></base-stat-card>
+      caption="vs last month"
+      [delta]="0.008"
+      [series]="conversionSeries"></base-stat-card>
   </div>
 
   <div class="grid gap-4 lg:grid-cols-3 lg:gap-6">
@@ -107,7 +103,22 @@
               <base-avatar size="sm" shape="circle" initials="SM"></base-avatar>
               <div>
                 <p class="text-sm text-slate-800 dark:text-slate-100">
-                  <span class="font-medium">Sarah Mitchell</span> joined the workspace
+                  <base-hover-card placement="bottom-start" minWidth="220px">
+                    <button
+                      hover-card-trigger
+                      type="button"
+                      class="font-medium text-slate-800 underline-offset-2 hover:underline dark:text-slate-100">
+                      Sarah Mitchell
+                    </button>
+                    <div class="flex gap-3">
+                      <base-avatar size="md" shape="circle" initials="SM"></base-avatar>
+                      <div>
+                        <p class="m-0! text-sm font-semibold text-slate-900 dark:text-white">Sarah Mitchell</p>
+                        <p class="mt-1 mb-0! text-xs text-slate-500">Admin · joined just now</p>
+                      </div>
+                    </div>
+                  </base-hover-card>
+                  joined the workspace
                 </p>
                 <p class="text-xs text-slate-400 mt-0.5">Assigned Admin role</p>
               </div>

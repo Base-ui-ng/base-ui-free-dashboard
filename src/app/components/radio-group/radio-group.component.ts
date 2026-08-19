@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { Component, InjectionToken, forwardRef, input, model, ChangeDetectionStrategy, booleanAttribute } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -41,7 +41,7 @@ let radioGroupIdCounter = 0;
 })
 export class RadioGroupComponent implements ControlValueAccessor {
   /** The currently selected value within the group. */
-  readonly value = model<unknown | undefined>();
+  readonly value = model<unknown>(undefined);
 
   /** Disables all radio buttons within this group when true. */
   readonly disabled = model(false);

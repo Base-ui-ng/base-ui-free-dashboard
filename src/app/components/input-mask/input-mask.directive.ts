@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import {
   AfterViewInit,
@@ -12,6 +12,7 @@ import {
   input,
   untracked,
 } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 /** Pattern token characters that accept user input. */
 const TOKEN_CHARS = new Set(['0', 'A', 'S']);
@@ -167,6 +168,7 @@ function mapCaretToMasked(
   },
 })
 export class BaseMaskDirective implements AfterViewInit, OnDestroy {
+  private readonly ssrDocument = inject(DOCUMENT);
   private readonly el = inject(ElementRef<HTMLInputElement>);
 
   /**
@@ -229,7 +231,7 @@ export class BaseMaskDirective implements AfterViewInit, OnDestroy {
 
     input.value = masked;
 
-    if (preserveCaret && document.activeElement === input) {
+    if (preserveCaret && this.ssrDocument.activeElement === input) {
       const nextCaret = mapCaretToMasked(before, caret, masked, pattern);
       input.setSelectionRange(nextCaret, nextCaret);
     }

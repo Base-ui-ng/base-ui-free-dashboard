@@ -1,17 +1,23 @@
 <!--
   Base UI (free tier) — https://base-ui.net
   Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-  Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+  Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 -->
 @if (showMobileOverlay()) {
   <button
     type="button"
-    class="fixed inset-0 z-30 bg-slate-900/50 backdrop-blur-[1px] lg:hidden"
+    class="absolute inset-0 z-30 bg-slate-900/50 backdrop-blur-[1px] min-[1080px]:hidden"
     aria-label="Close sidebar"
     (click)="closeMobile()"></button>
 }
 
-<aside [class]="sidebarClass()" aria-label="Application sidebar">
+<aside
+  [class]="sidebarClass()"
+  [style.width.px]="railWidth()"
+  [style.min-width.px]="railWidth()"
+  [style.max-width.px]="railWidth()"
+  [attr.data-collapsed]="collapsed() ? '' : null"
+  aria-label="Application sidebar">
   <ng-content select="base-app-shell-sidebar"></ng-content>
 </aside>
 
@@ -22,7 +28,8 @@
       base-stroked-icon-button
       size="sm"
       color="default"
-      class="lg:hidden shrink-0"
+      [class]="hamburgerClass()"
+      [attr.aria-expanded]="sidebar.isOpen()"
       aria-label="Toggle sidebar"
       (click)="toggleSidebar()">
       <base-icon [name]="sidebar.isOpen() ? 'close' : 'menu'" class="w-4 h-4"></base-icon>

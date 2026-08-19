@@ -88,6 +88,18 @@
                   <base-label>Bio</base-label>
                   <textarea base-textarea name="bio" rows="4" [(ngModel)]="bio"></textarea>
                 </base-input-group>
+                <div>
+                  <base-label>Monthly spend cap</base-label>
+                  <base-currency-input
+                    [(ngModel)]="spendCap"
+                    name="spendCap"
+                    currency="USD"
+                    [min]="0"
+                    ariaLabel="Monthly spend cap"></base-currency-input>
+                  <p class="mt-1 mb-0! text-xs text-slate-400">
+                    Composite currency field — do not nest it in <code class="text-[10px]">base-input-group</code>.
+                  </p>
+                </div>
                 <button type="submit" base-button color="primary">Save profile</button>
               </form>
             </base-card-body>

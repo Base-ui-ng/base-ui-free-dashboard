@@ -60,6 +60,34 @@
     </base-popover>
   </app-showcase-section>
 
+  <app-showcase-section
+    sectionId="hover-card"
+    title="Hover card"
+    description="Rich preview on hover or focus — no backdrop, so the pointer can move into the panel."
+    componentName="base-hover-card">
+    <p class="m-0! text-sm text-slate-600 dark:text-slate-300">
+      Designed by
+      <base-hover-card placement="bottom-start" minWidth="260px">
+        <button
+          hover-card-trigger
+          type="button"
+          class="font-semibold text-blue-600 underline-offset-2 hover:underline dark:text-blue-400">
+          Ada Lovelace
+        </button>
+        <div class="flex gap-3">
+          <base-avatar initials="AL" size="lg" shape="circle"></base-avatar>
+          <div>
+            <p class="m-0! text-sm font-semibold text-slate-900 dark:text-white">Ada Lovelace</p>
+            <p class="mt-1 mb-0! text-xs text-slate-500 dark:text-slate-400">
+              Mathematician. Wrote the first algorithm intended for a machine.
+            </p>
+          </div>
+        </div>
+      </base-hover-card>
+      in 1843.
+    </p>
+  </app-showcase-section>
+
   <app-showcase-section sectionId="drawer" title="Drawer" componentName="base-drawer">
     <base-drawer #drawer position="right" class="w-80 p-6">
       <h3 class="mb-2 text-sm font-semibold uppercase tracking-widest">Drawer panel</h3>

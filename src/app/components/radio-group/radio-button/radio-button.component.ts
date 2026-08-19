@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { Component, inject, input, computed ,
   ChangeDetectionStrategy, booleanAttribute } from '@angular/core';
@@ -24,10 +24,10 @@ export class RadioButtonComponent {
   radioGroup = inject<RadioGroupComponent>(RADIO_GROUP, { optional: true });
 
   /** The native `name` attribute for the radio input. */
-  readonly name = input<string | undefined>();
+  readonly name = input<string>();
   
   /** The value represented by this radio button. Emitted to the parent group when selected. */
-  readonly value = input<unknown | undefined>();
+  readonly value = input<unknown>(undefined);
   
   /** Semantic color variant. Defaults to 'primary'. */
   readonly color = input<RadioColor>('primary');
@@ -52,11 +52,11 @@ export class RadioButtonComponent {
   readonly radioClasses = computed(() => {
     return cn(
       'w-4 h-4 appearance-none bg-slate-50 dark:bg-slate-600 border mt-0.5 border-slate-300 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-900 disabled:opacity-50 disabled:hover:border-slate-300 dark:disabled:hover:border-slate-700 mr-2 rounded-full cursor-pointer disabled:hover:cursor-default checked:hover:cursor-default transform translate-y-0.5 peer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900',
-      this.color() === 'primary' && 'checked:!bg-blue-500 checked:!border-blue-500 checked:hover:!border-blue-600',
-      this.color() === 'danger' && 'checked:!bg-red-500 checked:!border-red-500 checked:hover:!border-red-600',
-      this.color() === 'success' && 'checked:!bg-green-500 checked:!border-green-500 checked:hover:!border-green-600',
-      this.color() === 'accent' && 'checked:!bg-purple-500 checked:!border-purple-500 checked:hover:!border-purple-600',
-      this.color() === 'warning' && 'checked:!bg-orange-400 checked:!border-orange-400 checked:hover:!border-orange-500'
+      this.color() === 'primary' && 'checked:bg-blue-500! checked:border-blue-500! checked:hover:border-blue-600!',
+      this.color() === 'danger' && 'checked:bg-red-500! checked:border-red-500! checked:hover:border-red-600!',
+      this.color() === 'success' && 'checked:bg-green-500! checked:border-green-500! checked:hover:border-green-600!',
+      this.color() === 'accent' && 'checked:bg-purple-500! checked:border-purple-500! checked:hover:border-purple-600!',
+      this.color() === 'warning' && 'checked:bg-orange-400! checked:border-orange-400! checked:hover:border-orange-500!'
     );
   });
 

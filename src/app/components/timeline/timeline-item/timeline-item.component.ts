@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { Component, computed, input ,
   ChangeDetectionStrategy, booleanAttribute } from '@angular/core';
@@ -28,9 +28,9 @@ export class TimelineItemComponent {
   /** The color of the dot/icon. */
   readonly color = input<TimelineColor>('primary');
   /** Optional icon name from the icon pack displayed inside the dot. */
-  readonly icon  = input<string | undefined>();
+  readonly icon  = input<string | undefined>(undefined);
   /** Optional timestamp label shown above the content. */
-  readonly time  = input<string | undefined>();
+  readonly time  = input<string | undefined>(undefined);
   /** Set to true on the last item to hide the connecting line. */
   readonly last = input(false, { transform: booleanAttribute });
 

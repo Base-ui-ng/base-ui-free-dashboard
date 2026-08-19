@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import {
   Component,
@@ -20,6 +20,9 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { cn } from '../tw-merge/tw-merge';
 import { GroupButtonSize } from '../types';
 import { BUTTON_GROUP } from './button-group.token';
+
+export { BUTTON_GROUP } from './button-group.token';
+export type { ButtonGroupParent } from './button-group.token';
 
 /**
  * A container for grouping multiple toggle buttons.
@@ -42,8 +45,6 @@ import { BUTTON_GROUP } from './button-group.token';
 })
 export class ButtonGroupComponent implements ControlValueAccessor {
   readonly extraClass = input('', { alias: 'class' });
-  /** Optional initial value when not using Angular forms. Prefer [(ngModel)] / formControlName. */
-  readonly initialValue = input<unknown | undefined>(undefined);
   /**
    * Shared size for all items in the group. Matches button / icon-button heights
    * (`sm` = 28px, `default` = 36px, etc.).

@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { Component, computed, input, output ,
   ChangeDetectionStrategy, booleanAttribute } from '@angular/core';
@@ -21,7 +21,7 @@ export class ChipComponent {
   readonly size       = input<ChipSize>('md');
   readonly removable = input(false, { transform: booleanAttribute });
   readonly disabled = input(false, { transform: booleanAttribute });
-  readonly icon       = input<string | undefined>();
+  readonly icon       = input<string | undefined>(undefined);
   readonly active = input(false, { transform: booleanAttribute });
   readonly removeLabel = input('Remove');
 

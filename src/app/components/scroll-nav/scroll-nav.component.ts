@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import {
   AfterViewInit,
@@ -29,12 +29,13 @@ import { cn } from '../tw-merge/tw-merge';
 const ACTIVATION_OFFSET_PX = 48;
 
 /**
- * A layout component that synchronizes sidebar navigation with scrollable content.
+ * Docs/layout shell: one scrollport with a sticky TOC sidebar.
+ * Scroll lives on this host; `base-scroll-nav-sidebar` sticks to the top.
  *
  * @example
  * <base-scroll-nav>
- *   <base-scroll-nav-sidebar>...</base-scroll-nav-sidebar>
  *   <base-scroll-nav-content>...</base-scroll-nav-content>
+ *   <base-scroll-nav-sidebar>...</base-scroll-nav-sidebar>
  * </base-scroll-nav>
  */
 @Component({
@@ -45,9 +46,14 @@ const ACTIVATION_OFFSET_PX = 48;
   host: { '[class]': 'hostCls()' }
 })
 export class ScrollNavComponent implements AfterViewInit, OnDestroy {
+  private readonly host = inject(ElementRef<HTMLElement>);
+
   readonly extraClass = input('', { alias: 'class' });
   protected readonly hostCls = computed(() =>
-    cn('w-full h-full overflow-hidden relative flex', this.extraClass())
+    cn(
+      'relative flex h-full min-h-0 w-full items-start overflow-x-hidden overflow-y-auto',
+      this.extraClass(),
+    ),
   );
 
   readonly container = contentChild(ScrollNavContentComponent, { read: ElementRef });
@@ -86,10 +92,7 @@ export class ScrollNavComponent implements AfterViewInit, OnDestroy {
   }
 
   private bindScrollListeners() {
-    const containerEl = this.container()?.nativeElement as HTMLElement | undefined;
-    if (!containerEl) return;
-
-    for (const el of this.resolveScrollElements(containerEl)) {
+    for (const el of this.resolveScrollElements()) {
       if (this.boundScrollElements.has(el)) continue;
       this.boundScrollElements.add(el);
       fromEvent(el, 'scroll')
@@ -113,15 +116,19 @@ export class ScrollNavComponent implements AfterViewInit, OnDestroy {
     this.itemsDestroy$.complete();
   }
 
-  /** Content pane plus scrollable ancestors (inner → outer). */
-  private resolveScrollElements(containerEl: HTMLElement): HTMLElement[] {
+  /**
+   * Prefer this host as the scrollport; fall back to scrollable ancestors when
+   * the host is not height-constrained (e.g. page layouts that scroll outside).
+   */
+  private resolveScrollElements(): HTMLElement[] {
+    const hostEl = this.host.nativeElement;
     const elements: HTMLElement[] = [];
 
-    if (containerEl.scrollHeight > containerEl.clientHeight + 1) {
-      elements.push(containerEl);
+    if (hostEl.scrollHeight > hostEl.clientHeight + 1) {
+      elements.push(hostEl);
     }
 
-    let node: HTMLElement | null = containerEl.parentElement;
+    let node: HTMLElement | null = hostEl.parentElement;
     while (node && node !== document.documentElement) {
       const { overflowY } = getComputedStyle(node);
       if (
@@ -134,14 +141,14 @@ export class ScrollNavComponent implements AfterViewInit, OnDestroy {
     }
 
     if (elements.length === 0) {
-      elements.push(containerEl);
+      elements.push(hostEl);
     }
 
     return elements;
   }
 
-  private getPrimaryScrollElement(containerEl: HTMLElement): HTMLElement {
-    const scrollables = this.resolveScrollElements(containerEl);
+  private getPrimaryScrollElement(): HTMLElement {
+    const scrollables = this.resolveScrollElements();
     const scrolling = scrollables.filter(el => el.scrollTop > 0);
     if (scrolling.length > 0) {
       return scrolling[0];
@@ -159,12 +166,12 @@ export class ScrollNavComponent implements AfterViewInit, OnDestroy {
     const navItems = this.items();
     if (!containerEl || navItems.length === 0) return;
 
-    const scrollEl = this.getPrimaryScrollElement(containerEl);
+    const scrollEl = this.getPrimaryScrollElement();
     const { scrollTop, scrollHeight, clientHeight } = scrollEl;
     const scrollable = scrollHeight - clientHeight > 1;
     this.percentage.set(scrollable ? scrollTop / (scrollHeight - clientHeight) : 0);
 
-    const activationY = containerEl.getBoundingClientRect().top + ACTIVATION_OFFSET_PX;
+    const activationY = scrollEl.getBoundingClientRect().top + ACTIVATION_OFFSET_PX;
     let activeItem: ScrollNavItemDirective | undefined;
 
     if (scrollable && scrollTop + clientHeight >= scrollHeight - 2) {
@@ -203,7 +210,7 @@ export class ScrollNavComponent implements AfterViewInit, OnDestroy {
     const el = containerEl ? this.getSectionElement(containerEl, id) : null;
     if (!containerEl || !el) return;
 
-    const scrollEl = this.getPrimaryScrollElement(containerEl);
+    const scrollEl = this.getPrimaryScrollElement();
     const top =
       el.getBoundingClientRect().top -
       scrollEl.getBoundingClientRect().top +

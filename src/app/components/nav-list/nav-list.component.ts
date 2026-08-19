@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { Component, computed, input ,
   ChangeDetectionStrategy
@@ -9,8 +9,7 @@ import { Component, computed, input ,
 import { cn } from '../tw-merge/tw-merge';
 
 /**
- * A navigation list container. Use inside `base-app-shell-sidebar` for app nav,
- * or inside `base-sidenav-nav` for in-page section links.
+ * A navigation list container. Usually used inside sidebars or drawer menus.
  *
  * @example
  * <base-nav-list>

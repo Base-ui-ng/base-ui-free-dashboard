@@ -1,7 +1,7 @@
 <!--
   Base UI (free tier) — https://base-ui.net
   Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-  Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+  Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 -->
 <base-card>
   <div class="p-8 flex flex-col gap-6">
@@ -41,7 +41,7 @@
     </div>
 
     <base-input-group>
-      <base-label class="!text-[10px] uppercase !font-light !tracking-[2px]">Type DELETE to confirm</base-label>
+      <base-label class="text-[10px]! uppercase font-light! tracking-[2px]!">Type DELETE to confirm</base-label>
       <input
         base-input
         placeholder="DELETE"
@@ -52,7 +52,7 @@
     <button
       base-button
       [disabled]="!canDelete"
-      class="w-full !bg-red-600 hover:!bg-red-700 !border-red-600 !text-white disabled:opacity-40 disabled:cursor-not-allowed">
+      class="w-full bg-red-600! hover:bg-red-700! border-red-600! text-white! disabled:opacity-40 disabled:cursor-not-allowed">
       Delete Account Permanently
     </button>
 

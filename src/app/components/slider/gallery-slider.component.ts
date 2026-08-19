@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { Component,
   OnDestroy,
@@ -122,7 +122,7 @@ export class GallerySliderComponent implements AfterContentInit, OnDestroy {
 
   getSlideClass(i: number) {
     return cn(
-      'carousel-item h-full flex-shrink-0 flex items-center justify-center p-4 bg-slate-100 dark:bg-slate-800 transition-all duration-600 ease-in-out',
+      'carousel-item h-full shrink-0 flex items-center justify-center p-4 bg-slate-100 dark:bg-slate-800 transition-all duration-600 ease-in-out',
       this.transition() === 'slide' && 'relative',
       this.transition() === 'crossfade' && 'absolute inset-0 transition-opacity',
       i === this.activeIndex() && 'opacity-100 z-10',

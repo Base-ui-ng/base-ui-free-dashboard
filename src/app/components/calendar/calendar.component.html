@@ -1,13 +1,13 @@
 <!--
   Base UI (free tier) — https://base-ui.net
   Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-  Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+  Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 -->
 <div class="calendar-container">
     <!-- Header -->
     <div class="flex items-center justify-between mb-4 px-2">
-        <h3 class="text-sm font-semibold text-slate-900 dark:text-white !m-0" id="base-calendar-month-label">
-            {{ months[viewDate.getMonth()] }} {{ viewDate.getFullYear() }}
+        <h3 class="text-sm font-semibold text-slate-900 dark:text-white m-0!" id="base-calendar-month-label">
+            {{ months[viewDate().getMonth()] }} {{ viewDate().getFullYear() }}
         </h3>
         <div class="flex gap-1">
             <button base-icon-button color="transparent" size="sm" (click)="prevMonth()"
@@ -33,7 +33,7 @@
         }
 
         <!-- Days -->
-        @for (calDate of days; track calDate.date.getTime()) {
+        @for (calDate of days(); track calDate.date.getTime()) {
         <div role="gridcell" [attr.tabindex]="dayTabIndex(calDate)"
             [attr.aria-label]="dayAriaLabel(calDate)"
             [attr.aria-selected]="calDate.isSelected || calDate.isRangeStart || calDate.isRangeEnd || calDate.isInRange"

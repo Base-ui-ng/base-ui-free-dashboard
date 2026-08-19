@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { Directive, computed, input } from '@angular/core';
 import { LinkColor, LinkSize } from "../types";
@@ -27,7 +27,7 @@ export class BaseLinkDirective {
   readonly size = input<LinkSize>('default');
   
   /** Optional custom width (e.g. '100%'). */
-  readonly width = input<string | undefined>();
+  readonly width = input<string>();
 
   readonly classes = computed(() => {
     const baseClasses = 'inline-flex items-center tracking-wide transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50 [&_base-icon]:stroke-current [&_base-icon]:fill-current';
@@ -42,10 +42,10 @@ export class BaseLinkDirective {
     };
 
     const sizeMap: Record<LinkSize, string> = {
-      sm: 'text-xs gap-2 [&_base-icon]:!w-3 [&_base-icon]:!h-3',
-      default: 'text-sm gap-3 [&_base-icon]:!w-5 [&_base-icon]:!h-5',
-      lg: 'text-base gap-4 [&_base-icon]:!w-6 [&_base-icon]:!h-6',
-      xl: 'text-lg gap-5 [&_base-icon]:!w-7 [&_base-icon]:!h-7',
+      sm: 'text-xs gap-2 [&_base-icon]:w-3! [&_base-icon]:h-3!',
+      default: 'text-sm gap-3 [&_base-icon]:w-5! [&_base-icon]:h-5!',
+      lg: 'text-base gap-4 [&_base-icon]:w-6! [&_base-icon]:h-6!',
+      xl: 'text-lg gap-5 [&_base-icon]:w-7! [&_base-icon]:h-7!',
     };
 
     const colorClass = colorMap[this.color()] || colorMap['default'];

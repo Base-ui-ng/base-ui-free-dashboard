@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { Component, computed, inject, input , signal,
   ChangeDetectionStrategy, booleanAttribute } from '@angular/core';
@@ -43,15 +43,15 @@ export class GroupButtonComponent {
   private readonly buttonGroup = inject(BUTTON_GROUP, { optional: true });
 
   readonly extraClass = input('', { alias: 'class' });
-  readonly icon       = input<string | undefined>();
+  readonly icon       = input<string | undefined>(undefined);
   readonly disabled = input(false, { transform: booleanAttribute });
-  readonly value      = input<unknown | undefined>();
+  readonly value      = input<unknown>(undefined);
   /**
    * Optional size override. When omitted, inherits from the parent `base-button-group`.
    * @example
    * <base-group-button-item value="grid" icon="grid" size="sm"></base-group-button-item>
    */
-  readonly size = input<GroupButtonSize | undefined>();
+  readonly size = input<GroupButtonSize | undefined>(undefined);
 
   protected readonly hostCls = computed(() =>
     cn('border-r border-slate-300 dark:border-slate-700 last-of-type:border-r-0', this.extraClass())

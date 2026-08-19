@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import {
   Component,
@@ -11,10 +11,13 @@ import {
   computed,
   ChangeDetectionStrategy,
   ElementRef,
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DropdownPanel } from './dropdown-panel';
 import { focusMenuItem, focusMenuItemEdge, getMenuItems } from '../a11y-keyboard/a11y-keyboard';
+import { injectTimers } from '../safe-timer/safe-timer';
+import { DropdownMenuStack } from '../dropdown-menu-stack/dropdown-menu-stack.service';
 
 let dropdownMenuIdCounter = 0;
 
@@ -35,8 +38,12 @@ let dropdownMenuIdCounter = 0;
   templateUrl: './dropdown-menu.component.html',
 })
 export class DropdownMenuComponent<T> implements DropdownPanel<T> {
+  /** Timers cancelled automatically on destroy — see utils/safe-timer. */
+  private readonly timers = injectTimers();
+  private readonly menuStack = inject(DropdownMenuStack);
+
   /** Optional custom width size for the dropdown container. */
-  readonly size = input<string | undefined>();
+  readonly size = input<string>();
 
   readonly templateRef = viewChild.required(TemplateRef);
   readonly menuRoot = viewChild<ElementRef<HTMLElement>>('menuRoot');
@@ -56,7 +63,7 @@ export class DropdownMenuComponent<T> implements DropdownPanel<T> {
 
   /** Focus the first menu item after the overlay opens. */
   focusFirstItem(): void {
-    setTimeout(() => {
+    this.timers.setTimeout(() => {
       const root = this.menuRoot()?.nativeElement;
       if (!root) return;
       root.focus();
@@ -92,8 +99,24 @@ export class DropdownMenuComponent<T> implements DropdownPanel<T> {
         event.preventDefault();
         this.closed.emit();
         break;
+      case 'ArrowRight': {
+        // Open cascading submenu when the focused item is a submenu trigger
+        const trigger = active?.closest('[role="menuitem"]') as HTMLElement | null;
+        if (trigger?.getAttribute('aria-haspopup') === 'menu') {
+          event.preventDefault();
+          trigger.click();
+        }
+        break;
+      }
+      case 'ArrowLeft':
+        // Unwind one cascade level when this panel is a nested submenu
+        if (this.menuStack.size > 1) {
+          event.preventDefault();
+          this.closed.emit();
+        }
+        break;
       case 'Tab':
-        this.closed.emit();
+        this.menuStack.closeAll(true);
         break;
       default:
         if (event.key.length === 1 && !event.ctrlKey && !event.metaKey && !event.altKey) {
@@ -112,11 +135,24 @@ export class DropdownMenuComponent<T> implements DropdownPanel<T> {
     }
   }
 
+  /**
+   * Leaf item clicks dismiss the whole cascade. Submenu triggers
+   * (`aria-haspopup="menu"`) keep the parent open so nested menus can cascade.
+   *
+   * @example
+   * // Bound on the menu root `(click)`
+   */
   onMenuClick(event: MouseEvent): void {
     const target = event.target as HTMLElement;
-    const item = target.closest('[role="menuitem"]');
-    if (item) {
-      this.closed.emit();
+    const item = target.closest('[role="menuitem"]') as HTMLElement | null;
+    if (!item) return;
+
+    // Cascading submenu trigger — do not close the parent menu
+    if (item.getAttribute('aria-haspopup') === 'menu') {
+      return;
     }
+
+    // Leaf action — dismiss the entire cascade (root + nested)
+    this.menuStack.closeAll(true);
   }
 }

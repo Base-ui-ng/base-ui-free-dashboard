@@ -1,7 +1,7 @@
 <!--
   Base UI (free tier) — https://base-ui.net
   Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-  Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+  Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 -->
 <div [class]="trackClass()" role="meter" [attr.aria-valuemin]="0" [attr.aria-valuemax]="total()"
   [attr.aria-valuenow]="used()" aria-label="Meter group">
@@ -18,7 +18,7 @@
 </div>
 
 @if (showLegend() && segments().length) {
-  <ul class="mt-3 flex list-none flex-wrap gap-x-5 gap-y-2 !m-0 !p-0" role="list">
+  <ul class="mt-3 flex list-none flex-wrap gap-x-5 gap-y-2 m-0! p-0!" role="list">
     @for (segment of segments(); track segment.label + $index) {
       <li class="flex min-w-0 items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
         @if (segment.icon) {

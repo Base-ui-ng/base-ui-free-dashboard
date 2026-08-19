@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import {
   Directive,
@@ -13,27 +13,49 @@ import {
   booleanAttribute,
   effect,
 } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { TooltipPlacement } from '../types';
 
 let tooltipIdCounter = 0;
 
 /**
  * An attribute directive that attaches a floating tooltip to any element.
+ * Hides on mouse leave, blur, Escape, or scroll (including nested overflow containers).
+ * Position via `tooltipPlacement` — not bare `placement`, which collides with
+ * dropdown / popover / drawer on the same host.
  *
  * @example
- * <button base-tooltip="This is a helpful tip" placement="right" type="light">Hover Me</button>
+ * <button base-tooltip="This is a helpful tip" tooltipPlacement="right" type="light">Hover Me</button>
+ *
+ * @example
+ * <!-- Safe alongside dropdown/popover `placement` on the same host -->
+ * <button
+ *   [base-dropdown-menu-trigger]="menu"
+ *   placement="end"
+ *   base-tooltip="Account"
+ *   tooltipPlacement="bottom"
+ * ></button>
  */
 @Directive({
   selector: '[base-tooltip]',
 })
 export class TooltipDirective implements OnDestroy {
+  private readonly ssrDocument = inject(DOCUMENT);
   private el = inject(ElementRef);
   private renderer = inject(Renderer2);
 
   /** The text content to display inside the tooltip. */
   readonly tooltipTitle = input('', { alias: 'base-tooltip' });
 
-  /** The positioning of the tooltip relative to the host element. Defaults to 'top'. */
-  readonly placement = input<'top' | 'bottom' | 'left' | 'right' | string>('top');
+  /**
+   * The positioning of the tooltip relative to the host element. Defaults to 'top'.
+   * Use the `tooltipPlacement` template attribute — not bare `placement`, which collides
+   * with dropdown, popover, and drawer placement on the same host.
+   *
+   * @example
+   * <span base-tooltip="Help" tooltipPlacement="bottom">?</span>
+   */
+  readonly placement = input<TooltipPlacement | string>('top', { alias: 'tooltipPlacement' });
 
   /** Additional custom CSS classes to apply to the tooltip element. */
   readonly tooltipClass = input('');
@@ -51,7 +73,11 @@ export class TooltipDirective implements OnDestroy {
   private offset = 10;
   private showTimeout?: ReturnType<typeof setTimeout>;
   private animateInTimeout?: ReturnType<typeof setTimeout>;
+  private scrollListening = false;
   private readonly tooltipId = `base-tooltip-${tooltipIdCounter++}`;
+
+  /** Capture-phase so nested overflow containers also dismiss the tooltip. */
+  private readonly onScroll = (): void => this.hide();
 
   constructor() {
     effect(() => {
@@ -94,6 +120,7 @@ export class TooltipDirective implements OnDestroy {
 
     this.create();
     this.setPosition();
+    this.attachScrollListener();
     this.renderer.setAttribute(this.el.nativeElement, 'aria-describedby', this.tooltipId);
 
     clearTimeout(this.animateInTimeout);
@@ -117,11 +144,24 @@ export class TooltipDirective implements OnDestroy {
   private hide(): void {
     clearTimeout(this.showTimeout);
     clearTimeout(this.animateInTimeout);
+    this.detachScrollListener();
     this.renderer.removeAttribute(this.el.nativeElement, 'aria-describedby');
     if (this.tooltip) {
-      this.renderer.removeChild(document.body, this.tooltip);
+      this.renderer.removeChild(this.ssrDocument.body, this.tooltip);
       this.tooltip = null;
     }
+  }
+
+  private attachScrollListener(): void {
+    if (this.scrollListening) return;
+    this.ssrDocument.addEventListener?.('scroll', this.onScroll, true);
+    this.scrollListening = true;
+  }
+
+  private detachScrollListener(): void {
+    if (!this.scrollListening) return;
+    this.ssrDocument.removeEventListener?.('scroll', this.onScroll, true);
+    this.scrollListening = false;
   }
 
   /** Keep an already-open tooltip in sync when `base-tooltip` text changes. */
@@ -141,7 +181,7 @@ export class TooltipDirective implements OnDestroy {
     this.renderer.setAttribute(tooltip, 'role', 'tooltip');
     const text = this.renderer.createText(this.tooltipTitle());
     this.renderer.appendChild(tooltip, text);
-    this.renderer.appendChild(document.body, tooltip);
+    this.renderer.appendChild(this.ssrDocument.body, tooltip);
 
     const baseClasses = [
       'text-sm', 'rounded-md', 'text-center', 'px-2', 'py-1', 'max-w-xs', 'z-[9999]',

@@ -1,15 +1,27 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
-import { Component, ElementRef, inject, input, model, viewChild, effect, signal,
-  ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  PLATFORM_ID,
+  inject,
+  input,
+  model,
+  viewChild,
+  effect,
+  signal,
+  ChangeDetectionStrategy,
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Clipboard, ClipboardModule } from '@angular/cdk/clipboard';
 import { buttonSlideRightToLeft, openClose } from '../animations/animations';
 import { IconComponent } from '../icon/icon.component';
 import { IconButtonDirective } from '../button/base-icon-button.directive';
 import { TooltipDirective } from '../tooltip/tooltip.directive';
 import { ToastService } from '../toast/toast.service';
+import { injectTimers } from '../safe-timer/safe-timer';
 
 /**
  * A component to display formatted code blocks with syntax highlighting and a copy-to-clipboard button.
@@ -25,9 +37,12 @@ import { ToastService } from '../toast/toast.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [IconComponent, IconButtonDirective, ClipboardModule, TooltipDirective],
   templateUrl: './code.component.html',
-  animations: [buttonSlideRightToLeft, openClose]
+  animations: [buttonSlideRightToLeft, openClose],
+  host: { class: 'block' },
 })
 export class CodeComponent {
+  /** Timers cancelled automatically on destroy — see utils/safe-timer. */
+  private readonly timers = injectTimers();
   /** The programming language of the code (e.g., 'HTML', 'TypeScript', 'Bash'). Used for syntax highlighting. */
   readonly language = input('');
 
@@ -39,11 +54,15 @@ export class CodeComponent {
   /** Tooltip label for the copy button; flips to "Copied" after a successful copy. */
   readonly copyTooltip = signal('Copy to clipboard');
 
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+
   constructor() {
     effect(() => {
       const el = this.contentRef();
-      if (el) {
-        setTimeout(() => this.highlight());
+      // Highlighting is a browser-only visual enhancement: it rewrites innerHTML
+      // and reads `dataset`, neither of which is meaningful during server render.
+      if (el && this.isBrowser) {
+        this.timers.setTimeout(() => this.highlight());
       }
     });
   }
@@ -52,29 +71,36 @@ export class CodeComponent {
   private toastService = inject(ToastService);
 
   highlight() {
+    if (!this.isBrowser) return;
     const content = this.contentRef();
     if (!content) return;
     const el = content.nativeElement;
 
     // Check if we already highlighted this element
-    if (el.dataset.highlighted === 'true') return;
+    if (el.dataset?.highlighted === 'true') return;
 
     // Use textContent to preserve exact whitespaces and newlines
     const text = el.textContent || '';
 
-    let html = text
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
+    let html = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
     if (this.language().toLowerCase().includes('html')) {
       // Highlight HTML attributes
-      html = html.replace(/([a-zA-Z\-]+)=(&quot;|"|')(.*?)\2/g, '<span class="text-slate-400">$1</span>=$2<span class="text-cyan-400">$3</span>$2');
+      html = html.replace(
+        /([a-zA-Z\-]+)=(&quot;|"|')(.*?)\2/g,
+        '<span class="text-slate-400">$1</span>=$2<span class="text-cyan-400">$3</span>$2',
+      );
       // Highlight HTML tags and their opening brackets
-      html = html.replace(/(&lt;\/?)([a-zA-Z0-9\-]+)/g, '<span class="text-slate-400">$1</span><span class="text-pink-400">$2</span>');
+      html = html.replace(
+        /(&lt;\/?)([a-zA-Z0-9\-]+)/g,
+        '<span class="text-slate-400">$1</span><span class="text-pink-400">$2</span>',
+      );
       // Highlight closing brackets
       html = html.replace(/(\/?&gt;)/g, '<span class="text-slate-400">$1</span>');
-    } else if (this.language().toLowerCase().includes('typescript') || this.language().toLowerCase().includes('javascript')) {
+    } else if (
+      this.language().toLowerCase().includes('typescript') ||
+      this.language().toLowerCase().includes('javascript')
+    ) {
       // Extract strings first to avoid messing up injected HTML later
       const strings: string[] = [];
       html = html.replace(/(&quot;|"|')(.*?)\1/g, (match: string) => {
@@ -83,7 +109,10 @@ export class CodeComponent {
       });
 
       // Highlight keywords
-      html = html.replace(/\b(import|export|from|class|const|let|var|function|return|if|else|switch|case|default|break|continue|new|try|catch|finally|throw|typeof|instanceof|void|delete|in|of|yield|await|async|implements|interface|extends)\b/g, '<span class="text-pink-400">$1</span>');
+      html = html.replace(
+        /\b(import|export|from|class|const|let|var|function|return|if|else|switch|case|default|break|continue|new|try|catch|finally|throw|typeof|instanceof|void|delete|in|of|yield|await|async|implements|interface|extends)\b/g,
+        '<span class="text-pink-400">$1</span>',
+      );
 
       // Restore strings with highlight
       html = html.replace(/__STR_(\d+)__/g, (_match: string, indexStr: string) => {
@@ -97,7 +126,7 @@ export class CodeComponent {
 
     // Wrap the result in a <pre> tag to preserve formatting natively,
     // overriding margins/paddings to rely on the container's padding instead.
-    el.innerHTML = `<pre class="!m-0 !p-0 !bg-transparent !text-inherit font-inherit whitespace-pre-wrap">${html}</pre>`;
+    el.innerHTML = `<pre class="m-0! p-0! bg-transparent! text-inherit! font-inherit whitespace-pre-wrap">${html}</pre>`;
     el.dataset.highlighted = 'true';
   }
 

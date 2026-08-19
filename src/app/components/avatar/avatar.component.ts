@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { Component, computed, input ,
   ChangeDetectionStrategy
@@ -24,9 +24,9 @@ import { cn } from '../tw-merge/tw-merge';
   host: { '[class]': 'hostCls()' } })
 export class AvatarComponent {
   readonly extraClass  = input('', { alias: 'class' });
-  readonly avatarUrl   = input('');
+  readonly avatarUrl   = input<string | undefined>('');
   readonly shape       = input<AvatarShape>('square');
-  readonly status      = input<AvatarStatus | undefined>();
+  readonly status      = input<AvatarStatus | undefined>(undefined);
   readonly size        = input<AvatarSize>('md');
   readonly initials    = input('');
 

@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { Directive, inject, input } from '@angular/core';
 import { DialogContext } from './dialog-context';
@@ -22,7 +22,7 @@ import { DialogContext } from './dialog-context';
 })
 export class DialogCloseDirective {
   /** Optional aria-label for accessibility. */
-  readonly ariaLabel = input<string | undefined>();
+  readonly ariaLabel = input<string>();
   
   /** The native button type. Defaults to 'button'. */
   readonly type = input('button');

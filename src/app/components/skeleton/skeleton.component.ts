@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { Component, computed, input ,
   ChangeDetectionStrategy, booleanAttribute } from '@angular/core';
@@ -18,8 +18,8 @@ export class SkeletonComponent {
   readonly extraClass = input('', { alias: 'class' });
   readonly variant = input<SkeletonVariant>('text');
   readonly count   = input(1);
-  readonly width   = input<string | undefined>();
-  readonly height  = input<string | undefined>();
+  readonly width   = input<string | undefined>(undefined);
+  readonly height  = input<string | undefined>(undefined);
   readonly animated = input(true, { transform: booleanAttribute });
 
   protected readonly hostCls = computed(() => cn('block', this.extraClass()));

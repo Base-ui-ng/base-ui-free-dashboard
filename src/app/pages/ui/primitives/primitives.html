@@ -121,6 +121,67 @@
   </app-showcase-section>
 
   <app-showcase-section
+    sectionId="kbd"
+    title="Keyboard"
+    description="Inline glyphs for shortcuts in copy, menus, and docs."
+    componentName="base-kbd">
+    <p class="m-0! text-sm text-slate-700 dark:text-slate-200">
+      Press <base-kbd>⌘</base-kbd> <base-kbd>K</base-kbd> to search, or
+      <base-kbd>Esc</base-kbd> to dismiss a dialog.
+    </p>
+  </app-showcase-section>
+
+  <app-showcase-section
+    sectionId="aspect-ratio"
+    title="Aspect ratio"
+    description="Preserves width-to-height via CSS aspect-ratio."
+    componentName="base-aspect-ratio">
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <div>
+        <p class="mb-2 text-xs font-medium text-slate-500">16 / 9</p>
+        <base-aspect-ratio ratio="16/9" class="rounded-lg">
+          <div class="flex h-full w-full items-end bg-linear-to-br from-blue-500 to-slate-800 p-3 text-sm font-medium text-white">
+            Hero
+          </div>
+        </base-aspect-ratio>
+      </div>
+      <div>
+        <p class="mb-2 text-xs font-medium text-slate-500">4 / 3</p>
+        <base-aspect-ratio ratio="4/3" class="rounded-lg">
+          <div class="flex h-full w-full items-end bg-linear-to-br from-emerald-500 to-slate-800 p-3 text-sm font-medium text-white">
+            Card
+          </div>
+        </base-aspect-ratio>
+      </div>
+      <div>
+        <p class="mb-2 text-xs font-medium text-slate-500">1 / 1</p>
+        <base-aspect-ratio ratio="1/1" class="rounded-lg">
+          <div class="flex h-full w-full items-end bg-linear-to-br from-violet-500 to-slate-800 p-3 text-sm font-medium text-white">
+            Avatar
+          </div>
+        </base-aspect-ratio>
+      </div>
+    </div>
+  </app-showcase-section>
+
+  <app-showcase-section
+    sectionId="scroll-area"
+    title="Scroll area"
+    description="Overflow container with a thin, theme-aware scrollbar."
+    componentName="base-scroll-area">
+    <base-scroll-area class="h-40 max-w-sm rounded-lg border border-slate-200 dark:border-slate-700">
+      <ul class="m-0! list-none p-0">
+        @for (tag of scrollTags; track tag) {
+          <li
+            class="border-b border-slate-100 px-4 py-2.5 text-sm text-slate-700 last:border-b-0 dark:border-slate-800 dark:text-slate-200">
+            {{ tag }}
+          </li>
+        }
+      </ul>
+    </base-scroll-area>
+  </app-showcase-section>
+
+  <app-showcase-section
     sectionId="screen-size"
     title="Current screen size"
     description="Breakpoint signal from CurrentScreenSizeService."

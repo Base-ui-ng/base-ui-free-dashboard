@@ -1,19 +1,24 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import {
-  OnInit,
   Component,
   ElementRef,
   OnDestroy,
-  computed,
-  input,
-  viewChild,
+  PLATFORM_ID,
+  TemplateRef,
+  ViewContainerRef,
   ChangeDetectionStrategy,
-  signal
+  computed,
+  inject,
+  input,
+  signal,
+  viewChild,
 } from '@angular/core';
-import { NgStyle } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
+import { ConnectedPosition, Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { TemplatePortal } from '@angular/cdk/portal';
 import { cn } from '../tw-merge/tw-merge';
 import { PopoverPlacement } from '../types';
 
@@ -23,7 +28,8 @@ let popoverIdCounter = 0;
 /**
  * A self-contained popover with trigger and panel slots.
  * Place the trigger inside the `[popover-trigger]` slot; place panel content as default children.
- * The panel is rendered with `position: fixed` so it always appears on top.
+ * The panel is a CDK overlay attached to the viewport so it stays next to the trigger
+ * even inside `overflow: hidden` parents.
  *
  * @example
  * <base-popover placement="bottom-start">
@@ -34,163 +40,220 @@ let popoverIdCounter = 0;
 @Component({
   selector: 'base-popover',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgStyle],
+  imports: [],
   templateUrl: './popover.component.html',
-  host: { '[class]': 'hostCls()' }
+  host: { '[class]': 'hostCls()' },
 })
-export class PopoverComponent implements OnInit, OnDestroy {
+export class PopoverComponent implements OnDestroy {
+  private readonly isSsrSafeBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  private readonly overlay = inject(Overlay);
+  private readonly viewContainerRef = inject(ViewContainerRef);
+
   readonly panelId = `base-popover-panel-${++popoverIdCounter}`;
 
+  /**
+   * Extra host classes merged via `cn()`.
+   * @example
+   * <base-popover class="align-middle"></base-popover>
+   */
   readonly extraClass = input('', { alias: 'class' });
-  readonly minWidth   = input('200px');
-  readonly placement  = input<PopoverPlacement>('bottom-start');
+
+  /**
+   * Minimum width of the overlay panel.
+   * @example
+   * <base-popover minWidth="280px"></base-popover>
+   */
+  readonly minWidth = input('200px');
+
+  /**
+   * Preferred placement relative to the trigger. Flips when there is not enough room.
+   * @example
+   * <base-popover placement="top-end"></base-popover>
+   */
+  readonly placement = input<PopoverPlacement>('bottom-start');
 
   readonly triggerSlot = viewChild<ElementRef<HTMLElement>>('triggerSlot');
-  readonly panel       = viewChild<ElementRef<HTMLElement>>('panel');
+  readonly panelTpl = viewChild<TemplateRef<unknown>>('panelTemplate');
 
   protected readonly hostCls = computed(() => cn('inline-block relative', this.extraClass()));
 
   readonly isOpen = signal(false);
-  readonly panelStyle = signal<Record<string, string>>({
-    position: 'fixed', visibility: 'hidden', pointerEvents: 'none',
-    top: '0', left: '-9999px', zIndex: '10000'
-  });
 
-  ngOnInit() { this.applyHiddenStyle(); }
+  private overlayRef: OverlayRef | null = null;
+  private openTimeout?: number;
+  private previouslyFocused: HTMLElement | null = null;
+  private runtimePlacement?: PopoverPlacement;
+  private runtimeOrigin?: HTMLElement;
 
-  toggle() { this.isOpen() ? this.close() : this.open(); }
+  toggle(): void {
+    this.isOpen() ? this.close() : this.open();
+  }
 
-  /** Allows external triggers (e.g. PopoverTriggerDirective) to override the placement before opening. */
-  private _runtimePlacement?: PopoverPlacement;
-
-  /** Toggle with an optional placement override — used by the external [base-popover-trigger] directive. */
-  toggleWithPlacement(pl: PopoverPlacement) {
-    this._runtimePlacement = pl;
+  /**
+   * Toggle with an optional placement override — used by `[base-popover-trigger]`.
+   * Pass the external trigger element so the overlay anchors to it.
+   *
+   * @example
+   * popover.toggleWithPlacement('bottom-end', triggerEl);
+   */
+  toggleWithPlacement(pl: PopoverPlacement, origin?: HTMLElement): void {
+    this.runtimePlacement = pl;
+    this.runtimeOrigin = origin;
     this.toggle();
   }
 
-  private openTimeout?: ReturnType<typeof setTimeout>;
-  private previouslyFocused: HTMLElement | null = null;
-
-  open() {
-    this.previouslyFocused = document.activeElement as HTMLElement | null;
+  open(): void {
+    if (this.isOpen()) return;
+    this.previouslyFocused = this.isSsrSafeBrowser
+      ? (document.activeElement as HTMLElement | null)
+      : null;
     this.isOpen.set(true);
-    this.calcPosition();
-    clearTimeout(this.openTimeout);
-    this.openTimeout = setTimeout(() => {
+    this.attachOverlay();
+    if (!this.isSsrSafeBrowser) return;
+    document.addEventListener('keydown', this.onKeydown);
+    window.clearTimeout(this.openTimeout);
+    this.openTimeout = window.setTimeout(() => {
       if (!this.isOpen()) return;
-      document.addEventListener('click', this.onDocClick);
-      document.addEventListener('keydown', this.onKeydown);
-      window.addEventListener('scroll', this.reposition, true);
-      window.addEventListener('resize', this.reposition);
       this.focusFirstPanelElement();
     });
   }
 
-  close() {
-    clearTimeout(this.openTimeout);
+  close(): void {
+    if (this.isSsrSafeBrowser) window.clearTimeout(this.openTimeout);
     if (!this.isOpen()) return;
     this.isOpen.set(false);
-    this.applyHiddenStyle();
-    document.removeEventListener('click', this.onDocClick);
-    document.removeEventListener('keydown', this.onKeydown);
-    window.removeEventListener('scroll', this.reposition, true);
-    window.removeEventListener('resize', this.reposition);
     this.restoreFocus();
+    this.detachOverlay();
+    this.runtimeOrigin = undefined;
+    if (this.isSsrSafeBrowser) document.removeEventListener('keydown', this.onKeydown);
   }
 
-  /** Moves focus into the panel when it opens, so keyboard users land on its content. */
-  private focusFirstPanelElement() {
-    const panel = this.panel()?.nativeElement;
-    const focusable = panel?.querySelector<HTMLElement>(
-      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+  ngOnDestroy(): void {
+    if (!this.isSsrSafeBrowser) return;
+    this.close();
+  }
+
+  private attachOverlay(): void {
+    if (!this.isSsrSafeBrowser || this.overlayRef) return;
+    const origin = this.runtimeOrigin ?? this.triggerSlot()?.nativeElement;
+    const template = this.panelTpl();
+    if (!origin || !template) return;
+
+    const placement = this.runtimePlacement ?? this.placement();
+    this.overlayRef = this.overlay.create({
+      hasBackdrop: true,
+      backdropClass: 'cdk-overlay-transparent-backdrop',
+      positionStrategy: this.overlay
+        .position()
+        .flexibleConnectedTo(origin)
+        .withFlexibleDimensions(false)
+        .withPush(true)
+        .withViewportMargin(GAP)
+        .withPositions(this.positionsFor(placement)),
+      scrollStrategy: this.overlay.scrollStrategies.reposition(),
+      minWidth: this.minWidth(),
+    });
+    this.overlayRef.attach(new TemplatePortal(template, this.viewContainerRef));
+    this.overlayRef.overlayElement.style.overflow = 'visible';
+    queueMicrotask(() => {
+      this.overlayRef?.backdropClick().subscribe(() => this.close());
+    });
+    requestAnimationFrame(() => this.overlayRef?.updatePosition());
+  }
+
+  private detachOverlay(): void {
+    this.overlayRef?.dispose();
+    this.overlayRef = null;
+  }
+
+  private positionsFor(pl: PopoverPlacement): ConnectedPosition[] {
+    const map: Record<PopoverPlacement, ConnectedPosition> = {
+      'bottom-start': {
+        originX: 'start',
+        originY: 'bottom',
+        overlayX: 'start',
+        overlayY: 'top',
+        offsetY: GAP,
+      },
+      'bottom-end': {
+        originX: 'end',
+        originY: 'bottom',
+        overlayX: 'end',
+        overlayY: 'top',
+        offsetY: GAP,
+      },
+      bottom: {
+        originX: 'center',
+        originY: 'bottom',
+        overlayX: 'center',
+        overlayY: 'top',
+        offsetY: GAP,
+      },
+      'top-start': {
+        originX: 'start',
+        originY: 'top',
+        overlayX: 'start',
+        overlayY: 'bottom',
+        offsetY: -GAP,
+      },
+      'top-end': {
+        originX: 'end',
+        originY: 'top',
+        overlayX: 'end',
+        overlayY: 'bottom',
+        offsetY: -GAP,
+      },
+      top: {
+        originX: 'center',
+        originY: 'top',
+        overlayX: 'center',
+        overlayY: 'bottom',
+        offsetY: -GAP,
+      },
+      left: {
+        originX: 'start',
+        originY: 'center',
+        overlayX: 'end',
+        overlayY: 'center',
+        offsetX: -GAP,
+      },
+      right: {
+        originX: 'end',
+        originY: 'center',
+        overlayX: 'start',
+        overlayY: 'center',
+        offsetX: GAP,
+      },
+    };
+    const flip: Record<PopoverPlacement, PopoverPlacement> = {
+      'bottom-start': 'top-start',
+      'bottom-end': 'top-end',
+      bottom: 'top',
+      'top-start': 'bottom-start',
+      'top-end': 'bottom-end',
+      top: 'bottom',
+      left: 'right',
+      right: 'left',
+    };
+    const preferred = map[pl] ?? map['bottom-start'];
+    const fallback = map[flip[pl] ?? 'top-start'];
+    return [preferred, fallback];
+  }
+
+  private focusFirstPanelElement(): void {
+    const root = this.overlayRef?.overlayElement;
+    const focusable = root?.querySelector<HTMLElement>(
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
     );
     focusable?.focus();
   }
 
-  /** Restores focus to whatever had it before the panel opened (typically the trigger). */
-  private restoreFocus() {
-    const panel = this.panel()?.nativeElement;
-    const activeElement = document.activeElement as HTMLElement | null;
-    if (panel && activeElement && panel.contains(activeElement)) {
-      (this.previouslyFocused ?? this.triggerSlot()?.nativeElement)?.focus();
-    }
+  private restoreFocus(): void {
+    (this.previouslyFocused ?? this.triggerSlot()?.nativeElement)?.focus();
     this.previouslyFocused = null;
   }
 
-  private applyHiddenStyle() {
-    this.panelStyle.set({
-      position: 'fixed', visibility: 'hidden', pointerEvents: 'none',
-      top: '0', left: '-9999px', zIndex: '10000', minWidth: this.minWidth()
-    });
-  }
-
-  private calcPosition() {
-    const anchor = this.triggerSlot()?.nativeElement;
-    if (!anchor) return;
-    const rect = anchor.getBoundingClientRect();
-    const vw = window.innerWidth, vh = window.innerHeight;
-    const panelEl = this.panel()?.nativeElement;
-    const panelH = panelEl?.offsetHeight || 220;
-    const panelW = panelEl?.offsetWidth  || 220;
-    const pl = this._runtimePlacement ?? this.placement();
-    const style: Record<string, string> = {
-      position: 'fixed', visibility: 'visible', pointerEvents: 'auto',
-      zIndex: '10000', minWidth: this.minWidth()
-};
-
-    // Vertical — prefer the requested side, flip to the opposite side if the
-    // full panel does not fit, and clamp to the viewport as a last resort.
-    const spaceBelow = vh - rect.bottom - GAP;
-    const spaceAbove = rect.top - GAP;
-    let top: number;
-
-    if (pl.startsWith('top')) {
-      if (spaceAbove >= panelH || spaceAbove >= spaceBelow) {
-        top = rect.top - GAP - panelH;
-      } else {
-        top = rect.bottom + GAP;
-      }
-    } else if (pl === 'left' || pl === 'right') {
-      top = rect.top + rect.height / 2 - panelH / 2;
-    } else {
-      if (spaceBelow >= panelH || spaceBelow >= spaceAbove) {
-        top = rect.bottom + GAP;
-      } else {
-        top = rect.top - GAP - panelH;
-      }
-    }
-    top = Math.max(GAP, Math.min(top, vh - panelH - GAP));
-    style['top'] = `${top}px`;
-
-    // Horizontal
-    if (pl === 'left') {
-      style['right'] = `${vw - rect.left + GAP}px`;
-    } else if (pl === 'right') {
-      style['left'] = `${rect.right + GAP}px`;
-    } else if (pl === 'bottom-end' || pl === 'top-end') {
-      style['right'] = `${Math.max(GAP, vw - rect.right)}px`;
-    } else if (pl === 'bottom' || pl === 'top') {
-      style['left'] = `${Math.max(GAP, Math.min(rect.left + rect.width / 2 - panelW / 2, vw - panelW - GAP))}px`;
-    } else {
-      style['left'] = `${Math.max(GAP, Math.min(rect.left, vw - panelW - GAP))}px`;
-    }
-    this.panelStyle.set(style);
-  }
-
-  private reposition = () => { if (this.isOpen()) this.calcPosition(); };
-
-  private onDocClick = (e: MouseEvent) => {
-    const target = e.target as Node;
-    if (
-      !this.panel()?.nativeElement.contains(target) &&
-      !this.triggerSlot()?.nativeElement.contains(target)
-    ) this.close();
-  };
-
-  private onKeydown = (e: KeyboardEvent) => {
+  private onKeydown = (e: KeyboardEvent): void => {
     if (e.key === 'Escape') this.close();
   };
-
-  ngOnDestroy() { this.close(); }
 }

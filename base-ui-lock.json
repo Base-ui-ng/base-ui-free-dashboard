@@ -5,865 +5,945 @@
       "tier": "free",
       "installedAt": "2026-07-20T15:47:03.649Z",
       "files": {
-        "card-body/card-body.component.html": "31c47432dee6f5a665a3d1a9af3bd789b22a73baf8394e210e48e55ce957a13c",
-        "card-body/card-body.component.ts": "e2d0c01548a03e0e11de2dd695a02556c3ab6e3983e2dfdd70be72e69fd88ccb",
-        "card-footer/card-footer.component.html": "31c47432dee6f5a665a3d1a9af3bd789b22a73baf8394e210e48e55ce957a13c",
-        "card-footer/card-footer.component.ts": "fd99093843297608dc3297d9bd3b6d5ea8cd5e684aa1bf063c2d345bc5e68ca0",
-        "card-header/card-header.component.html": "31c47432dee6f5a665a3d1a9af3bd789b22a73baf8394e210e48e55ce957a13c",
-        "card-header/card-header.component.ts": "fd366c6aa766b1d6e75d65740eeab3e8eb8444275d4ed69bc3ba76fd3622a9bf",
-        "card.component.html": "766ea9fde82ae6fa518dba49fac372f989c51c3db553daaa7206ad25d8a3c3c4",
-        "card.component.ts": "1f5072fd19f3e15c518f3665c7c704b68e78009db1aa0e0ead528ed714b9cd95"
+        "card-body/card-body.component.html": "fcae0ac6b68ea3433f016d9a57901c9a3b4766021523f8af625ccf6b6a4270f8",
+        "card-body/card-body.component.ts": "b817c1caa60a26634a1230a58f243353b73ce1c0aaa247d277638d29af216609",
+        "card-footer/card-footer.component.html": "fcae0ac6b68ea3433f016d9a57901c9a3b4766021523f8af625ccf6b6a4270f8",
+        "card-footer/card-footer.component.ts": "af36a86e4c70052706951545cec5246fcfc59f02b7fbeda9dae4c3bb0eb1c6a9",
+        "card-header/card-header.component.html": "fcae0ac6b68ea3433f016d9a57901c9a3b4766021523f8af625ccf6b6a4270f8",
+        "card-header/card-header.component.ts": "742418be7711635e5b7310a2f8678cec4d563d2c930c8cea291f99b0b55d7894",
+        "card.component.html": "05a8cae6c8a23632c23dc81758f48af407404dc29b170d1d45d66e65dc281c93",
+        "card.component.ts": "7fcfa9579b7c52caf6661c2e407ae6274f93507c22004ade70c818a6bba4fa44"
       }
     },
     "button": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:03.798Z",
       "files": {
-        "base-button.directive.ts": "754f7df9b9ee0ab266eb562eac6fd215e982af2dd0f8f8522f9d2e52559af4a7",
-        "base-icon-button.directive.ts": "72b525db8e5cea25aea8d266e08be0fe177c1daa25ffb5277ca49c596c5fc699",
-        "base-icon-stroked-button.directive.ts": "9af39e2cfedd48c68f0fd549a9365688cf26a3eb9d8a79dcb54e15a1aa301e56",
-        "base-link.directive.ts": "7b92b9f43277d0453a5b75373ffcb5b03659be1524d80905b2850270afbf50f8",
-        "base-stroked-button.directive.ts": "abf8123300f5eb2a168d28f8a365d05717644e2299fdbc2fb64219aaba8d5aae"
+        "base-button.directive.ts": "bdc7e2454514339f862434c001a56d1033e735d6350a6973988e36b94baa45bc",
+        "base-icon-button.directive.ts": "7c86397a077d64794a73511ad80581b7bc8c6a0905ba97d0fb662df4c070ac04",
+        "base-icon-stroked-button.directive.ts": "8d39de9d845dcb833b950c0b50a1f72a50c829252bb182d3fe3e3b8b9bd3bf7f",
+        "base-link.directive.ts": "acf1a20876ca7f37e6808b2d88cc03d3b07f68f8ea46c8d0faf46c07d89fba64",
+        "base-stroked-button.directive.ts": "c06cef385687691c5fc9c2481cfb30634e51fe7165ef5c664b07a5609431348f"
       }
     },
     "input-group": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:03.954Z",
       "files": {
-        "error/error.component.html": "71f1f4847b3f9c7b290b32d45924362c1a4ee4880c504469a7d428e16da0e412",
-        "error/error.component.ts": "fa2709da32d6dea8e420ae7a4d128e68bf2f0c2710f98d1352e4125705f4ec5f",
-        "info-text/info-text.component.html": "71f1f4847b3f9c7b290b32d45924362c1a4ee4880c504469a7d428e16da0e412",
-        "info-text/info-text.component.ts": "420a1fd22c357245ae0566e1d98893317dd472e396f65ab827ccc41c7ffa0234",
-        "input-group.component.html": "5c2737c7a14d5c2ca3db7257e806582958d103c4b20281c69887dc50788e5b72",
-        "input-group.component.ts": "764b7d041219174ed9dc022a3d0b2f96ee6c3b097acf35cbebc9c0dec2688fbf",
-        "label/label.component.html": "7177619606d30a423893d5093767958c0bfac8a4f17e84308862c2bcade7156f",
-        "label/label.component.ts": "746742350a0486d8db6758cb6b4c6d97a5def6292e659a35e7ed06d8883217e4",
-        "base-addon-end.directive.ts": "dec787b2fb201ffe5505a1ed4dedf50fb264ec4d2ba86b7f9861c40eeedd1947",
-        "base-addon-start.directive.ts": "c4b960f1b842481a518ee63f7226b24a209c3e9d77996cb7189c2b0fb443951e",
-        "base-input.directive.ts": "68ae6c82b90e18865f0f8dd1acd7f14af6d735b314d69e6364cd8d350d705daf",
-        "base-textarea.directive.ts": "160a688cffdc30534aff77fbe1d2352170dfc2a5d56e1e2e8709b79591c52d71"
+        "error/error.component.html": "b11c04ef4f71ceaebd6cf0f3549e60cbc5d0b78524d6bbce7b48beda1f7cc9c7",
+        "error/error.component.ts": "1ac7e6cda38c753d0313f47932b3b4efc8394747870c4f9320e4335ef750431d",
+        "info-text/info-text.component.html": "b11c04ef4f71ceaebd6cf0f3549e60cbc5d0b78524d6bbce7b48beda1f7cc9c7",
+        "info-text/info-text.component.ts": "78d2cc6555852e51759df214ca0f586b342d59365b31d7d20d3c64a356032728",
+        "input-group.component.html": "f70c722ddd70ca53d9ab14292321a06b1e40e0645d71d4e1ada635489dc659d6",
+        "input-group.component.ts": "5eeb0322a33f4be97a9a42372d5724dcaaf1ca3521be4849ee3d6f3f3c4905b7",
+        "label/label.component.html": "9dcbc78601aaf48216cd0b615bf8cfba0734f643dcc3223de0fbad2fca9d7acb",
+        "label/label.component.ts": "49f5d0690be259a6a2e1fee3eb5a98e8a8d4c72706c32269beaecf8e40dcdbf0",
+        "base-addon-end.directive.ts": "eb781f9241c3d19904b3701ff3b5566a024feba3d61b2f4cf7ac59a20d021dd0",
+        "base-addon-start.directive.ts": "026fc47a904e8db4ad1ed401304e4688758485dbdf70801611be8a963a2a3722",
+        "base-input.directive.ts": "936d8071561751a9724ed154ed09ab5e6269040e7db777f45f3579b7652bd2a7",
+        "base-textarea.directive.ts": "6f9628f68413da93c77aad5912bc3c2974e98c847572dd598a2fdaf9ed54dbea"
       }
     },
     "floating-input": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:04.136Z",
       "files": {
-        "floating-input.component.html": "a995397a6d9bb6a84083961c6c98adffd3b68043e8bf5baae198db95b29d77a6",
-        "floating-input.component.ts": "125d9e3041815de1c350280c01b476576b459a7e19e1894bc3c2881e9ee5dac4"
+        "floating-input.component.html": "70e4107f12c1e3335349c1ff5add724bcefa83ea0cbfacfddc1dff116d542c0e",
+        "floating-input.component.ts": "5049ae33ee5b1604ad0b55ae03715f23eb93c18df4828e6cca8be453918e288f"
       }
     },
     "dropdown-menu": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:04.307Z",
       "files": {
-        "dropdown-menu-item/dropdown-menu-item.component.html": "610b60b48fa7bf0f624b218c97614b310fb65f81783f74c1e9f4c2733ba62799",
-        "dropdown-menu-item/dropdown-menu-item.component.ts": "9b37fb26ccfc58d445c351e95664c56a7cf080b937c96e664518f617b232680b",
-        "dropdown-menu.component.html": "1eb4644f7707fde6514580ef8d51eb3746e17b302edc80873ee69dbabc4ad18e",
-        "dropdown-menu.component.ts": "b5e6352ed0218bdefa70be1bd592026c0c924ec82343ab41f32577feaec69817",
-        "dropdown-panel.ts": "dba08e53a89b84fb476bf2346d4bfdcbbaef6c02eb9cc4e38fe57f60801538e5"
+        "dropdown-menu-item/dropdown-menu-item.component.html": "1885ea1ee255e078c2146b7f443b058dc555318c019084a7347d83c0c96b19a1",
+        "dropdown-menu-item/dropdown-menu-item.component.ts": "85da09f7086e90720c44894f4e792e6bb744665fe88175a38f57774272108095",
+        "dropdown-menu.component.html": "9b12041a521134c192e2f38eb7b75bd6a022692b5e37b5d87cec0a5760c31df3",
+        "dropdown-menu.component.ts": "82f222906f73be172372ddd73c3443d26821477ce4cf2e490a64ed3e5f9aebdb",
+        "dropdown-panel.ts": "63f1a1cebfdf74f39529ba555b5ef9c16fa14fc5e950ee86c7cede9090ceee25"
       }
     },
     "avatar": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:04.445Z",
       "files": {
-        "avatar.component.html": "e7bac45cc7b80b23ac540ff28450eb8d4e9dd7490655e6af0a0f83fec797cd03",
-        "avatar.component.ts": "1e1a816e77661353cddfdd5e687c6e44ec137570c2eb3c4c6d1d1755320d1949"
+        "avatar.component.html": "130228ac48deb84e6d47bd9564030304fad7d17fad4b4daebb7d21ff272ba36f",
+        "avatar.component.ts": "ca9b272941ecd1c722bcb8bc24569ce8665ec299cf47f0e1bfc34afe344a8e5f"
       }
     },
     "badge": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:04.647Z",
       "files": {
-        "badge.component.html": "d29b7605ceeca035dad9057b4aa43dd33f54223cb9661198f6ec7b8756ea6938",
-        "badge.component.ts": "f62d6936dc8fa7cc618eb8c8f3ac0e39985fda79501a3fe3c305ada54246b71f",
-        "base-badge-addon.directive.ts": "19059b9b5a529353b6e9b5f4e0e04cbf8c728638bb6c243a62cc223e61740121",
-        "base-badge-icon.directive.ts": "f802a994fa9f29f7f56a30c551f35dba07addf74b2f29768c8f7f2c28402e6dd"
+        "badge.component.html": "c9ccf5b4058f33a17c564445adbc58c7624b876ec0e8b0520718cc01721f3f40",
+        "badge.component.ts": "51ab70dfbd0f18394487f4b51c2f5afb176ff639248955178cb2574e07fc9a2f",
+        "base-badge-addon.directive.ts": "4e848360e2f084f17dadda1f54dc1212b7373265fe120fb0ff682bf501cf3453",
+        "base-badge-icon.directive.ts": "718e4c5ae58c6dd64dbaabeb3fe0fd39bb6350dd1848c0ae9db5b5c1ee9ef5b4"
       }
     },
     "icon": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:04.795Z",
       "files": {
-        "icon.component.html": "5c880f2212c78c94f9db0b734d1e97eb04637d40cff9317bae8d5e1a7be40451",
-        "icon.component.ts": "be38e1b17b8f0cd633c13787fba38787bb87adfa1bc468c6e15404901ac708fb"
+        "icon.component.html": "ac752d1f07e587128a344c66f6e14d87d526ba93fb99e06ad6543e0c8e7afc29",
+        "icon.component.ts": "025a9012b6272c1fbb07ec5d71450fbc4e23b8d795b4c8d067530c3952acb0e8"
       }
     },
     "dialog": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:04.943Z",
       "files": {
-        "dialog/dialog.component.html": "b079cdb07c97c581d246bec10f329b31e3833dce48f31dde07a6694585d5d413",
-        "dialog/dialog.component.ts": "3a819e1600e538c9faac00d2df5537adc4cad302396c594ced46f75b7a8afe8b",
-        "dialog-body/dialog-body.component.html": "135e8f91ed9593f33d603245d38813533f0d161729a991cac06f86b95cd27655",
-        "dialog-body/dialog-body.component.ts": "a5beffd153eaef63e8f78b3e0abcb3c3485020ed6329779ba8740254e2477d10",
-        "dialog-close.directive.ts": "91f87ede54254d3c1473251772f54076fe287db0b96471e4e5a83562259a0ec4",
-        "dialog-container/dialog-container.component.html": "1e5230f16c2a85a4063f30a1317d1daad33806c2e718af61d9a581868f86cbb8",
-        "dialog-container/dialog-container.component.ts": "375e3319761e80d330b62ae09a64157991f3d5bc5b4e2e135f57161bca3520cc",
-        "dialog-container.ts": "77f96cb1828db3b34f119ee5f4d341fea767f680219ad98e3b20c885fab30ebf",
-        "dialog-context.ts": "3b5e178adc6089f8aa41149dab3f8f3686cde7d77c99cd1f123945f60a437bf2",
-        "dialog-footer/dialog-footer.component.html": "0df06cdf5ec80d5b2329ae3a4494054b5b6ba542b9c09dfb6b9d6be878728812",
-        "dialog-footer/dialog-footer.component.ts": "9f42856e59a97a6cb92fc5096b37e14e7dd4b4c67f3b8a28c5b652aae0b46e73",
-        "dialog-header/dialog-header.component.html": "87ddef45ffeb3fc96dbab5265b2bf7fa170972029803815048db06a5d9aa969d",
-        "dialog-header/dialog-header.component.ts": "c9fd18523e54ab7cb68d34b231371bdd12b2c23bd8779249b84cbb97918a3d8b",
-        "dialog.service.ts": "592cf4062db06622b7361bd1a2c5a94dae37886dedb4d081ccd1de6cee05826a"
+        "dialog/dialog.component.html": "1c7c4d5c72d3426a1788521cc5b45e0385775c610d9dc9b16ab2d20d3bd6c6a1",
+        "dialog/dialog.component.ts": "876788c189d37c280fa1741888100c2450f0a5c0b4684935cdfeba08fd796e96",
+        "dialog-body/dialog-body.component.html": "e78d9c8f520286b3dc9792eeb19b5ca92bcaff4406bda30e1d4b77ccda103760",
+        "dialog-body/dialog-body.component.ts": "d7f3cc5cb4fa7b7e1b99aa7687c5ffff1333e40a4d01b9579e44ef6201032891",
+        "dialog-close.directive.ts": "2115f6240562bdfb9eef259c7450b04446f4e00e2bb5557826a6f6b334ace754",
+        "dialog-container/dialog-container.component.html": "f3b301638ea54bd44166aba6f28afe103aaab9d36a93691f33034340afe55dd0",
+        "dialog-container/dialog-container.component.ts": "942f48f5bd10f5208fc620d2dc396fa0eb75f0469134d150433a632dd2f5f5c8",
+        "dialog-container.ts": "7a93b94317ab6b4130298ede6d27554e3574e3ca3e8f5a59bbc641cb704eff79",
+        "dialog-context.ts": "a8aac1822b2f4f3eedbcbb9ac3bf51b9f7d62c376793688c55816b26ba99fb93",
+        "dialog-footer/dialog-footer.component.html": "5eb43adbeee73746ee7cba4daeb3d6556ad25ed342326c8db26da307efffe15a",
+        "dialog-footer/dialog-footer.component.ts": "7a326c0bf17d308b6af2983170551fcfe5d54c9e0de7ab41589942d4588356cf",
+        "dialog-header/dialog-header.component.html": "fc671992b8057fca1253a1a600d36b5bb99e9b74329e0e252b0e20df7018c177",
+        "dialog-header/dialog-header.component.ts": "f2cfa4451f0ad5946d89c81501f2f38ba33ebe46bd9b0d81bb4db50cf4d586fc",
+        "dialog.service.ts": "14258bf02d89a550dfab0ad22b094aa67e8228af6f9bc08001110ae37546ff9f"
       }
     },
     "tabs": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:05.229Z",
       "files": {
-        "tab/tab.component.html": "31c47432dee6f5a665a3d1a9af3bd789b22a73baf8394e210e48e55ce957a13c",
-        "tab/tab.component.ts": "99f7300d5c2d71d7c6e570a2a826519a3b24ec4167295d00e199ddbe9bf4527a",
-        "tab-body/tab-body.component.html": "86a999531020b2d587fede9f8efbd8a0ce8768a4ba8cca0d2b4c998d3c041a97",
-        "tab-body/tab-body.component.ts": "be24bad0c9d01545fb04da6f426fd3a46684ee607251517e92b5fc05af7cfaa9",
-        "tab-label/tab-label.component.html": "5c9503293bda68684f4d0397b9dff6887ce8cdd7a1bd5c62a08ceb4f5a0cdfad",
-        "tab-label/tab-label.component.ts": "a82b5474c07ee2fd29363fb53b65a68e529e84119d58a992fc84a7c8e38b50b7",
-        "tabs.component.html": "fcc1b85ddfa17b07e34a3b76d543de860b546b31937d3d13c6a429236f2bf051",
-        "tabs.component.ts": "5b93a38315b468ba6eaa869eed785c73187ebaac983cdd4459bf4cf9400068d2"
+        "tab/tab.component.html": "fcae0ac6b68ea3433f016d9a57901c9a3b4766021523f8af625ccf6b6a4270f8",
+        "tab/tab.component.ts": "27b6cf08ac010110b4ee08a89f7af3a1d0069db71a2dde4da472bbfdc707987d",
+        "tab-body/tab-body.component.html": "adbf898d22921d4db4666519ffec731a3134c20fa347ee3e5562b5c1a5c115c4",
+        "tab-body/tab-body.component.ts": "4b85aa05e99061b051c479bbdfdc38db10d95a383baa8778848e0cf876551f55",
+        "tab-label/tab-label.component.html": "b74c273fc6071747ecf8efe03f9c0b5f473a96c0925fd0cfa5bb958413fe799b",
+        "tab-label/tab-label.component.ts": "e86ee6fa345b065f1c803e2ab74a50f8c723994ad499849f9b0c9ed3d0fe2354",
+        "tabs.component.html": "ff3a5dbdca9ec203382bd52ae02e4c7aa03d81013d0d57415b1593bb486fb0e6",
+        "tabs.component.ts": "cabbf3d0aa944a12c6ff59c491890280446f9348b65380b7351b02fb71865714"
       }
     },
     "toggle": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:05.372Z",
       "files": {
-        "toggle.component.html": "c7145e022202caffb87339fde2c404d2b4ee258083f155c971b3475c62fbd7ba",
-        "toggle.component.ts": "3a9d1a6312049160cff72f1978444918ef3691b53a73970e1b96ae4a9218919c"
+        "toggle.component.html": "3c8cae0a3ec735764d712929b67fcd16bd9bbc98f9496d17e4aefeb7d5a7065d",
+        "toggle.component.ts": "4f05954f900d936f4702c3ec960f7b4f04f0a86d3e3e1fc400185e5953046479"
       }
     },
     "checkbox": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:05.693Z",
       "files": {
-        "checkbox.component.html": "0e24dc64f2d6ee7ed5a2c4fdb23cdc527652d2ba637dcd425915589389299e49",
-        "checkbox.component.ts": "3869c253919be069386c269aeb460ae0f084d61f9ee0216c7a7b6961f6063905"
+        "checkbox.component.html": "dae14611a612bff47f2e2a67c7e5760b244effab1061c363beef8a6512c52d71",
+        "checkbox.component.ts": "547e9ed415f8caf9cccc2335f6a25c9123fdc9baad6c3fb6eb2d97f17bab7444"
       }
     },
     "timeline": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:05.851Z",
       "files": {
-        "timeline-item/timeline-item.component.html": "b45ccd34a0aa25efd5152171a7564da79ca1812c0d25d5b0119a8e5ce3e648b4",
-        "timeline-item/timeline-item.component.ts": "e98a4e9c062a52a3141869d03fec9d9fe169762533dfe63ac9a14b97cced90f0",
-        "timeline.component.ts": "de85a2e5f767801c844e577cd260c2e3bedbacf83bcc57639a4fe5936baf4b87"
+        "timeline-item/timeline-item.component.html": "609425228c0bfb42b3e8207c50f2c451a7bebca82a39b4989eb6e18ee3ba1994",
+        "timeline-item/timeline-item.component.ts": "00d42538928d3fc2363b1bf2b10b6b7346515fc4182729782ca1dd748ed3e54d",
+        "timeline.component.ts": "fbcb541c0f7bcc820e56d4fa2268d60e6e18f1c6139cf982a03e73591f8a97d1"
       }
     },
     "stat-card": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:05.991Z",
       "files": {
-        "stat-card.component.html": "08839b8540594d4786d2779768361833a507cf696e23d69b2c751772b335e320",
-        "stat-card.component.ts": "9d3627a7b119efa5fcfd73ca8fcbaea33cd89b4545d287cee3f95338ccbf1a7b"
+        "stat-card.component.html": "a3f5c1e5a88413c8de9ed99d4ca54ec4a26dbd69e3bbd612a40f0bf80e52a4a5",
+        "stat-card.component.ts": "2cd0c67fe7fcc7d660429eed246b24ad3f3b2f896c3b9f3c786d1f70785d1f0e"
       }
     },
     "sidenav": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:06.130Z",
       "files": {
-        "sidenav-body/sidenav-body.component.html": "31c47432dee6f5a665a3d1a9af3bd789b22a73baf8394e210e48e55ce957a13c",
-        "sidenav-body/sidenav-body.component.ts": "e34c901ff38a9174a8f63db745d35a752f59c438569fc814b4d776dc245b9154",
-        "sidenav-nav/sidenav-nav.component.html": "31c47432dee6f5a665a3d1a9af3bd789b22a73baf8394e210e48e55ce957a13c",
-        "sidenav-nav/sidenav-nav.component.ts": "9c087b2e6f8c387ecb5c1a7c5bdb3301c320dc9a5985fa1969b8004e8acc4882",
-        "sidenav.component.html": "9edf11d7ef90b98aeab10cfd8d58d56df8d38dd66b1ce4288c3ade078a8576d9",
-        "sidenav.component.ts": "54b8108054fb90f642dd362e55d35d8b8e85264bbb3d4dd4a1e535752437b3d9"
+        "sidenav-body/sidenav-body.component.html": "fcae0ac6b68ea3433f016d9a57901c9a3b4766021523f8af625ccf6b6a4270f8",
+        "sidenav-body/sidenav-body.component.ts": "a1fb0a87906ccb8053ce2b10b20bfe77e8953263deb97dab18f6691d02b793e5",
+        "sidenav-nav/sidenav-nav.component.html": "fcae0ac6b68ea3433f016d9a57901c9a3b4766021523f8af625ccf6b6a4270f8",
+        "sidenav-nav/sidenav-nav.component.ts": "7bcf6f42742c1edbf2fa9d24df83f509e73a429f14edbb20cdaf3d3960c257bb",
+        "sidenav.component.html": "8ba763d51b2133d7b72b9678fe8e66346ed162eaf99b67292d6e1c4d182dcbb1",
+        "sidenav.component.ts": "1450cd6f38554352de9e9c72988ca5e362c57839ff8e94dc685ec119cca02c3a"
       }
     },
     "sidebar": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:06.355Z",
       "files": {
-        "sidebar.service.ts": "c33beda640689f5d83298847bb52aebda027a2f9ce5cbba479f46f492d51474e"
+        "sidebar.service.ts": "f0216bf4e4aa81bd710e060b62708ad8982ddf618c432cd3981e84080cb67e2c"
       }
     },
     "page-main": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:06.635Z",
       "files": {
-        "page-main-body/page-main-body.component.html": "31c47432dee6f5a665a3d1a9af3bd789b22a73baf8394e210e48e55ce957a13c",
-        "page-main-body/page-main-body.component.ts": "1057a546b3440de514807a696175fe69433053025a1fa94347fc417472276260",
-        "page-main-footer/page-main-footer.component.html": "68e1e99c976cb958177346d5243598e4f11edd65a14c78ac5541e06c6099926d",
-        "page-main-footer/page-main-footer.component.ts": "f17cf7e3c2a472e6af43fb50ac0708319083a52f78cf9e748b3ddc6bb655f4e4",
-        "page-main-header/page-main-header.component.html": "f4cb94b1bc4aeb9d696b7ce39b53217cffecd3478da27cacda25dafe3b1bb84d",
-        "page-main-header/page-main-header.component.ts": "0331d4cee6718c72a7b3faefd55cb14418efc0057c1d5b85f99e7c0164e0589f",
-        "page-main.component.html": "71f1f4847b3f9c7b290b32d45924362c1a4ee4880c504469a7d428e16da0e412",
-        "page-main.component.ts": "dbcfb21406d75023c8bb64cb74457ae9b2e530fda887a48caeae20d2a08b52b0"
+        "page-main-body/page-main-body.component.html": "fcae0ac6b68ea3433f016d9a57901c9a3b4766021523f8af625ccf6b6a4270f8",
+        "page-main-body/page-main-body.component.ts": "df4f6a49f45a94a7855a51506006270d37301cdc78691d81c732e830edb3a82a",
+        "page-main-footer/page-main-footer.component.html": "acab7580e8a99ac2dfd196d95db7ccd68c0f8bd945c1096d0baabd7fc0f1b13d",
+        "page-main-footer/page-main-footer.component.ts": "e868b566fe6ba1c94aeb988ef44cf6a49edf28d40d40902a7fe8566d470da327",
+        "page-main-header/page-main-header.component.html": "3b171c4ed6d108017b0e0cf95fbc5e965e71430b9b4415b3af6dcc6e1dd6e665",
+        "page-main-header/page-main-header.component.ts": "6c21bc073d27ccb43fe55ad30643ae1c7d2cf88623cc39b308ee4a6d89623f52",
+        "page-main.component.html": "b11c04ef4f71ceaebd6cf0f3549e60cbc5d0b78524d6bbce7b48beda1f7cc9c7",
+        "page-main.component.ts": "d4d2d856d79f96ab99cb9ef6872ef2e2f03c9992dea7b349ffdfd18d01085bf3"
       }
     },
     "tw-merge": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:06.785Z",
       "files": {
-        "tw-merge.ts": "a9afe6408badc0bdcadf315967173c715a7d040da1215a1a140373e095a4562c"
+        "tw-merge.ts": "f792cfa3a379b904d6784eeb2f19ae9a652ae5fc4bb100f83b8c6134270f0a25"
       }
     },
     "types": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:06.936Z",
       "files": {
-        "index.ts": "929680e691434c650398689b5e8049e689a8ebb8149370b5c59d648c761a4126"
+        "index.ts": "5717327b554fcfd64fde255beb9969cf8a94a77b2eca9a2e6854ec846e58b54a"
       }
     },
     "a11y-keyboard": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:07.103Z",
       "files": {
-        "a11y-keyboard.ts": "e93df04cf0adc17b0dc7917e90c5c35e6a2fbcc1b5afcf3f5b4e4bd1b63eda8f"
+        "a11y-keyboard.ts": "d4ea4bb1411ba841226799a05378cbf1bcdf8b6510026a14a2d1bc625d8cad77"
       }
     },
     "breadcrumb": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:07.266Z",
       "files": {
-        "breadcrumb-item/breadcrumb-item.component.html": "d59f83384d7e94bffb6a0f5d600aa120205615ae017f70419e1e3b6324af41bd",
-        "breadcrumb-item/breadcrumb-item.component.ts": "062cd9b3d7effd61f969df225043e0e3125fe2bb2f465892bbbb87fe2ce6e7a8",
-        "breadcrumb.component.html": "79797c7aa8e839f8f7450ee26c8cb4514724c400481bf5587e0674360adf651a",
-        "breadcrumb.component.ts": "37d252d56a3c99953ee16da3cfe31f9c3764d518ffe2186cb2fcd4568ea17699"
+        "breadcrumb-item/breadcrumb-item.component.html": "6d7b642f26dad27de0ace9c3bdfe399f40cd70d34d6ceb30bd249eaec75c0dbd",
+        "breadcrumb-item/breadcrumb-item.component.ts": "5a4891544c101f15a0f128b54fa7136f937d4bb97697598a5a9becc71b9c32c2",
+        "breadcrumb.component.html": "64bac7709be2f6ae75d8d465b5990e6473d61131c96d28f69dcd1d663603469d",
+        "breadcrumb.component.ts": "96f176777b2a3f187466597c1e37ea2c2a74e2d4a3296b9214f033285c39230f"
       }
     },
     "scroll-container": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:07.543Z",
       "files": {
-        "scroll-container.ts": "533069de2b8b2e1d583cffccf0ab47b9af677a9c3f5f812013e1afd104b104ba"
+        "scroll-container.ts": "a9ec07180af1d46462a7c4be36278a52cabc2beb6a9f86fa8943977beda966b5"
       }
     },
     "form-login": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:11.514Z",
       "files": {
-        "form-login.component.html": "055b2d2323e12085757552f30768544e36a8c294e27f46ee28f32a664eca3b7f",
-        "form-login.component.ts": "7896e17d060868c523ea70da851891ae072ff764d696f93411b60b2c0fca2aab"
+        "form-login.component.html": "c6c57320ee3f32037574b668abd3572ad5399e0bd13a660387334d1ae785b558",
+        "form-login.component.ts": "ce6e62594504ad5658ddc7ad7252681c7246fc99614259dea6719eaa147b424d"
       }
     },
     "form-signup": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:11.816Z",
       "files": {
-        "form-signup.component.html": "882e8f2043fcf37018260e8a65a4f2f3baf3dc7e8b345707f5415b416466c75f",
-        "form-signup.component.ts": "a5c6bdbf9708742f5c94a49abf0db902fe1204ddcdce03d4db5c7774010fa343"
+        "form-signup.component.html": "6e86620ac017bf774f46fc5ab85f8a3b87d5ac6e5b293b1a44739db2aa11c766",
+        "form-signup.component.ts": "4453ad98ab0b8a59134331996722794c0e08e0d31a51578140fca46720098a6d"
       }
     },
     "form-billing": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:11.987Z",
       "files": {
-        "form-billing.component.html": "788cf58f4f0b434112f7ebb07c8007db23b125efe37a9cbb720929e8a0d10e70",
-        "form-billing.component.ts": "b06b4d14a02a64764c3289b85688bb229607ace5fa99706a940fb8b5ccaf0ec8"
+        "form-billing.component.html": "cb04e15a815be6e1ffee42d7b0e88b40338614ee686116094dc22a397b7be588",
+        "form-billing.component.ts": "ebcd2549d4030c12cbaa145a68d6197b7e89bd4263b07f2140152226f50b84c8"
       }
     },
     "form-profile-settings": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:12.136Z",
       "files": {
-        "form-profile-settings.component.html": "b20a9f398a337f05602b121fc3754c7cfa5d5464df77e61eccf11437876d19f2",
-        "form-profile-settings.component.ts": "e93d9c281982962f012b2bbce90d3c7b431d43423b9556907859174b4c4a5a2d"
+        "form-profile-settings.component.html": "264e555d2ce7035f9df9e291ff299ac43df75f6a31b669deaa27a50b59182b83",
+        "form-profile-settings.component.ts": "2d55ea9ce241f2695713bcabf2f8a29e7f6f5f4f957a30dfe4ff5610920a3142"
       }
     },
     "form-notifications": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:12.279Z",
       "files": {
-        "form-notifications.component.html": "7711460960c51fe03cd5f81281c8e9c73600cf4510c5da63ca634990045b53dd",
-        "form-notifications.component.ts": "337ffb1d85fb46ee66987c7e95e739e91a231c3ebf8794ddae34601ee4b77fd9"
+        "form-notifications.component.html": "881981b90f926e4364d0cb2ed52cbebccef14ee4fdf78f8e75afb4421040f2ac",
+        "form-notifications.component.ts": "323f300bebfeb01ba58fa29d8d68055b2dd0bb95cba9b8c8b018e56ad547d3b3"
       }
     },
     "theme": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:49.540Z",
       "files": {
-        "theme.service.ts": "2cf4bfe370b652c2f18dea6f6dd274e6e691b5ad8b0a5e435e66a70e1efb9816"
+        "theme.service.ts": "67d89d611946fb968628b3a729cde3c59ecf7d7cd94d24e3bc388bf3174037c2"
       }
     },
     "nav-list": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:49.735Z",
       "files": {
-        "nav-list.component.html": "64ce6b760bba2f44952c0a70a060a8cc9601baf3180638909888575c23e0bef0",
-        "nav-list.component.ts": "41433dbae5295f1026568d11531e8ce4796e5ffed2073f9df37b6fe80bc8d657"
+        "nav-list.component.html": "7c95343b9c4972fac1510adc903d61f35138627858c8ed245fd7aeac430c55a7",
+        "nav-list.component.ts": "55328d10d7c742e557d66e9ce48d5eb7961dbc23d5684a9334b19eaf3588e5e6"
       }
     },
     "base-list-item": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:49.891Z",
       "files": {
-        "base-list-item.directive.ts": "ce7ee324d6b7ed907bcaef444cb83b40df621c2ca8a7e832ce7c6e462edb4403"
+        "base-list-item.directive.ts": "d3d304a19009578faf3d315f56bd1be49373b91ee3db1b88de0f204e3cd1586c"
       }
     },
     "typography": {
       "tier": "free",
       "installedAt": "2026-07-20T15:47:50.165Z",
       "files": {
-        "base-heading.directive.ts": "bad5132298d6a0bc0c2d6bd033e1a6809746cbe9bd1d8a77a07e868e64157ec6"
+        "base-heading.directive.ts": "54d6a19a4adfd45cbaf83753d17549a5eefbf66b14487f1aa064115845f2a40d"
       }
     },
     "dropdown": {
       "tier": "free",
       "installedAt": "2026-07-20T15:48:54.480Z",
       "files": {
-        "dropdown.directive.ts": "a8a866af4c2ac7cc9486ece217710b8ee7712ceb1c2810af0aa6d5fcd32dc754"
+        "dropdown.directive.ts": "9c6a1ec9b01209fea7c7ff1dce29d64ca379b02bc1ab977ae723bd2dd2624101"
       }
     },
     "alert": {
       "tier": "free",
       "installedAt": "2026-07-21T10:34:21.276Z",
       "files": {
-        "alert-actions/alert-actions.component.html": "b717cbec6a659805e971387f4ef3684632baa0c4529b57d787e112b6afdd943f",
-        "alert-actions/alert-actions.component.ts": "5d891bc35bf087e4d7b0f347024f911c7375c15153d058dbce420b0a680efce2",
-        "alert-dismiss.directive.ts": "f86627c7ee4aee2bf3890158122616a04557edab03f37471d3d9e7af0299e8b6",
-        "alert.component.html": "c19df1c8f8507c89635c0e775adb5e34ecfe2b1af276bd46c21b1f1f1c0b2047",
-        "alert.component.ts": "21322b8a5d33811dda1485eb10312f2fc53549a30d75da8dde29ef6c68bcc644"
+        "alert-actions/alert-actions.component.html": "825d0d9f776b453566bd87c2113847153f894847021853a3aaf67838d9d88aff",
+        "alert-actions/alert-actions.component.ts": "719e76c137dcc4e7100ced8fe4aa3dd293902788302c69f8feede62b7f28b611",
+        "alert-dismiss.directive.ts": "93ff3beb0f273e10d2f3d32d4a9c1fb9aaf19197172a181b4c7965c9de6fd942",
+        "alert.component.html": "3c0aaed685ddbf2a20952e1210c28b8634d02352ae34ff43c7e178ac5dfa4d44",
+        "alert.component.ts": "e53705853a61e517e238b68043d08c2ea329db09a554cf94df82438d57b89398"
       }
     },
     "accordion": {
       "tier": "free",
       "installedAt": "2026-07-21T10:34:21.463Z",
       "files": {
-        "accordion-item/accordion-item-body/accordion-item-body.component.html": "610b60b48fa7bf0f624b218c97614b310fb65f81783f74c1e9f4c2733ba62799",
-        "accordion-item/accordion-item-body/accordion-item-body.component.ts": "dd9faae3eebcffd17003d8a13c16c20363922996e25389cfe8a2cd99cc82d5b9",
-        "accordion-item/accordion-item-header/accordion-item-header.component.html": "31c47432dee6f5a665a3d1a9af3bd789b22a73baf8394e210e48e55ce957a13c",
-        "accordion-item/accordion-item-header/accordion-item-header.component.ts": "46781908daf1c74b0ae30bb14dc36e5061ade4555121e54ea7736e1fae2cc57a",
-        "accordion-item/accordion-item.component.html": "6c1070176a5a8d518ea36ca9cf878e454737e80b6cd1f482e9a189a1e92d3cbe",
-        "accordion-item/accordion-item.component.ts": "7ce8729d16c95acb4dcdc7ef63d9b5986ca22bb4c43d0be7e219852f34990bd6",
-        "accordion.component.html": "25fb516d691b177200976691d6fc6f46f86e3d743d9f316ce0fa819d45d41d3d",
-        "accordion.component.ts": "1ac9bd71e0e754636f02ab808b1637fe67d6f82806820dbc648d5a884afe6abe"
+        "accordion-item/accordion-item-body/accordion-item-body.component.html": "1885ea1ee255e078c2146b7f443b058dc555318c019084a7347d83c0c96b19a1",
+        "accordion-item/accordion-item-body/accordion-item-body.component.ts": "0a66bfb42c75ad44734b40f28132709f7e12500dd3415b0d34aa2b552ac96d82",
+        "accordion-item/accordion-item-header/accordion-item-header.component.html": "fcae0ac6b68ea3433f016d9a57901c9a3b4766021523f8af625ccf6b6a4270f8",
+        "accordion-item/accordion-item-header/accordion-item-header.component.ts": "ec6bf0d451dfaa2883e6bb67b528da8eb95c386dc47a6ac7e98175a7bab59338",
+        "accordion-item/accordion-item.component.html": "f6754254aff96cd9c0b5ff1bbe17a4eefe4fbf1a7787cc1dcb5f001c24543323",
+        "accordion-item/accordion-item.component.ts": "b854c68093667287bc6844719d8448372d88429c1ec38a1c2c5dea68f56f2483",
+        "accordion.component.html": "5f5b944dd8fcc2123271217d87d35c80478d3dac205d4f879ea97ecebd09eba1",
+        "accordion.component.ts": "3143712c5e535b3920474e399d955dbe9404174daf25b89e8b39272540afeaf2"
       }
     },
     "progress": {
       "tier": "free",
       "installedAt": "2026-07-21T10:34:21.615Z",
       "files": {
-        "progress.component.html": "ebf1ff25c458df5b52c94d5492a88677918106bd65428c0d999b6102a781a442",
-        "progress.component.ts": "7a47c51774027742119653c60a4d0646afd72f0469a56c31f905f0cd41c7c526"
+        "progress.component.html": "a344fc403711602b9946b0d8291be3fc20711a5d8a3dff865644980a81b7f8e9",
+        "progress.component.ts": "c03c75ceb47b8e207ef16c1c260438df1df61127d257f643d67b8a8c4c56e584"
       }
     },
     "skeleton": {
       "tier": "free",
       "installedAt": "2026-07-21T10:34:21.787Z",
       "files": {
-        "skeleton.component.html": "c9226364d50281657bd524f26b1beaac03219a7ac0f51b57bd4d4d29365d7c0c",
-        "skeleton.component.ts": "c19e2e6f00e2ea2746d28f94686080785eb619c922b8bd0cdbf6ef586d93b9f0"
+        "skeleton.component.html": "82a3a5e3bbf973ba61325290c5c17eb1a73c2b9d9483b5c1517cf2f8bfc618a9",
+        "skeleton.component.ts": "d373cc8e7b288f299e30c5d0c695b65ad10211a10d9cce435279f80f03648722"
       }
     },
     "spinner": {
       "tier": "free",
       "installedAt": "2026-07-21T10:34:21.985Z",
       "files": {
-        "spinner-wrapper/spinner-wrapper.component.html": "6038b8d0c333b0b303bc6d4d615bb679f8d52df683a2827692f10a35c13510c1",
-        "spinner-wrapper/spinner-wrapper.component.ts": "726dce2b5253167cde9fadb0898c581ba76349820fc092813405e949d86b5bdd",
-        "spinner.component.html": "befdaaf04def0de11a900a8659c2a0045903507b95b35b3fba883aa94fece083",
-        "spinner.component.ts": "dde4a413e7d671ac3813a47898eeba85e4f6605ec6430a13b0f58815a8337a40"
+        "spinner-wrapper/spinner-wrapper.component.html": "76603ca6039184727c5fc302313b6fb5b237ed4390b7baa7b49136611e96a8fb",
+        "spinner-wrapper/spinner-wrapper.component.ts": "94a8379d8d6ac86978cc4ea61ba2ebffc895a1675c1d084a65d4dfe7205e07a1",
+        "spinner.component.html": "f47bd499565ba2cc1554af3ac597eaaff76e4d1dc1ef0429899473103bbc0ea3",
+        "spinner.component.ts": "79a1fb4104cada60a29ea8ba1ba7853e5726f9cd107fb7cb8c1e1a8b7bf1e690"
       }
     },
     "empty-state": {
       "tier": "free",
       "installedAt": "2026-07-21T10:34:22.147Z",
       "files": {
-        "empty-state.component.html": "bab822581e4163a65ecc8becd49fae81e38068c8ac687b76305df516b62d5e21",
-        "empty-state.component.ts": "15460c94e1c684bf403d0701e2657f47b20ef2fbd9122736116cb3245fd9b219"
+        "empty-state.component.html": "abe5ccff38e8e518055e6b71fe5bf5947d86e8b8f736324dee49131439be11dd",
+        "empty-state.component.ts": "55068c5b225b6c0ab945a8c4151a811e3f0117fed507069a0bab20d15097a022"
       }
     },
     "toast": {
       "tier": "free",
       "installedAt": "2026-07-21T10:34:22.299Z",
       "files": {
-        "toast.component.html": "83fb65f99dc6c6686873a5b6e0fc3e208f308e4414d6da3328aa01abca65f84f",
-        "toast.component.ts": "f529b7d8bb54dbb39dedd5c379dca9755eac9dc7d73c1a987b511d9579fa0a0e",
-        "toast.service.ts": "e80edfe2104a16766694f2f4f2ba88ccc8c4a2be3c8f0bb19e119bd11ef96067"
+        "toast.component.html": "a436e6113e5ce227c597ffffd1f55478fd5935c87128cef9bbc81225eea16b6d",
+        "toast.component.ts": "533f8e3ec065e7d70d5651499e51989446bd2ab47e1940f8edeefb1fa880cacc",
+        "toast.service.ts": "f2ba55ed0f2fcfefdeb33800ec40e886a54ecfe1ce26693c4508fd9d86a5b52a"
       }
     },
     "tooltip": {
       "tier": "free",
       "installedAt": "2026-07-21T10:34:22.513Z",
       "files": {
-        "tooltip.directive.ts": "66a5299aa039cb9de40adb655389d99e4f99a20ed10e372fcba193cc9bfa6db1"
+        "tooltip.directive.ts": "a96a66d67a45bc4a0a107852cbe21dafc086aa0ece0d9b90682af06b19fbc700"
       }
     },
     "popover": {
       "tier": "free",
       "installedAt": "2026-07-21T10:34:22.655Z",
       "files": {
-        "popover-trigger.directive.ts": "a19ab703d70f8f592cc7b7f63f26e614c002ac6aee54ad8bdb63689f811514fd",
-        "popover.component.html": "82799cd23d542a5c674c6a69e2062abf568f93ec9012d83f5627cbe621c16e10",
-        "popover.component.ts": "b7684fafd68c08671abf17f954759235e6e9c565f78c8314e6c4e5a272f949b7"
+        "popover-trigger.directive.ts": "8e8b08376aef49b2df126c557edbf089f710869ad569955a1909d755983477e0",
+        "popover.component.html": "92e0aa270d1a47590d07cfc28efa711c8f713a8496f0ca096704b4ae7c0e9b6b",
+        "popover.component.ts": "95051be336565b8eeba564089b79f3e3ed033a6313457cab72f209e17c769ed9"
       }
     },
     "drawer": {
       "tier": "free",
       "installedAt": "2026-07-21T10:34:22.820Z",
       "files": {
-        "drawer-panel.ts": "daadf59e0b9dc706310448e3a099f43d3c04bd06eaab51615f9fa2cc9cd84bb9",
-        "drawer.component.html": "bcee8ed478dae35a426812bbc6c477a2011e78e47bba7bd38d5b9fbd65feca4d",
-        "drawer.component.ts": "7d9b20118c7944f7b0612e362c138ecd2f60c1f532ae49dacaec3a35e566f3bb",
-        "drawer.directive.ts": "457cdf91fe23bffb789fbca7b11846966bd14948612274a86877c60155ed195e"
+        "drawer-panel.ts": "8ad9f33a22071addf6ce3110af0181ae0e64b36b9a3cd40ca50c77ae8a96e572",
+        "drawer.component.html": "4e29242524b0da15aea2f7e32dc7abce9906b837a0ed57ed27d1ac578f213b86",
+        "drawer.component.ts": "f556fb37905c7fd73051198dcc9c2780cb7e9ec150f277710f7a5e5641979054",
+        "drawer.directive.ts": "f630710ddddf2d81512512468749a14cb37044567d915fa4908dca048fbd90ce"
       }
     },
     "bottom-sheet": {
       "tier": "free",
       "installedAt": "2026-07-21T10:34:23.035Z",
       "files": {
-        "bottom-sheet.component.html": "df989217b4f1ae994c97fba36aed9826d4e829ee583b5d58ebaaa16cf94304e6",
-        "bottom-sheet.component.ts": "d90d241d94ef422d77d005b1097462a32e7954721945b23515eb834fd58aa666"
+        "bottom-sheet.component.html": "19a6578b1d40f4d674187451e9e8bf4c374ef583e3eddb35bc2c3de02ed58a49",
+        "bottom-sheet.component.ts": "8ddf50b1035f48ab15363885ab9ae2c9a61ad5c487eea1047a4ac337c0f3eccd"
       }
     },
     "chips": {
       "tier": "free",
       "installedAt": "2026-07-21T10:34:23.186Z",
       "files": {
-        "chip.component.html": "55514172a4678956f68c54cc056347da63161261e042e541ebbbac968e71a574",
-        "chip.component.ts": "9dd7ccb7ae953040eb51c4ad52da66ea6248e8028d3ce7c91855d459ce8b9841"
+        "chip.component.html": "42080d4096684bc99fd6e7f768a212e76d4cab8796a4b89b290ba08980253f86",
+        "chip.component.ts": "02644a9fa245f679b5fb9e642a0c907ff4aab17f3b9e871a9b1d83cd63a5eb04"
       }
     },
     "divider": {
       "tier": "free",
       "installedAt": "2026-07-21T10:34:23.325Z",
       "files": {
-        "divider.component.html": "1396621dd07d07342e628b6ed9bcea72b3626104d71bd423ef5d1315383880cf",
-        "divider.component.ts": "2fc35051c5ce8695e65c7c51b48976442bde3278dda7f6549508d75874a3b014"
+        "divider.component.html": "9c831e7f6be574c31690bfb0cea1db4796c3e2b779cd5c22962553a809e7cc60",
+        "divider.component.ts": "c4742cf5836bad00ac93ee50adc609903ae0f2c22e2cd5476559797ae9d37707"
       }
     },
     "radio-group": {
       "tier": "free",
       "installedAt": "2026-07-21T10:34:23.466Z",
       "files": {
-        "radio-button/radio-button.component.html": "0ed65bfd08dfb0b182372be5f248abfa6606e3fd1912dbb28741f0ea6fdb5b07",
-        "radio-button/radio-button.component.ts": "4ddae840ace5a3e641dc2081063ea2fafb9976b0208cf598422b25a363c4d127",
-        "radio-group.component.html": "887e6d180bc93301eb39fe9851ab1471d1619ba1dbb490553fe9cb70126be2b6",
-        "radio-group.component.ts": "44805e01e348b287dae19064de1954213568a4cca7c72a2a310e5b501c4e17ff"
+        "radio-button/radio-button.component.html": "8344b63b253ee8737d9cdaaf0367bb0199df5e9695a16263e301095365c54905",
+        "radio-button/radio-button.component.ts": "bd54d14d323a09c5ccd1d33ba55ccfd4c0b40dca9b631caa22983e1503ee6477",
+        "radio-group.component.html": "739e84f3c792f9f9c625ac5dca6dc77bdbeee76a46b7dafdfe94ff9b755c444f",
+        "radio-group.component.ts": "4bafe640fced31af1e45a2b1eb2eeff6d4ddaf629a9ab6dfb43a7b8119421545"
       }
     },
     "select": {
       "tier": "free",
       "installedAt": "2026-07-21T10:34:23.802Z",
       "files": {
-        "select.component.html": "2ac308c8a8930bcf5205109cbddbb963be55424c1b1b26cfb41f8be6196bc0fb",
-        "select.component.ts": "08bf5102c97579e9044e097171a4728c64800af66cf9d310dd83254234dcb32c"
+        "select.component.html": "920963a4fb93fbfc80fa75c6897d39f7ad106c2e24c4291d9bb6fbcff6994816",
+        "select.component.ts": "0eaf6d2a352b649277e4a19710f1694238b9cf3c9166f91a8a0784f9c1fe92fa"
       }
     },
     "slider": {
       "tier": "free",
       "installedAt": "2026-07-21T10:34:23.950Z",
       "files": {
-        "carousel-caption/carousel-caption.component.ts": "c0bdbd1aaf3a161649f37a7ec1322dfd552236c2b089372121917252272626e8",
-        "carousel-item/carousel-item.component.html": "31c47432dee6f5a665a3d1a9af3bd789b22a73baf8394e210e48e55ce957a13c",
-        "carousel-item/carousel-item.component.ts": "27a46f48254e19da502a3065f065d36e377d354e6a8ed70cbf850e91afe30807",
-        "gallery-slider.component.html": "7520304356da5a84689a5c7542b565f32bea7ec2bbda55a67b617b683040db92",
-        "gallery-slider.component.ts": "f2114f24de130c0cf71fd4e484caf4375d603f9ddcf1343625335da077c4cd41",
-        "slider.directive.ts": "54caaa66449ad3d8b4c17761c9e355232d8793260163a23c53bb91768d38d3c2",
-        "slider.tokens.ts": "e6ad8a550316bbbbc85622d86fed05a55898d97ad32c89ae74e88609b7ebc85d"
+        "carousel-caption/carousel-caption.component.ts": "655414d2c227b92ba3373d47a09cdb80d309bc5046d20b59f6a4fe9e3cd87f14",
+        "carousel-item/carousel-item.component.html": "fcae0ac6b68ea3433f016d9a57901c9a3b4766021523f8af625ccf6b6a4270f8",
+        "carousel-item/carousel-item.component.ts": "471a731cec115b26baa509712f12e264ff31afcaa7b63d2223d81640c78fa16a",
+        "gallery-slider.component.html": "179d3a6484094d20ca2aa0dc3176522fbe35a6e20d97003aca5a9f3493c5226c",
+        "gallery-slider.component.ts": "e514d412673582c3c3b8c0525b551c809e10e0beb3955acdf149811b1db5bc43",
+        "slider.directive.ts": "f6fe728f97a4ea60af475786de599d276608cab46f7533551d65dec563628d2e",
+        "slider.tokens.ts": "cd57ce84e7355b19d8e1db657c65dfcfd4770261d1ede7549f2cd1bbed23eb67"
       }
     },
     "stepper": {
       "tier": "free",
       "installedAt": "2026-07-21T10:34:24.111Z",
       "files": {
-        "step/step.component.html": "16ac823749ea2cf5a90778b161e5ff25c15ee965d8d9361d5f49da764d47643f",
-        "step/step.component.ts": "234ff4b9911c488f90e8ef9b4404f17392c04d004269e981f2bee0a532579365",
-        "stepper.component.html": "af660f0e619eea914b4fc64b60057aa82e7989fe0a2f19b294c37d28412aa066",
-        "stepper.component.ts": "4b152821279b49a50c2c5baded4bd4190935385ea5eb069785dbd51c0a83d7b0"
+        "step/step.component.html": "67fa7f78aef116da4909518babd742bf37c14a0a04670cd42b2e3eacd9a3e241",
+        "step/step.component.ts": "007a3038d52db985941d9e52bc616f709db472ad4392c877a18f07b61f3ddb9f",
+        "stepper.component.html": "3f02a5c1cdaad390a78b5e4e4c2ab0188e93031a7366e68a1346f7f22fe0934f",
+        "stepper.component.ts": "f6abb95282200602566d41afcb8588f2d04b90b28a791db75ee1d3b5ccf22a08"
       }
     },
     "quote": {
       "tier": "free",
       "installedAt": "2026-07-21T10:34:24.257Z",
       "files": {
-        "quote.component.html": "4867d21a715ebaf7ee80e43975d9599fc5f129dd60e3b44f0c3dce41cf499acb",
-        "quote.component.ts": "fd17b94f42a70b8ab96f500029814442eb5911bf86169beed3b98f7fa6c42f12"
+        "quote.component.html": "b658c8d9cd6bba21cfdf5ad09db9a2c0aa1fcda2a37f4f1a3e86270e2bb5fa69",
+        "quote.component.ts": "4401f3f74e9f103657c27632e5cd3ba4d9131026918953f6df6a9171245c99d5"
       }
     },
     "avatar-group": {
       "tier": "free",
       "installedAt": "2026-07-21T10:34:24.396Z",
       "files": {
-        "avatar-group.component.html": "d64ad176b6115532799a7893afe9c01bc19b51d371c2c6a2a4e2ee8902dd2d28",
-        "avatar-group.component.ts": "0076f6c76c03327240a4ec64b26caf522feab4bafc74a21270d2f75d3d31be24"
+        "avatar-group.component.html": "001ae60fa4be65bd08deb25f072f7725ef69a4d9750484874642588bb3a08ed6",
+        "avatar-group.component.ts": "8e907206ac9ba7d4d6d627bc2e23d2d98a480d34277e46e1da028d2549210453"
       }
     },
     "button-group": {
       "tier": "free",
       "installedAt": "2026-07-21T10:34:24.609Z",
       "files": {
-        "button-group.component.html": "31c47432dee6f5a665a3d1a9af3bd789b22a73baf8394e210e48e55ce957a13c",
-        "button-group.component.ts": "f36a2f37b41889665f783dfd0e54ecac103abc73ab6088df5ba2e20e230c1a03",
-        "group-button/group-button.component.html": "b510ee32977e84f50aac7b7c0bc1e31148ae0473d7e4297d82d912eb61c0f925",
-        "group-button/group-button.component.ts": "dd12f28a0b92ffb090aa8bee8cf0834793a5da7375a1099c58bdfd410cb771a0",
-        "toggle-button.service.ts": "dc9d594d5f697e46218a580c39939844f66a48dc2399af0aa03dd443eae1f0cd",
-        "button-group.token.ts": "6f4c299eb8f68221607abe675fe01e1a713a142dde57f86a583c7e9755b48716"
+        "button-group.component.html": "fcae0ac6b68ea3433f016d9a57901c9a3b4766021523f8af625ccf6b6a4270f8",
+        "button-group.component.ts": "e923e7726bc65588aefe06db63765b0080f9cb9b5bda3c8d7ef7a53a32ccd11b",
+        "group-button/group-button.component.html": "d65808cf18b06545e5aead00e6afc9ff7f5b8d21dfe1b6d33d8516af1a187b2a",
+        "group-button/group-button.component.ts": "d6a1dd16901ee8da0594eb883e6b6a94a225d6eef502ee69f2fd7522d696dcf6",
+        "toggle-button.service.ts": "df597075ba63d51b6a6b0b27ed571240bcda1d31dcae975941e6643b3a26ec48",
+        "button-group.token.ts": "c38bee6613bb6558a6c67ba3e3162427c8ceae3222fa2e93d1cad23e59502c46"
       }
     },
     "animations": {
       "tier": "free",
       "installedAt": "2026-07-21T10:34:24.751Z",
       "files": {
-        "animations.ts": "0c66f37fa64359b2f8e3b9deb1735875491f334ebfa7cd6e428ca11ab760cec0"
+        "animations.ts": "0ce574b7e67b6d3858711f7a85cd736bed83b02974577292b6446e5f37b84847"
       }
     },
     "range-slider": {
       "tier": "free",
       "installedAt": "2026-07-21T10:34:45.096Z",
       "files": {
-        "range-slider.component.html": "ebc6d0b1d7d754f6b7ed05c9f6e579c5d5f9380676993acc38614dd9d5ab342d",
-        "range-slider.component.ts": "2698c16960ef53e2ea359093ad0c825def67dc768df45e151107b3d8bbcc532f"
+        "range-slider.component.html": "42a94394a7f05fb2fc19ec7689ada7a893404f15c908ead91a3a43f2a4c091b2",
+        "range-slider.component.ts": "8d99fa5ad40fac428c3ccba4ad4be29c82b8fcfe991118ef7410c48e8638d9cf"
       }
     },
     "form-feedback": {
       "tier": "free",
       "installedAt": "2026-07-21T10:34:46.313Z",
       "files": {
-        "form-feedback.component.html": "af44b31168b3bd78726f3e96bf39ec4990b61eeb6a8a578283b4cbd4167b8e11",
-        "form-feedback.component.ts": "447fb280eae642c45ddd173767f2e9365e92f5cf9cdd486fdde60ed0fb5a054f"
+        "form-feedback.component.html": "580aadf3ff425cd336cb7bebe54be5ae553252a3408a4ea06488b7e031da54d7",
+        "form-feedback.component.ts": "12bc59150356dedff7963b79ea82c8776297d80c485da38517d698964847ec24"
       }
     },
     "form-wizard": {
       "tier": "free",
       "installedAt": "2026-07-21T10:34:46.461Z",
       "files": {
-        "form-wizard.component.html": "0b07f56d22f0009b5cdfa77ab5b3a5c7c7b6eeeb23de284056d95b37c5bbcfa6",
-        "form-wizard.component.ts": "1f1c66fb8c938acfd8ce4a2dc9cff63af6997431b7370d6c757b1175c8d44a94"
+        "form-wizard.component.html": "8659eb8f4f1a580ed48e64fcd1a3f8fad87da0eda6e5fd74a07207da0ae198e7",
+        "form-wizard.component.ts": "b6e1516bc748dc6f1a8ef9729c5ec7fefc06ed7b0d560c90b9097c55d8002eca"
       }
     },
     "form-team-invite": {
       "tier": "free",
       "installedAt": "2026-07-21T10:34:46.628Z",
       "files": {
-        "form-team-invite.component.html": "51f1702677dddd81e309342d5acb3356980d4c4245544ec9c3c8503029cefceb",
-        "form-team-invite.component.ts": "40549c34d837b4ff3736cadfdcab2dbca47ec48b58a7c6198d80f7637c33d677"
+        "form-team-invite.component.html": "2fff0e957fc4aeba0497637ef822dabdfcbbcb5cc79585da558822c96d1d3d3e",
+        "form-team-invite.component.ts": "6fa2149de009a4ca0313595a49509dbc7bec28f92c5e33df0100d7d0c1bbbce4"
       }
     },
     "scroll-nav": {
       "tier": "free",
       "installedAt": "2026-07-21T10:47:25.331Z",
       "files": {
-        "scroll-nav-content/scroll-nav-content.component.html": "08bc3157dfd8327040923dac74717cc0dadcd0677178f4feb8c291ee9fe84e16",
-        "scroll-nav-content/scroll-nav-content.component.ts": "f91ab7bf7bf2566a627503e29b1c737bea19881bb2a8f876d8952f90ac1ea58e",
-        "scroll-nav-item/scroll-nav-item.component.html": "31c47432dee6f5a665a3d1a9af3bd789b22a73baf8394e210e48e55ce957a13c",
-        "scroll-nav-item/scroll-nav-item.component.ts": "0da7a9414167204793620e2a36147162c30981d8bc858f92d0cc3800bf0f8c4b",
-        "scroll-nav-sidebar/scroll-nav-sidebar.component.html": "31c47432dee6f5a665a3d1a9af3bd789b22a73baf8394e210e48e55ce957a13c",
-        "scroll-nav-sidebar/scroll-nav-sidebar.component.ts": "a67e3a6f8d8226b9103b338d236a5cf04e8cba06469d54bef8cf23fd287b6433",
-        "scroll-nav.component.html": "71f1f4847b3f9c7b290b32d45924362c1a4ee4880c504469a7d428e16da0e412",
-        "scroll-nav.component.ts": "3b05db462fffd79c8809abd215d247db55e7a6ebde42ae16ed1c0e9d3f2331fd",
-        "scroll-nav-item.directive.ts": "eaba142b3c6fc77b2d3066736d24ca6ab5c4113004e0317b06b7fbf60b834b41"
+        "scroll-nav-content/scroll-nav-content.component.html": "f82533909e0427f1472610693f47a5fb1f01008020479eadc857f58480e9952a",
+        "scroll-nav-content/scroll-nav-content.component.ts": "4c2d5621041f875d37659d74a4dc2861e99fa0c185ed56738c32a9c8a62a213c",
+        "scroll-nav-item/scroll-nav-item.component.html": "fcae0ac6b68ea3433f016d9a57901c9a3b4766021523f8af625ccf6b6a4270f8",
+        "scroll-nav-item/scroll-nav-item.component.ts": "27c672474cf2fc3b0b3f34e370dbeb718050e0d6ed59610eb091990ea48c73dc",
+        "scroll-nav-sidebar/scroll-nav-sidebar.component.html": "fcae0ac6b68ea3433f016d9a57901c9a3b4766021523f8af625ccf6b6a4270f8",
+        "scroll-nav-sidebar/scroll-nav-sidebar.component.ts": "80a7a8366bfd287614b5079f0e576872434c689b59dc03f3bbb99ff19d68ee3c",
+        "scroll-nav.component.html": "b11c04ef4f71ceaebd6cf0f3549e60cbc5d0b78524d6bbce7b48beda1f7cc9c7",
+        "scroll-nav.component.ts": "088bd71c007b34d41fe22fd8612757026ff7e82ecf03d90b10c995e8d8ec5b0a",
+        "scroll-nav-item.directive.ts": "a673790b0bdfb580a08f769fb0c271f3d63d341fb28be819f981959ee03d3bd9"
       }
     },
     "animated-counter": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:11.770Z",
       "files": {
-        "animated-counter.component.html": "5fc4e1f482ad91ccb00f53466dc352ea282671778e8fc19d027ef38b0bb0307c",
-        "animated-counter.component.ts": "854410e6e957e9b1effc4dd60abf11f2152766e5ffc2f256827858363f9eaadb"
+        "animated-counter.component.html": "9385220652d888801588045343f66bab6efda5f1e1bf36ad8ac30fd94b69927e",
+        "animated-counter.component.ts": "4fa9717afc3c2f02e30c39230748422770ecef6d0986b8388b97cce38f2057ce"
       }
     },
     "calendar": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:11.926Z",
       "files": {
-        "calendar.component.html": "fcb793ff7148924e65a20a61b8ade7d4b2cce55abd7d062bdd5388f662c27809",
-        "calendar.component.ts": "402d9bc82e0f921a0e28d6daf754b241b8a7f3f03a58d474a1a664c759d5e25d"
+        "calendar.component.html": "8ff458c1275a6c6700d87ba9bb519572e0f344a26da3536bdd34976f2f5b1939",
+        "calendar.component.ts": "8802ae3062188323f92dea5b9cd8f59ef9e62e1911fcd02b0bfe3271262ae561"
       }
     },
     "carousel": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:12.099Z",
       "files": {
-        "carousel.component.html": "dd97c6a91349d7c4a7a3c25a87b717b872d26c9d0cb9664583e38869b40153c9",
-        "carousel.component.ts": "f053bde9464884d21a8feac9dd0b54b13531031e13f9045e740ec5560abeec89"
+        "carousel.component.html": "e25608bf719df1622d51a8e436ec78b12ec1ac2d0d9356873d4077b253b501a5",
+        "carousel.component.ts": "5eece85cabcd953958bca5bde6399640b38f24a5e839ff53abcfbcb72b92a3bd"
       }
     },
     "code": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:12.348Z",
       "files": {
-        "code.component.html": "134a30c9ed2863b2ce31dd036373e5179159053cd50cf3a4028f3d12c534bd3c",
-        "code.component.ts": "59cd9e3929b6c8bb19e6df5746fece1afe484fa856302ed0ef6c17f8f1bd11de",
-        "code.directive.ts": "b0ec7ae3867ae64d9ca8c57b4ced89961527afd2c16911f955c2f8a2817c0bb7"
+        "code.component.html": "4856b97dceccb68b4c41796d6dfc38439762587f73d4fdf07588a03ad006a483",
+        "code.component.ts": "d120130b6bb9b99ae655066906c04e9b7ca4e94e5b8ba80886c47319b5fc822c",
+        "code.directive.ts": "1c8da4cef2db0e92d04ce439e26706a1079445a88ed3cf1e399ee2675b1732d1"
       }
     },
     "color-picker": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:12.500Z",
       "files": {
-        "color-picker.component.html": "891a13a9a2e44f79ff2fc35a8a71dab8a9e2d4add387df4bd155902f961d4133",
-        "color-picker.component.ts": "b661e6e14d481146bcd63d36865f695bb9ea2d212478a660db2ed345abfa20a4"
+        "color-picker.component.html": "90a1251db9414c3e95dc87fcfe2b73be8073c21044eb4f0fe06b71113ce3b4a8",
+        "color-picker.component.ts": "c60d3585d9812aac1de5cec049a9ad0f0f2463bca830ac9ad743b1900e168d61"
       }
     },
     "coming-soon": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:12.656Z",
       "files": {
-        "coming-soon.component.html": "4d5f8d5c60ca70b1217166dbc8a88d30e8bafbf3d4a2d23cc49b17c9bbbceee1",
-        "coming-soon.component.ts": "b5bead6c27247067c22e668f05fbc395e802810285553745150497964be551a3"
+        "coming-soon.component.html": "02c38ec1141572566f608dc14cbe1a8f01ac55249de99ef4ffe0d29b6d2030f0",
+        "coming-soon.component.ts": "bfd5103895ddb92026acb0607351a9da28c79027e6281816dbb56faf7b1ae0bd"
       }
     },
     "container": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:12.807Z",
       "files": {
-        "container.directive.ts": "4189b804a2a3552a513aac66cea0b80bce561ef167fce57e541f53d482ac4045"
+        "container.directive.ts": "65bf4efd398d71eefc93adc2217f19db64d368d6e3abaa76047809ec71e861fd"
       }
     },
     "context-menu": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:12.948Z",
       "files": {
-        "context-menu-panel.ts": "3ec578a8888a93d7a7640f11f2f37dc03fc8a83876f0aff1d92778ba953fc310",
-        "context-menu.component.html": "e7b06a7dd2073f4879a1ba0467f20107fe1cd95ec6d19d667b467bcf0403e8cc",
-        "context-menu.component.ts": "e5e4296958b733380ab329005dfae54d7385fe5b5a0e55808fedbe7bdeea88b3",
-        "context-menu.directive.ts": "c0e65b2f4f3ab427776f87c8db62f7b028da27c338bd61ac9eae41e660f1d0a4"
+        "context-menu-panel.ts": "9d43646b2fe3bf69860eb81f4391b51c483bf1408d698a3f25fdf00a104498bb",
+        "context-menu.component.html": "76671c63066c3bc55fd910112af56576c176a9386f56c7d0699036bbee24292a",
+        "context-menu.component.ts": "c0dd5778249cc456b360c5e26406ae9dce48f3b7bfdf2fa2c9158e974cf96344",
+        "context-menu.directive.ts": "fc94fcf3a9918bb71b43d7f0689c152e32e0cf2d18ce917759a0037ed1f12d10"
       }
     },
     "countdown": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:13.148Z",
       "files": {
-        "countdown.component.html": "193b428fcdcb008db24a3a8097869b92c19c30ee993bb2fefd91d292270c950b",
-        "countdown.component.ts": "211f11a319a1e84b4db5b95560481c2296b98fb01cfc20151889c27406507b3b"
+        "countdown.component.html": "1f196cecc962171e9c1c86d27744723a356e55aa0232f45bbd7a157e354e9528",
+        "countdown.component.ts": "af94f53b79429dbb9a99b03fc09dc8e080de029b61c9561a0d84340fd973c84d"
       }
     },
     "current-screen-size": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:13.298Z",
       "files": {
-        "current-screen-size.service.ts": "da065fae7537dc232d714e5fe5f66f0d49b7611a3a43fdd7047697947d5e79e7"
+        "current-screen-size.service.ts": "ed65224a69a3a43af35353bb65cd0b0449022ca266b6a56ad85bb45d93d2d5ed"
       }
     },
     "custom-select": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:13.436Z",
       "files": {
-        "custom-select.component.html": "2e3f7f6aa900f92e31e91b3f912065d53d8bd21a0d13d58a85c7d3baeb413b3b",
-        "custom-select.component.ts": "8e5814029b50848be6e8a7e1ebc555d7ea63d8640008c148c5fa2cda51fa8931"
+        "custom-select.component.html": "52d814c4f8d06a0920e3a3235942e0c6d73390d308e9a38fdfb0a7388ca01099",
+        "custom-select.component.ts": "e7ac7e2ad2adf7dabb4f7660ecd3f8ed47e5230a1c5294e9c47401cbf35de8e7"
       }
     },
     "dual-range-slider": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:13.575Z",
       "files": {
-        "dual-range-slider.component.html": "6e7c7f2d15be1c87f20ab42fc6b71c8d4219633c6186bf29c3419d1fe70111e1",
-        "dual-range-slider.component.ts": "268a9e02aeaf38fcab7798ab3da6b9670b0f3bfeb2a6be241c66e8382c28d3a3"
+        "dual-range-slider.component.html": "e8f1b8e7214c511c3d030f520ef8b2a95e8003e9e6e9920c5ac2bf2c3ef7cb11",
+        "dual-range-slider.component.ts": "100cdd967f24adc6b41d2afbfb989fb88c4c577bd0589539aac244f98fe4fd42"
       }
     },
     "filter": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:13.718Z",
       "files": {
-        "filter.pipe.ts": "3c715cf84d7b7219950dbd48f4aaef8232d1771072a75c02d2a5a66d3269e213"
+        "filter.pipe.ts": "99f75a3b50e199f3b48ede55f55af88245f3ba9c62fd2dea0920c7b095edb6b7"
       }
     },
     "input-autocomplete": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:13.858Z",
       "files": {
-        "input-autocomplete.component.html": "41096a18d879d6176e43092368871fb68446efd0343a5975dee3f6a4c1f22851",
-        "input-autocomplete.component.ts": "bd66a34ee72b58b05fa24227ad8900b32eb26d2dfda456072cc439cf36ddbe8b"
+        "input-autocomplete.component.html": "81605835902d35524aa88e0e04d99a7af4aefb541563d09b4ff60c306e50d0d4",
+        "input-autocomplete.component.ts": "dec9a6b04ace700344e1932a5ae9de93aa2eff27bd1122a9327fd2b4cf32ad6a"
       }
     },
     "input-mask": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:14.011Z",
       "files": {
-        "input-mask.directive.ts": "f3b6a921d22f3b7dbf94a38a8ce1baf993a53fdfe5876578fa0cb053a42836a3"
+        "input-mask.directive.ts": "317dab52e16c1a04f4ae4ae0bc3c6d0fc773adf368e504781aad3eeac787a409"
       }
     },
     "input-spinner": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:14.196Z",
       "files": {
-        "input-spinner.component.html": "3aaac6bddf0f5de0a69961fd37b5cc348537974a2b1eeaa9cfc6bdba274beef9",
-        "input-spinner.component.ts": "37bee49f34101e953f734795d4a8fd50167db771be1aa2d713f7b3e59cd7d7c7"
+        "input-spinner.component.html": "141b86777370946fd6275657c83e85ab68a7f5c3ea8d4681163ff0144928cf80",
+        "input-spinner.component.ts": "e28d249badcce4b360d3286847392e372466a00430545169e5349a68bb3df7fa"
       }
     },
     "meter-group": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:14.333Z",
       "files": {
-        "meter-group.component.html": "49ae27275d0cef7903ae3e54275f607f53af3eaabddde42d026c91e4e2239629",
-        "meter-group.component.ts": "e238d021089432573c9a64de0e9f56680a6dfa06eff412bc94f1ce2b98f9f4c9"
+        "meter-group.component.html": "d4fec74f0479f69bef789f57976f5dc7bce3c3b3607418a756ec0487f2cb7af1",
+        "meter-group.component.ts": "8bcd5dbaca20a730cb0bde3eca024e4fed13573ab158a239b61189defd73081d"
       }
     },
     "otp-input": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:14.476Z",
       "files": {
-        "otp-input.component.html": "5a71b5a17dfa7ba0917d77c5e7393f8fc224af121ddf3b1e457690c941e737ee",
-        "otp-input.component.ts": "bdb32ba47a63d665ea50f1809702fb8eab64d012768bf36e6912ef4642f27e06"
+        "otp-input.component.html": "da9fb1ebd30b7e756d3a4a5eb3b72b9d873262ad31afb71a65e26cedd94dc33b",
+        "otp-input.component.ts": "64343c38f4f333d63520829dd24f470f1520197b0c26c55e9eaefe6167e8cdce"
       }
     },
     "paginator": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:14.627Z",
       "files": {
-        "p-page/p-page.component.html": "c1aa3e81ba78864b344f5bfbaf4127668f07bc7cab872a19cc6fdd8cc2537754",
-        "p-page/p-page.component.ts": "3544d97c3de623a9823ecf7d8ab51e4709d45b9eb5a32213e23dad05d5c982fd",
-        "paginator.component.html": "1bd4cac2a011dfc68260d0753f4056e6223034ec65c08858f2e151484bbd4897",
-        "paginator.component.ts": "a50e7905dbd5227812daf2347341e88ddb8735e313048425bbbc92198c0784a4"
+        "p-page/p-page.component.html": "e211a8fcad1d2015c17f3e2a2cfe3bf0bf2d4d314c02b2b2ebdfe5a6bfa795b4",
+        "p-page/p-page.component.ts": "a761ece6feb556a769511a82c301890bbe0cf80fd134b644b8f368e2591dff6e",
+        "paginator.component.html": "f3aeb95af373dbfe7a606e63d550ca71aa30cc3f77f6df0a3cb641145d5c2de2",
+        "paginator.component.ts": "7d80749c8bc8aff7a3a84dc84419178ddd2bc506691fbf4efe9fe89e69583b0c"
       }
     },
     "password-strength": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:14.870Z",
       "files": {
-        "password-strength.component.html": "47ffbe130fd035d232a7907f0efe638bdff060cbecc38a8489964750a6049cae",
-        "password-strength.component.ts": "e8863840abd724889fa11ec6b9cd5913e9d4244f4b312f801009ba701174936a"
+        "password-strength.component.html": "5953ef91c1f2ac8245c420482594a16aa184b18baa4decb71427377eb9879921",
+        "password-strength.component.ts": "76a91d52d914b673d071138683485a1297a50c6f1697dae523f1eae575bc5bed"
       }
     },
     "phone-input": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:15.005Z",
       "files": {
-        "phone-input.component.html": "c618cbc16b877077755baae3e97b907ec8da19674f7f7cb272085c64c2ded9fb",
-        "phone-input.component.ts": "38548e182f31a56157a8509285811776fe725953cbd2bf71048d8af803c9bc85"
+        "phone-input.component.html": "03bab583346184ac3ab7c282d3d866952a0eb47351a5ab07cf91967a689809ce",
+        "phone-input.component.ts": "cb9996dbee9a9dc988a3e0bf36abb19da169bfb2a5f6d55cff56edadd67e32e3"
       }
     },
     "reveal": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:15.143Z",
       "files": {
-        "base-reveal.directive.ts": "23b3665be58b49af0ed269e53db6178e63b2c25bf4b467248a490ef065a84132"
+        "base-reveal.directive.ts": "f2fdaeec3cf0d2f1a9d159f751def31d67196ff2b762fc041635bf4947ba9a50"
       }
     },
     "ripple": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:15.293Z",
       "files": {
-        "ripple.directive.ts": "6475b5ba87386ff4820d2d7f4a10b0e9d1de885ab59a62eb2b92cc9a4b453f8e"
+        "ripple.directive.ts": "2cb687c55142e95148b6d7c7b545ef8efa4b05a9c68c6d7645132aaa38664f3e"
       }
     },
     "scroll-buttons": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:15.434Z",
       "files": {
-        "scroll-bottom.component.html": "c57c7fcf94b943311d6b114a640cb324facc3cea6c12374750d1c1551133c404",
-        "scroll-bottom.component.ts": "57fd46814f64c7644302eb4f35cdcb85dc53c47ffc81dfe6fd00ae202a91bc9c",
-        "scroll-button.base.ts": "074f77807a6da5ebcc36f0c917072ecc827ee186fa77172a7e410881d7f51207",
-        "scroll-top.component.html": "82e9cb72ddb209b99aeb617709c78196439ee6cd91a10d7038baa80a7d67b727",
-        "scroll-top.component.ts": "953ef7cb2c1f12301d0e7ba9eaf46dcef2c0840c6ce5755889bc64dbba7d719b"
+        "scroll-bottom.component.html": "6f0670b5fe4499c0c85e8b39acbda3e88e058cc572166a0aba91a6399f75c0f0",
+        "scroll-bottom.component.ts": "40fa19b4f7c1d400392706c5d8a91961aa50be6453d0f6ce6ae4b4b661dd548f",
+        "scroll-button.base.ts": "5cfe50b133d257bcf3c52f54b429ae65b07118d959aff8998f7982da3c56e6c6",
+        "scroll-top.component.html": "baa8a001ae6104bb9962191f8c503df2a60e2c04e1b90a23e2294b5834d93ae8",
+        "scroll-top.component.ts": "7d910c110e59d8fb813d0c6bbf65ee536bbb82d074d7ba4b9b7737e3b96b6666"
       }
     },
     "scroll-to": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:15.571Z",
       "files": {
-        "scroll-to.directive.ts": "235e2af78c058388ca984a504c62781f7d7be27e0b5b1b316200e802e6b37b39"
+        "scroll-to.directive.ts": "92fe57f8ad43f6de8198590e2b6f27daf8020c61a3c5d9a819f009d25311496f"
       }
     },
     "speed-dial": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:15.769Z",
       "files": {
-        "speed-dial.component.html": "3796e8fbf8155593f4388e00badfa5bb1447d747e38f77ed5912e11faddf5936",
-        "speed-dial.component.ts": "7d98b2e7b41854b944cbb3430bac4ca8d6b6d8802cb31e4f9337e081d060bbff"
+        "speed-dial.component.html": "3937308d0bbfcb1f2021a0d1a1d756c7c69b0019db3073d2394106054c479a5f",
+        "speed-dial.component.ts": "cf670eaa63203cc804b17f9a6118a00f2e46f0955e40adbfb79f078c970910e9"
       }
     },
     "star-rating": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:15.909Z",
       "files": {
-        "star/star.component.html": "447525a7e9b64bf58a2c45f370277c70e2aed6e9c4cef347f65ac0c3446fa565",
-        "star/star.component.ts": "87861c396c237d7ae796d299de4a3462e8b645a8662fe7284cd703924edf0a43",
-        "star-rating.component.html": "bc9ce651ca6c99bb0dbc99e9516f48e932afe0cbef8025610fec1062a845c274",
-        "star-rating.component.ts": "7e8ef69e6f8a16996a222669d00b166d146e3113a610773e21956ed9db8b0c42"
+        "star/star.component.html": "ab24b359cfab058926b4e9733b3c6786cf22489d68b4ac4d217ee0ae7dad5593",
+        "star/star.component.ts": "9687c18174a6c0caa8a6c94a3a72171437cf9de7082573fe51500df7dd84caeb",
+        "star-rating.component.html": "c0307c8a432c0d4fa4c604de4e5b113b5cf8414406123306c961010cbfddbd9d",
+        "star-rating.component.ts": "a4704cd5e9da0fc778836c3e35340fb9a3eae99206eda4c83df2b31cfa89689d"
       }
     },
     "tri-state-checkbox": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:16.055Z",
       "files": {
-        "tri-state-checkbox.component.html": "0c8f63aad7699af608d3e91259d864254786dbc47c921242ff7fb6e9185a7fd5",
-        "tri-state-checkbox.component.ts": "7529c2ad6f9ec20366ce958a22372de1eb512ff7eda8a1d2ff699cbaafbd917f"
+        "tri-state-checkbox.component.html": "e56297df858ba811067a9de6db3f0f96bf8e26ffa19d3045570e3a7597c9f4d1",
+        "tri-state-checkbox.component.ts": "e9a869618f1d66d916500abcba7571f9713b77824c8e45b546765c0a37ae7fab"
       }
     },
     "form-cart": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:16.204Z",
       "files": {
-        "form-cart.component.html": "98d06452fa4729155aa2bec06fc349ea4125125d99af84ffefa8105e99e48c30",
-        "form-cart.component.ts": "fb2b8e48d9cec9061a21582874bc604bf6befaf30f3f2a30257d5e1c6cfa1ad5"
+        "form-cart.component.html": "2e2091a2d550be129917d069c1528d53a7434e11cfa875466f3dbe877bd8b720",
+        "form-cart.component.ts": "eff47dcd0d5bf9316c4a2f71f14578ed40236868381cad7d63963716caf3a23d"
       }
     },
     "form-checkout-summary": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:16.423Z",
       "files": {
-        "form-checkout-summary.component.html": "4d9144caa10792efbfbf431e6ec2c8b1bbbd1e72de3b76a465a8edb7b181d3da",
-        "form-checkout-summary.component.ts": "c2b061668bc9709d65ab877f09e5624d742df2b41138dba2ae4f1b34377e0428"
+        "form-checkout-summary.component.html": "6f1fba9b01d6df3f9173ea3f4f66dd6451804b5b14eb7a21cc748d212cfb7d65",
+        "form-checkout-summary.component.ts": "2b7535f68a657597adab72e95976b2baf2346b762571efd3888d8517a47c92b5"
       }
     },
     "form-delete-account": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:16.567Z",
       "files": {
-        "form-delete-account.component.html": "06ff725a68bbf7578d6a83ba74a30fc7f3a79b91e789a904b50c488c5410bab5",
-        "form-delete-account.component.ts": "25ae4bafe7284621c007acf557c3f616cea0c8b1afbc96b09cd5d1f9dd0c7940"
+        "form-delete-account.component.html": "22ba5f1b44d63997e5b42932baa06118b5d6f34d1fef7c1ee18ad54d8a10afaa",
+        "form-delete-account.component.ts": "e734033b5f1ce02030eeee405d45b9a1524b9eee1c47a57937f879fe56bdac90"
       }
     },
     "form-filter": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:16.704Z",
       "files": {
-        "form-filter.component.html": "c243dd716f8b1f7b37e461e6b5c6cce08149a50da70d440cfdb17cbfec7d28bd",
-        "form-filter.component.ts": "10bd2d9e8cd4c661304b5dcccd2760762d4161b9d534b67a46afb8158c0a0b7f"
+        "form-filter.component.html": "138faa92ef6c7eea5babba33b25bb4f2ebdba9187846ecf672a588655f44df96",
+        "form-filter.component.ts": "4a9f221e909f65d267b8ea36bf8739362a8a81828a3041c88dd97fdfc8020f97"
       }
     },
     "form-login-tabs": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:16.850Z",
       "files": {
-        "form-login-tabs.component.html": "5b3ab1f2762cb2f6f372082e276b775ea784914af702b2a8087f34830644b778",
-        "form-login-tabs.component.ts": "d6f3ee449cdbbac88c24d12a19be69c404bd0b49ee788b18efae95a0461490aa"
+        "form-login-tabs.component.html": "a17750d8cdc817fa3fde7a8ea6a894209b790bc0d85b8380559e7bc3a0398496",
+        "form-login-tabs.component.ts": "210090532f4d9c01c45099e402fd2beed949ae0312a79ea73879bf932408ecc1"
       }
     },
     "form-newsletter": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:17.004Z",
       "files": {
-        "form-newsletter.component.html": "44361c281679a47f3afdcb1040417cea2d5cc074dfb043884a839aba3c6f1f3e",
-        "form-newsletter.component.ts": "d7b7f526b5d34507ee0ca668198f456d09c57317ca481a0970813dc3c54d3b3f"
+        "form-newsletter.component.html": "e91a17eb9864b701e98205f3f79bac4f2b2a632baa2d3d25afcd9b2c31ece347",
+        "form-newsletter.component.ts": "3469516eadf08bbb5946b56fcb997e9096ab211ad20397ae2f4e704ddb323bc0"
       }
     },
     "form-payment": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:17.156Z",
       "files": {
-        "form-payment.component.html": "0b72e46481950a2f98120745a1ded4bb1da298494ef66ca7a40c53da23ec038b",
-        "form-payment.component.ts": "c271556e65ddef3acbadadb319b145c8cd5c45313ae0ed637c22bf43a3507edc"
+        "form-payment.component.html": "7b43fbafe81ecd6c0ac0508a71cc647ad45528396b65a63e01bf982ae74a0124",
+        "form-payment.component.ts": "3f6733a334472ac8dfa4810f408cff32bbb915984cf8a78942ec098feb4241f1"
       }
     },
     "form-review": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:17.345Z",
       "files": {
-        "form-review.component.html": "88577baae6bd05a910314655d34c2a17f62ccd2571eab48ab5c715da52ba2935",
-        "form-review.component.ts": "91c5131c525e9e0cf91cf90646baa3f39eec071944308da8977871eb7e04ab61"
+        "form-review.component.html": "dda1cded31ee4eda6019caa36f3be2577c5554e114d118589417587e068ce308",
+        "form-review.component.ts": "a0a5247880143f4c743cb01f00105495cb26c53e171242645865ac928a86c39b"
       }
     },
     "form-shipping": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:17.494Z",
       "files": {
-        "form-shipping.component.html": "196d69e19f852ddb092220e2208a665815b777e88a689ee6a4a7150625c596a7",
-        "form-shipping.component.ts": "bb7e1533e1cf1ee57265cf1c761f94dfc5768d22e0009309fbf08830bcaefa07"
+        "form-shipping.component.html": "66e7dff489b5a31792e51967cd6083f96d4c406d6958b1c4dff15cc94cab48db",
+        "form-shipping.component.ts": "cd0144422bc656f248fec7f58a0122a149707cd6256dbb18adce9c98209de275"
       }
     },
     "form-signup-tabs": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:17.641Z",
       "files": {
-        "form-signup-tabs.component.html": "cf6cd9c77f0ef7bf1e98a4c4068f339c161be31c9914e9844ab1670b387ca109",
-        "form-signup-tabs.component.ts": "09996fb745cee7a1fb3333ac4a76a20161e2b38470cdf14f71c4a10e6e645d4e"
+        "form-signup-tabs.component.html": "92c923731dcf703555621b096ea5d056184555001a88253143cd7b10b536cd21",
+        "form-signup-tabs.component.ts": "590d4663223aa693c3c27f7d3c89769459991b44205eb2db378854d8196a1e03"
       }
     },
     "form-success-message": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:17.864Z",
       "files": {
-        "form-success-message.component.html": "c527aaa454aaa8a48322efb489438c42f061fcb5be8bd3bab134862ea085e541",
-        "form-success-message.component.ts": "afdd82dcf87a71f6e04f881bfeb4b7d1014f0f19d5c9b5d586ca91b35261fbdb"
+        "form-success-message.component.html": "f2316b4824eab379a768b244aabb6a87387250f41297e6bcb7bf391ede5f5e54",
+        "form-success-message.component.ts": "cf9ed9e5ba250ec4959151404c130591e07f56760316d03f57ddf3033bed3663"
       }
     },
     "base-context-menu-item": {
       "tier": "free",
       "installedAt": "2026-07-22T11:47:58.244Z",
       "files": {
-        "base-context-menu-item.directive.ts": "dddf5395b79a9c49d4b481d49d1f812695ced45b435604aa827badd15c566f0f"
+        "base-context-menu-item.directive.ts": "254f3d344f1ed28bcd6db2c95572cc0c3049dd708a8654a035f432d8557e2d44"
+      }
+    },
+    "hover-card": {
+      "tier": "free",
+      "installedAt": "2026-08-19T16:19:20.664Z",
+      "files": {
+        "hover-card.component.html": "e92083cfd4772b64a88142b41dd4e831e0644433da8ecc8dee714537d2aa0378",
+        "hover-card.component.ts": "11b8cf90151b43501bf989c0adb5ccdade3ee632db50739322e67897e76fd405"
+      }
+    },
+    "menubar": {
+      "tier": "free",
+      "installedAt": "2026-08-19T16:19:20.670Z",
+      "files": {
+        "menubar-menu.component.html": "18c54cb84828a77ec2a40c2c636bffa08483763a1dff9646b0a922cd5cb8af1c",
+        "menubar-menu.component.ts": "79f47b839531f224e68078682a011b5f7a3bc57e3dc7a9ebb651a642e664e322",
+        "menubar.component.html": "fcae0ac6b68ea3433f016d9a57901c9a3b4766021523f8af625ccf6b6a4270f8",
+        "menubar.component.ts": "bda6469c3926592b7a56ee12e9f4e46382d7e27daa5f61f3ecba79e28d64e396"
+      }
+    },
+    "loading-overlay": {
+      "tier": "free",
+      "installedAt": "2026-08-19T16:19:20.671Z",
+      "files": {
+        "loading-overlay.component.html": "286601e6ea00e8a4367458c3ca7a3da970b4a0c3b96fac28e27dd35e99c75865",
+        "loading-overlay.component.ts": "faa5017d014b3faf2d983f0921104557b9da13011ca8a466642fd12fe129c770"
+      }
+    },
+    "currency-input": {
+      "tier": "free",
+      "installedAt": "2026-08-19T16:19:20.672Z",
+      "files": {
+        "currency-input.component.html": "63c1a1c3bfa9e965a59236d256b3da741db034ba6351c977cce2eb624b3b8706",
+        "currency-input.component.ts": "68707b63efe75f50db14af5cde5ce6b456d39cc7023b2353b475eebc184f651a"
+      }
+    },
+    "kbd": {
+      "tier": "free",
+      "installedAt": "2026-08-19T16:19:20.674Z",
+      "files": {
+        "kbd.component.html": "7a3db611c613dfd61b68f782641ca0aee1aca603ac3f1b35ea9720682f53241c",
+        "kbd.component.ts": "4397a55100b5de40f668b00f1e15744c50d306ef9427d6c57ebf35167912d409"
+      }
+    },
+    "aspect-ratio": {
+      "tier": "free",
+      "installedAt": "2026-08-19T16:19:20.676Z",
+      "files": {
+        "aspect-ratio.component.html": "d3a32ee210f867f4533ecb5bad4031483cc10290703cca06af856940b5438547",
+        "aspect-ratio.component.ts": "5ae24255336bc65d9fb044b1c254e4193615ffee5203a4b281393b8a787e68b4"
+      }
+    },
+    "scroll-area": {
+      "tier": "free",
+      "installedAt": "2026-08-19T16:19:20.677Z",
+      "files": {
+        "scroll-area.component.html": "fcae0ac6b68ea3433f016d9a57901c9a3b4766021523f8af625ccf6b6a4270f8",
+        "scroll-area.component.ts": "a00ad4069ae7f743c5d3354ef2f947c1f123d4dd258367a629cb06614942902a"
+      }
+    },
+    "cookie-banner": {
+      "tier": "free",
+      "installedAt": "2026-08-19T16:19:20.678Z",
+      "files": {
+        "cookie-banner.component.html": "fad54c025ae236c5d23ecdb35f59403c26bbde63640a7ed6d869ab2577610791",
+        "cookie-banner.component.ts": "143d96df61825fccb5ea3013dfa098f596fe447580f7ae6e6f3153edf54f0578"
+      }
+    },
+    "safe-timer": {
+      "tier": "free",
+      "installedAt": "2026-08-19T16:19:20.680Z",
+      "files": {
+        "safe-timer.ts": "b5cef5622dcae319e5621d74e316298d7c5c3a3ad9d12efde79f879b1a176787"
+      }
+    },
+    "dropdown-menu-stack": {
+      "tier": "free",
+      "installedAt": "2026-08-19T16:19:20.681Z",
+      "files": {
+        "dropdown-menu-stack.service.ts": "9cb100eada399ca70e929c9073564d1e000adefdddd0438fcc639e6010766363"
       }
     }
   }

@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { Directive, computed, input } from '@angular/core';
 import { IconButtonColor, IconButtonSize } from "../types";
@@ -8,7 +8,12 @@ import { IconButtonColor, IconButtonSize } from "../types";
 /**
  * An icon-only button directive applying Lussos theme styles.
  * Use this when the button only contains an icon.
- * 
+ *
+ * Base classes include `relative` and `rounded-lg`. When overriding position,
+ * radius or other baked-in utilities via the `class` attribute, use Tailwind's
+ * important variants (e.g. `!absolute`, `rounded-full!`) — plain conflicting
+ * classes lose the stylesheet tie-break against the base classes.
+ *
  * @example
  * <button base-icon-button color="primary" size="lg">
  *   <base-icon name="plus"></base-icon>
@@ -43,11 +48,11 @@ export class IconButtonDirective {
     };
 
     const sizeMap: Record<IconButtonSize, string> = {
-      sm: '!h-7 !w-7 !min-w-7 !max-w-7 [&_base-icon]:!w-3 [&_base-icon]:!h-3',
-      default: '!h-9 !w-9 !min-w-9 !max-w-9 [&_base-icon]:!w-5 [&_base-icon]:!h-5',
-      lg: '!h-10 !w-10 !min-w-10 !max-w-10 [&_base-icon]:!w-6 [&_base-icon]:!h-6',
-      xl: '!h-11 !w-11 !min-w-11 !max-w-11 [&_base-icon]:!w-6 [&_base-icon]:!h-6',
-      xxl: '!h-14 !w-14 !min-w-14 !max-w-14 [&_base-icon]:!w-7 [&_base-icon]:!h-7',
+      sm: 'h-7! w-7! min-w-7! max-w-7! [&_base-icon]:w-3! [&_base-icon]:h-3!',
+      default: 'h-9! w-9! min-w-9! max-w-9! [&_base-icon]:w-5! [&_base-icon]:h-5!',
+      lg: 'h-10! w-10! min-w-10! max-w-10! [&_base-icon]:w-6! [&_base-icon]:h-6!',
+      xl: 'h-11! w-11! min-w-11! max-w-11! [&_base-icon]:w-6! [&_base-icon]:h-6!',
+      xxl: 'h-14! w-14! min-w-14! max-w-14! [&_base-icon]:w-7! [&_base-icon]:h-7!',
     };
 
     const colorClass = colorMap[this.color()] || colorMap['default'];

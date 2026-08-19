@@ -84,7 +84,7 @@ export const routes: Routes = [
         title: 'Primitives',
         data: seo({
           description:
-            'Base UI primitives gallery: buttons, badges, chips, avatars, icons, ripple, and reveal.',
+            'Base UI primitives gallery: buttons, badges, chips, avatars, icons, kbd, aspect-ratio, scroll-area, ripple, and reveal.',
         }),
         loadComponent: () =>
           import('./pages/ui/primitives/primitives').then((m) => m.UiPrimitives),
@@ -94,7 +94,7 @@ export const routes: Routes = [
         title: 'Forms',
         data: seo({
           description:
-            'Base UI form controls gallery: inputs, select, OTP, phone, masks, sliders, and rating.',
+            'Base UI form controls gallery: inputs, select, OTP, phone, currency, masks, sliders, and rating.',
         }),
         loadComponent: () => import('./pages/ui/forms/forms').then((m) => m.UiForms),
       },
@@ -103,7 +103,7 @@ export const routes: Routes = [
         title: 'Feedback',
         data: seo({
           description:
-            'Base UI feedback gallery: alerts, toasts, progress, meter group, countdown, and skeletons.',
+            'Base UI feedback gallery: alerts, toasts, progress, loading overlay, cookie banner, countdown, and skeletons.',
         }),
         loadComponent: () => import('./pages/ui/feedback/feedback').then((m) => m.UiFeedback),
       },
@@ -112,7 +112,7 @@ export const routes: Routes = [
         title: 'Overlays',
         data: seo({
           description:
-            'Base UI overlays gallery: dialog, dropdown, context menu, tooltip, popover, drawer, and bottom sheet.',
+            'Base UI overlays gallery: dialog, dropdown, hover-card, context menu, tooltip, popover, drawer, and bottom sheet.',
         }),
         loadComponent: () => import('./pages/ui/overlays/overlays').then((m) => m.UiOverlays),
       },
@@ -121,7 +121,7 @@ export const routes: Routes = [
         title: 'Navigation',
         data: seo({
           description:
-            'Base UI navigation gallery: tabs, breadcrumb, accordion, stepper, and scroll helpers.',
+            'Base UI navigation gallery: tabs, breadcrumb, accordion, menubar, stepper, and scroll helpers.',
         }),
         loadComponent: () =>
           import('./pages/ui/navigation/navigation').then((m) => m.UiNavigation),

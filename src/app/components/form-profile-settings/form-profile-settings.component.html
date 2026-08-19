@@ -1,62 +1,62 @@
 <!--
   Base UI (free tier) — https://base-ui.net
   Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-  Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+  Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 -->
 <base-card class="mb-8">
-        <div class="h-[140px] bg-slate-100 relative shrink-0">
+        <div class="h-35 bg-slate-100 relative shrink-0">
           <img src="assets/images/breathtaking_nature_mountain_1776362688676.png"
-            class="w-full h-full object-cover z-[0]" alt="mountain">
+            class="w-full h-full object-cover z-0" alt="mountain">
           <div class="absolute inset-0 bg-slate-900/30"></div>
           <h3 class="absolute top-4 left-6 font-bold text-white uppercase tracking-widest text-sm">Profile
             Settings</h3>
-          <button base-icon-button size="sm" color="inverted" class="!absolute top-4 right-4 !rounded-full">
+          <button base-icon-button size="sm" color="inverted" class="absolute! top-4 right-4 rounded-full!">
             <base-icon name="more"></base-icon>
           </button>
-          <div class="absolute bottom-4 left-6 flex items-start gap-4 -mt-8 mb-8 relative z-10">
+          <div class="absolute bottom-4 left-6 flex items-start gap-4 -mt-8 mb-8 z-10">
             <base-avatar size="full" shape="circle"
               class="w-20 h-20 rounded-full border-4 border-white dark:border-slate-900"
               avatarUrl="assets/images/avatar1.jpeg" ariaLabel="Edit profile"></base-avatar>
             <div class="flex-1 flex justify-between items-center mt-3">
               <div class="flex gap-2">
-                <button base-stroked-icon-button size="sm" color="white" class="!rounded-full">
+                <button base-stroked-icon-button size="sm" color="white" class="rounded-full!">
                   <base-icon name="edit"></base-icon>
                 </button>
-                <button base-stroked-icon-button size="sm" color="white" class="!rounded-full">
+                <button base-stroked-icon-button size="sm" color="white" class="rounded-full!">
                   <base-icon name="trash"></base-icon>
                 </button>
               </div>
-              <button base-icon-button size="sm" color="inverted" aria-label="User" class="!rounded-full mr-10">
+              <button base-icon-button size="sm" color="inverted" aria-label="User" class="rounded-full! mr-10">
                 <base-icon name="user"></base-icon>
               </button>
             </div>
           </div>
         </div>
-        <base-card-body class="p-6 pt-0 flex flex-col flex-1 pt-14">
+        <base-card-body class="p-6 pt-0 flex flex-col flex-1">
           <div class="flex gap-4 mb-4">
             <base-input-group class="flex-1">
-              <base-label class="!text-[10px] uppercase !font-light !tracking-[2px]">First Name</base-label>
+              <base-label class="text-[10px]! uppercase font-light! tracking-[2px]!">First Name</base-label>
               <input base-input value="Sarah" />
             </base-input-group>
             <base-input-group class="flex-1">
-              <base-label class="!text-[10px] uppercase !font-light !tracking-[2px]">Last Name</base-label>
+              <base-label class="text-[10px]! uppercase font-light! tracking-[2px]!">Last Name</base-label>
               <input base-input value="Mitchell" />
             </base-input-group>
           </div>
           <div class="flex gap-4 mb-4">
             <base-input-group class="flex-1">
-              <base-label class="!text-[10px] uppercase !font-light !tracking-[2px]">Phone</base-label>
+              <base-label class="text-[10px]! uppercase font-light! tracking-[2px]!">Phone</base-label>
               <input base-input value="+1 (555) 123-4567" />
             </base-input-group>
             <base-input-group class="flex-1">
-              <base-label class="!text-[10px] uppercase !font-light !tracking-[2px]">Email</base-label>
+              <base-label class="text-[10px]! uppercase font-light! tracking-[2px]!">Email</base-label>
               <input base-input value="sarah@example.com" />
               <base-icon base-addon-end name="check-circle" class="w-4 h-4 stroke-green-500"></base-icon>
             </base-input-group>
           </div>
           <div class="flex gap-4 mb-4">
             <base-input-group class="flex-1">
-              <base-label class="!text-[10px] uppercase !font-light !tracking-[2px]">Country</base-label>
+              <base-label class="text-[10px]! uppercase font-light! tracking-[2px]!">Country</base-label>
               <select base-input class="appearance-none">
                 <option>United States</option>
               </select>
@@ -64,7 +64,7 @@
                 class="w-4 h-4 text-slate-400 mr-3 pointer-events-none absolute right-0 top-1/2 -translate-y-1/2"></base-icon>
             </base-input-group>
             <base-input-group class="flex-1">
-              <base-label class="!text-[10px] uppercase !font-light !tracking-[2px]">State</base-label>
+              <base-label class="text-[10px]! uppercase font-light! tracking-[2px]!">State</base-label>
               <select base-input class="appearance-none">
                 <option>California</option>
               </select>
@@ -74,16 +74,16 @@
           </div>
           <div class="flex gap-4 mb-4">
             <base-input-group class="flex-1">
-              <base-label class="!text-[10px] uppercase !font-light !tracking-[2px]">Zipcode</base-label>
+              <base-label class="text-[10px]! uppercase font-light! tracking-[2px]!">Zipcode</base-label>
               <input base-input value="94301" />
             </base-input-group>
             <base-input-group class="flex-1">
-              <base-label class="!text-[10px] uppercase !font-light !tracking-[2px]">Area</base-label>
+              <base-label class="text-[10px]! uppercase font-light! tracking-[2px]!">Area</base-label>
               <input base-input value="Silicon Valley" />
             </base-input-group>
           </div>
           <base-input-group class="mb-8 flex-1">
-            <base-label class="!text-[10px] uppercase !font-light !tracking-[2px]">Bio</base-label>
+            <base-label class="text-[10px]! uppercase font-light! tracking-[2px]!">Bio</base-label>
             <textarea base-textarea
               rows="3">Digital product designer based in San Francisco. Passionate about minimalism and user-centric design.</textarea>
           </base-input-group>

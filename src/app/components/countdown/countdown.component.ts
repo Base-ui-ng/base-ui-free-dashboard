@@ -1,11 +1,22 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
-import { Component, OnInit, OnDestroy, OnChanges, computed, input, output ,
-  ChangeDetectionStrategy, signal, booleanAttribute } from '@angular/core';
+import {
+  afterNextRender,
+  booleanAttribute,
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  input,
+  output,
+  signal,
+  untracked,
+} from '@angular/core';
 
 import { cn } from '../tw-merge/tw-merge';
+import { injectTimers } from '../safe-timer/safe-timer';
 
 export interface CountdownTime {
   days: number;
@@ -18,6 +29,10 @@ export interface CountdownTime {
 /**
  * A countdown timer counting down to a target date.
  *
+ * The display updates once during SSR/prerender so static HTML is not stuck at
+ * zeros. The 1s client ticker starts in `afterNextRender` so it survives
+ * hydration on prerendered pages (where `ngOnInit` does not re-run).
+ *
  * @example
  * <base-countdown [targetDate]="launchDate" (finished)="onLaunch()"></base-countdown>
  */
@@ -26,56 +41,149 @@ export interface CountdownTime {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [],
   templateUrl: './countdown.component.html',
-  host: { '[class]': 'hostCls()' }
+  host: { '[class]': 'hostCls()' },
 })
-export class CountdownComponent implements OnInit, OnChanges, OnDestroy {
-  readonly extraClass    = input('', { alias: 'class' });
-  readonly targetDate    = input.required<Date | string>();
-  readonly showDays = input(true, { transform: booleanAttribute });
-  readonly daysLabel     = input('Days');
-  readonly hoursLabel    = input('Hours');
-  readonly minutesLabel  = input('Min');
-  readonly secondsLabel  = input('Sec');
+export class CountdownComponent {
+  /**
+   * Extra host classes merged via `cn()`.
+   *
+   * @example
+   * <base-countdown class="justify-center" [targetDate]="date"></base-countdown>
+   */
+  readonly extraClass = input('', { alias: 'class' });
 
-  readonly tick     = output<CountdownTime>();
+  /**
+   * Instant the countdown ends. Accepts a `Date` or an ISO/parseable string.
+   *
+   * @example
+   * <base-countdown [targetDate]="'2026-12-31T23:59:59Z'"></base-countdown>
+   */
+  readonly targetDate = input.required<Date | string>();
+
+  /**
+   * Whether to show the days unit.
+   *
+   * @example
+   * <base-countdown [targetDate]="date" [showDays]="false"></base-countdown>
+   */
+  readonly showDays = input(true, { transform: booleanAttribute });
+
+  /**
+   * Label under the days value.
+   *
+   * @example
+   * <base-countdown [targetDate]="date" daysLabel="D"></base-countdown>
+   */
+  readonly daysLabel = input('Days');
+
+  /**
+   * Label under the hours value.
+   *
+   * @example
+   * <base-countdown [targetDate]="date" hoursLabel="H"></base-countdown>
+   */
+  readonly hoursLabel = input('Hours');
+
+  /**
+   * Label under the minutes value.
+   *
+   * @example
+   * <base-countdown [targetDate]="date" minutesLabel="M"></base-countdown>
+   */
+  readonly minutesLabel = input('Min');
+
+  /**
+   * Label under the seconds value.
+   *
+   * @example
+   * <base-countdown [targetDate]="date" secondsLabel="S"></base-countdown>
+   */
+  readonly secondsLabel = input('Sec');
+
+  /**
+   * Emits on every tick with the remaining time breakdown.
+   *
+   * @example
+   * <base-countdown [targetDate]="date" (tick)="onTick($event)"></base-countdown>
+   */
+  readonly tick = output<CountdownTime>();
+
+  /**
+   * Emits once when the countdown reaches zero.
+   *
+   * @example
+   * <base-countdown [targetDate]="date" (finished)="onLaunch()"></base-countdown>
+   */
   readonly finished = output<void>();
 
   protected readonly hostCls = computed(() => cn('flex gap-2', this.extraClass()));
 
-  readonly time = signal<CountdownTime>({ days: 0, hours: 0, minutes: 0, seconds: 0, total: 0 });
+  readonly time = signal<CountdownTime>({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+    total: 0,
+  });
   readonly done = signal(false);
 
-  private interval?: ReturnType<typeof setInterval>;
+  private readonly timers = injectTimers();
+  private intervalId?: ReturnType<typeof setInterval>;
 
-  ngOnInit()    { this.start(); }
-  ngOnChanges() { this.start(); }
+  /**
+   * Flips true after the first browser render. Intervals must not start during
+   * SSR/prerender — and `ngOnInit` does not re-run after hydration, so the
+   * ticker is gated on this signal instead.
+   */
+  private readonly clientReady = signal(false);
 
-  private start() {
-    clearInterval(this.interval);
-    this.done.set(false);
-    this.update();
-    this.interval = setInterval(() => this.update(), 1000);
+  constructor() {
+    afterNextRender(() => this.clientReady.set(true));
+
+    // Keep the display in sync whenever the target changes (SSR-safe one-shot).
+    effect(() => {
+      this.targetDate();
+      untracked(() => {
+        this.done.set(false);
+        this.update();
+      });
+    });
+
+    // Client ticker — starts after hydration; restarts when the target changes.
+    effect((onCleanup) => {
+      if (!this.clientReady()) return;
+      this.targetDate();
+      // Sync effect already ran; skip the ticker if the countdown is already over.
+      if (untracked(() => this.done())) return;
+
+      this.timers.clear(this.intervalId);
+      this.intervalId = this.timers.setInterval(() => this.update(), 1000);
+      onCleanup(() => this.timers.clear(this.intervalId));
+    });
   }
 
   private update() {
     const total = Math.max(0, new Date(this.targetDate()).getTime() - Date.now());
-    const newTime = {
-      days:    Math.floor(total / 86_400_000),
-      hours:   Math.floor((total / 3_600_000) % 24),
+    const newTime: CountdownTime = {
+      days: Math.floor(total / 86_400_000),
+      hours: Math.floor((total / 3_600_000) % 24),
       minutes: Math.floor((total / 60_000) % 60),
       seconds: Math.floor((total / 1_000) % 60),
-      total
+      total,
     };
     this.time.set(newTime);
     this.tick.emit(newTime);
-    if (total === 0 && !this.done()) {
+    // `done` must not be an effect dependency — reading it here would re-enter
+    // the effect when we flip the latch and hang change detection.
+    if (total === 0 && !untracked(() => this.done())) {
       this.done.set(true);
       this.finished.emit();
-      clearInterval(this.interval);
+      this.timers.clear(this.intervalId);
+      this.intervalId = undefined;
     }
   }
 
-  pad(n: number): string { return String(n).padStart(2, '0'); }
-
-  ngOnDestroy() { clearInterval(this.interval); }
+  pad(n: number): string {
+    return String(n).padStart(2, '0');
+  }
 }

@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { Component, computed, input ,
   ChangeDetectionStrategy
@@ -11,9 +11,12 @@ import { cn } from '../../tw-merge/tw-merge';
 
 /**
  * An individual breadcrumb link within a `base-breadcrumb`.
+ * The last item (current page, usually without `link`) truncates with an ellipsis
+ * and stays on a single row; hover the crumb to see the full `label` via `title`.
  *
  * @example
- * <base-breadcrumb-item href="/products">Products</base-breadcrumb-item>
+ * <base-breadcrumb-item label="Products" link="/products"></base-breadcrumb-item>
+ * <base-breadcrumb-item label="A long current page title"></base-breadcrumb-item>
  */
 @Component({
   selector: 'base-breadcrumb-item',
@@ -23,15 +26,16 @@ import { cn } from '../../tw-merge/tw-merge';
   host: { '[class]': 'hostCls()' } })
 export class BreadcrumbItemComponent {
   readonly extraClass = input('', { alias: 'class' });
-  readonly icon      = input<string | undefined>();
-  readonly link      = input<string | undefined>();
+  readonly icon      = input<string | undefined>(undefined);
+  readonly link      = input<string | undefined>(undefined);
   readonly label     = input('');
-  readonly separator = input<string | undefined>();
+  readonly separator = input<string | undefined>(undefined);
 
   protected readonly hostCls = computed(() =>
     cn(
-      'inline-flex items-center gap-4 after:content-["|"] after:mx-2 last-of-type:after:content-[""] peer pointer-events-none text-sm',
-      this.extraClass()
-    )
+      // Keep ancestors on one row; only the current (last) crumb may shrink + truncate.
+      'inline-flex max-w-full shrink-0 items-center gap-4 text-sm after:mx-2 after:content-["|"] last-of-type:min-w-0 last-of-type:shrink last-of-type:overflow-hidden last-of-type:after:content-[""] peer pointer-events-none',
+      this.extraClass(),
+    ),
   );
 }

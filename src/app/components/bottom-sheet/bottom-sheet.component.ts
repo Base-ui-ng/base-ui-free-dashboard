@@ -1,11 +1,12 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { Component,
   ChangeDetectionStrategy,
   DestroyRef,
   HostListener,
+  PLATFORM_ID,
   computed,
   effect,
   inject,
@@ -14,6 +15,7 @@ import { Component,
   output,
   signal, booleanAttribute } from '@angular/core';
 
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { A11yModule } from '@angular/cdk/a11y';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { IconComponent } from '../icon/icon.component';
@@ -91,16 +93,21 @@ export class BottomSheetComponent {
   protected readonly dragOffset = signal(0);
   protected readonly isDragging = signal(false);
 
+  private readonly document = inject(DOCUMENT);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+
   private dragStartY = 0;
   private dragStartTime = 0;
 
   constructor() {
     // Lock body scroll while the sheet is open; always restore on destroy.
+    // Uses the injected DOCUMENT (not the global) so this runs under server rendering.
     effect(() => {
-      document.body.style.overflow = this.open() ? 'hidden' : '';
+      this.document.body.style.overflow = this.open() ? 'hidden' : '';
     });
     inject(DestroyRef).onDestroy(() => {
-      document.body.style.overflow = '';
+      this.document.body.style.overflow = '';
+      if (!this.isBrowser) return;
       window.removeEventListener('pointermove', this.onDragMove);
       window.removeEventListener('pointerup', this.onDragEnd);
     });

@@ -1,9 +1,9 @@
 <!--
   Base UI (free tier) — https://base-ui.net
   Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-  Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+  Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 -->
-<div class="carousel-inner relative w-full h-[400px] overflow-hidden">
+<div class="carousel-inner relative w-full h-100 overflow-hidden">
   <div [class]="trackClass()"
        [style.width]="transition() === 'slide' ? (totalItems() * 100) + '%' : '100%'"
        [style.transform]="transition() === 'slide' ? 'translateX(-' + (activeIndex() * (100 / totalItems())) + '%)' : 'none'">
@@ -41,14 +41,14 @@
 <!-- Controls -->
 @if ((items().length > 1 || (slides() && slides().length > 1))) {
 <button base-icon-button (click)="prev()" color="primary" size="sm"
-  class="!absolute left-2 top-1/2 -translate-y-1/2 z-30 bg-white/20 dark:bg-black/20 hover:bg-white/40 dark:hover:bg-black/40 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
+  class="absolute! left-2 top-1/2 -translate-y-1/2 z-30 bg-white/20 dark:bg-black/20 hover:bg-white/40 dark:hover:bg-black/40 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
   <div [class.invert]="dark()">
     <base-icon name="chevron-left" class="w-6 h-6 stroke-slate-800 dark:stroke-slate-200"></base-icon>
   </div>
 </button>
 
 <button base-icon-button (click)="next()" color="primary" size="sm"
-  class="!absolute right-2 top-1/2 -translate-y-1/2 z-30 bg-white/20 dark:bg-black/20 hover:bg-white/40 dark:hover:bg-black/40 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
+  class="absolute! right-2 top-1/2 -translate-y-1/2 z-30 bg-white/20 dark:bg-black/20 hover:bg-white/40 dark:hover:bg-black/40 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
   <div [class.invert]="dark()">
     <base-icon name="chevron-right" class="w-6 h-6 stroke-slate-800 dark:stroke-slate-200"></base-icon>
   </div>

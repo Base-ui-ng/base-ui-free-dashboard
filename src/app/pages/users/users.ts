@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import {
   AvatarComponent,
   BadgeComponent,
@@ -8,6 +8,8 @@ import {
   DropdownMenuItemComponent,
   IconComponent,
   IconButtonDirective,
+  LoadingOverlayComponent,
+  injectTimers,
 } from 'Base';
 import { DialogService } from '../../components/dialog/dialog.service';
 import { User } from '../../core/models/user';
@@ -26,12 +28,19 @@ import { UserFormDialog } from './user-form-dialog/user-form-dialog';
     DropdownMenuComponent,
     DropdownMenuItemComponent,
     DropdownMenuDirective,
+    LoadingOverlayComponent,
   ],
   templateUrl: './users.html',
 })
 export class Users {
   private readonly dialog = inject(DialogService);
+  private readonly timers = injectTimers();
   protected readonly usersService = inject(UsersService);
+  protected readonly loading = signal(true);
+
+  constructor() {
+    this.timers.setTimeout(() => this.loading.set(false), 700);
+  }
 
   openCreate(): void {
     this.dialog.open(UserFormDialog, { mode: 'create' as const }).subscribe();

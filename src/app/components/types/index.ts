@@ -1,13 +1,24 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 export type AlertColor = '' | 'primary' | 'success' | 'danger' | 'accent' | 'warning';
 export type AlertVariant = 'soft' | 'solid' | 'outline';
 export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
 export type AvatarShape = 'circle' | 'square';
 export type AvatarStatus = 'active' | 'inactive';
-export type BadgeColor = 'primary' | 'danger' | 'success' | 'accent' | 'warning' | 'slate-light' | 'primary-light' | 'danger-light' | 'success-light' | 'accent-light' | 'warning-light';
+export type BadgeColor =
+  | 'primary'
+  | 'danger'
+  | 'success'
+  | 'accent'
+  | 'warning'
+  | 'slate-light'
+  | 'primary-light'
+  | 'danger-light'
+  | 'success-light'
+  | 'accent-light'
+  | 'warning-light';
 export type BadgeSize = 'sm' | 'md' | 'lg' | 'xl';
 export type BadgeShape = 'rectangular' | 'circle';
 export type CheckboxColor = 'primary' | 'danger' | 'success' | 'accent' | 'warning';
@@ -45,21 +56,76 @@ export type ToggleSize = 'sm' | 'md' | 'lg';
 export type ToggleShape = 'rounded' | 'square' | 'smooth';
 export type GroupButtonColor = 'primary' | 'success' | 'danger' | 'warning' | 'accent' | 'transparent' | 'default';
 export type GroupButtonSize = 'sm' | 'default' | 'lg' | 'xl' | 'xxl';
-export type ButtonColor = 'primary' | 'success' | 'danger' | 'warning' | 'accent' | 'white' | 'black' | 'default' | 'transparent';
+export type ButtonColor =
+  | 'primary'
+  | 'success'
+  | 'danger'
+  | 'warning'
+  | 'accent'
+  | 'white'
+  | 'black'
+  | 'default'
+  | 'transparent';
 export type ButtonSize = 'sm' | 'default' | 'lg' | 'xl' | 'xxl';
-export type IconButtonColor = 'primary' | 'success' | 'danger' | 'warning' | 'accent' | 'white' | 'black' | 'default' | 'transparent';
+export type IconButtonColor =
+  | 'primary'
+  | 'success'
+  | 'danger'
+  | 'warning'
+  | 'accent'
+  | 'white'
+  | 'black'
+  | 'default'
+  | 'transparent';
 export type IconButtonSize = 'sm' | 'default' | 'lg' | 'xl' | 'xxl';
-export type IconStrokedButtonColor = 'primary' | 'success' | 'danger' | 'warning' | 'accent' | 'white' | 'black' | 'default' | 'transparent';
+export type IconStrokedButtonColor =
+  | 'primary'
+  | 'success'
+  | 'danger'
+  | 'warning'
+  | 'accent'
+  | 'white'
+  | 'black'
+  | 'default'
+  | 'transparent';
 export type IconStrokedButtonSize = 'sm' | 'default' | 'lg' | 'xl' | 'xxl';
 
-/** Force sidenav chrome for demos/previews; `auto` follows the `lg` breakpoint.
- *  Sidenav is for in-page section navigation — use `base-app-shell` for app chrome. */
+/** Force sidenav chrome for demos/previews; `auto` follows the `lg` breakpoint. */
 export type SidenavLayoutMode = 'auto' | 'mobile' | 'desktop';
+
+/** Force shell chrome for demos/previews; `auto` follows viewport breakpoints. */
+export type ShellLayoutMode = 'auto' | 'mobile' | 'desktop';
+
+/**
+ * `page` = marketing / content shell (hamburger drawer under 991px, no mini).
+ * `dashboard` = app shell with expanded / mini / mobile rail.
+ */
+export type ShellMode = 'page' | 'dashboard';
+
+/** Which edge a `base-shell` sidebar occupies. */
+export type ShellSide = 'left' | 'right';
+
+/** @deprecated Use {@link ShellSide}. */
+export type PageShellSide = ShellSide;
+
+/** Dashboard rail layout derived from breakpoints. */
+export type ShellRailMode = 'expanded' | 'mini' | 'mobile';
 export type LinkColor = 'primary' | 'success' | 'danger' | 'warning' | 'accent' | 'default';
 export type LinkSize = 'sm' | 'default' | 'lg' | 'xl';
-export type StrokedButtonColor = 'primary' | 'success' | 'danger' | 'warning' | 'accent' | 'white' | 'black' | 'default';
+export type StrokedButtonColor =
+  | 'primary'
+  | 'success'
+  | 'danger'
+  | 'warning'
+  | 'accent'
+  | 'white'
+  | 'black'
+  | 'default';
 export type StrokedButtonSize = 'sm' | 'default' | 'lg' | 'xl' | 'xxl';
 export type DropdownPlacement = 'start' | 'end' | 'left' | 'right' | 'top-start' | 'top-end';
+
+/** Tooltip position relative to the host (use `tooltipPlacement` in templates). */
+export type TooltipPlacement = 'top' | 'bottom' | 'left' | 'right';
 
 export type SkeletonVariant = 'text' | 'circular' | 'rectangular' | 'card' | 'table-row';
 
@@ -68,6 +134,42 @@ export type ChipSize = 'sm' | 'md' | 'lg';
 
 export type ToastColor = 'primary' | 'success' | 'danger' | 'warning' | 'accent';
 export type ToastPosition = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'top-center' | 'bottom-center';
+
+/** Optional button rendered on a toast. `dismiss` defaults to true after click. */
+export interface ToastAction {
+  label: string;
+  onClick: () => void;
+  dismiss?: boolean;
+}
+
+/** Option row for {@link ComboboxComponent}. */
+export interface ComboboxOption {
+  value: string;
+  label: string;
+  disabled?: boolean;
+  description?: string;
+}
+
+/** 12-hour or 24-hour clock for {@link TimePickerComponent}. */
+export type TimePickerHourCycle = '12' | '24';
+
+/** Role of a message in {@link ChatComponent}. */
+export type ChatRole = 'user' | 'assistant' | 'system' | 'tool';
+
+/** Lifecycle of a tool-call row in {@link ChatComponent}. */
+export type ChatToolStatus = 'pending' | 'running' | 'done' | 'error';
+
+/** A single turn in {@link ChatComponent}. */
+export interface ChatMessage {
+  id: string;
+  role: ChatRole;
+  content: string;
+  name?: string;
+  avatarUrl?: string;
+  streaming?: boolean;
+  toolName?: string;
+  toolStatus?: ChatToolStatus;
+}
 
 export type SliderColor = 'primary' | 'success' | 'danger' | 'warning' | 'accent';
 
@@ -82,17 +184,41 @@ export interface TableColumn {
   key: string;
   label: string;
   sortable?: boolean;
+  /** Initial CSS width (`120px`, `20%`). Used as the start width when the table is resizable. */
   width?: string;
+  /** Minimum CSS width while dragging a resize handle. Defaults to `80px`. */
+  minWidth?: string;
+  /** When the table is `resizable`, set `false` to lock this column. */
+  resizable?: boolean;
   align?: 'left' | 'center' | 'right';
 }
 
+/** Page change from a data table paginator. */
+export interface DataTablePageChange {
+  page: number;
+  pageSize: number;
+}
+
+/** Sort change from a data header. */
+export interface DataTableSortChange {
+  key: string;
+  direction: TableSortDirection;
+}
+
 // New component types
-export type TimelineColor = 'primary' | 'success' | 'danger' | 'warning' | 'accent' | 'default';
+export type TimelineColor ='primary' | 'success' | 'danger' | 'warning' | 'accent' | 'default';
 export type StatCardColor = 'primary' | 'success' | 'danger' | 'warning' | 'accent' | 'default';
+/** Classic = icon-left KPI tile; metric = Motif-style vertical stack with delta pill + sparkline. */
+export type StatCardVariant = 'classic' | 'metric';
 export type PopoverPlacement =
-  | 'top' | 'bottom' | 'left' | 'right'
-  | 'top-start' | 'top-end'
-  | 'bottom-start' | 'bottom-end';
+  | 'top'
+  | 'bottom'
+  | 'left'
+  | 'right'
+  | 'top-start'
+  | 'top-end'
+  | 'bottom-start'
+  | 'bottom-end';
 
 /** 'auto' fits content, 'half'/'full' are viewport fractions, or pass a custom CSS height value (e.g. '420px'). */
 export type BottomSheetHeight = 'auto' | 'half' | 'full' | string;
@@ -107,3 +233,22 @@ export type SpeedDialDirection = 'up' | 'down' | 'left' | 'right';
 export type SpeedDialPosition = ScrollButtonPosition;
 
 export type { ScrollContainerTarget } from '../scroll-container/scroll-container';
+
+/** Stored choice from {@link CookieBannerComponent}. */
+export type CookieConsent = 'accepted' | 'rejected';
+
+/** Semantic color for {@link ChartComponent} series and segments. */
+export type ChartColor = SliderColor;
+
+/** Supported chart visualizations in {@link ChartComponent}. */
+export type ChartType = 'line' | 'bar' | 'donut' | 'sparkline';
+
+/** A single data point for {@link ChartComponent}. */
+export interface ChartDataPoint {
+  /** Category label (x-axis, legend, or tooltip). */
+  label: string;
+  /** Numeric value. */
+  value: number;
+  /** Optional per-point color override. */
+  color?: ChartColor;
+}

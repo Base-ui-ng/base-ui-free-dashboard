@@ -1,8 +1,8 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
-import { Component, OnInit, input, output, model, computed, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, input, output, model, computed, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IconComponent } from '../icon/icon.component';
 import { IconButtonDirective } from '../button/base-icon-button.directive';
@@ -23,7 +23,9 @@ export interface CalendarDate {
 
 /**
  * A date picker calendar component that supports single date and date-range selection.
- * Fully styled using the Lussos Tailwind design system.
+ * View month, day cells, and keyboard focus are signals (`viewDate`, `days`, `focusedDate`)
+ * so the grid stays current under OnPush / zoneless. Arrow keys move by day/week;
+ * Home/End jump to the month; Enter/Space select.
  *
  * @example
  * <base-calendar mode="single" (dateSelected)="onDateChange($event)"></base-calendar>
@@ -70,9 +72,9 @@ export class CalendarComponent implements OnInit {
     end: Date | null;
 }>();
 
-  viewDate: Date = new Date();
-  days: CalendarDate[] = [];
-  focusedDate: Date | null = null;
+  readonly viewDate = signal(new Date());
+  readonly days = signal<CalendarDate[]>([]);
+  readonly focusedDate = signal<Date | null>(null);
   weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   months = [
     'January', 'February', 'March', 'April', 'May', 'June',
@@ -82,9 +84,9 @@ export class CalendarComponent implements OnInit {
     const selectedDate = this.selectedDate();
     const rangeStart = this.rangeStart();
     if (selectedDate) {
-      this.viewDate = new Date(selectedDate);
+      this.viewDate.set(new Date(selectedDate));
     } else if (rangeStart) {
-      this.viewDate = new Date(rangeStart);
+      this.viewDate.set(new Date(rangeStart));
     }
     this.generateCalendar();
   }
@@ -96,15 +98,16 @@ export class CalendarComponent implements OnInit {
       const selectedDate = this.selectedDate();
       const rangeStart = this.rangeStart();
       if (selectedDate) {
-        this.viewDate = new Date(selectedDate);
+        this.viewDate.set(new Date(selectedDate));
       } else if (rangeStart) {
-        this.viewDate = new Date(rangeStart);
+        this.viewDate.set(new Date(rangeStart));
       }
       this.initialViewDateSet = true;
     }
 
-    const year = this.viewDate.getFullYear();
-    const month = this.viewDate.getMonth();
+    const view = this.viewDate();
+    const year = view.getFullYear();
+    const month = view.getMonth();
     const firstDayOfMonth = new Date(year, month, 1);
     const lastDayOfMonth = new Date(year, month + 1, 0);
 
@@ -130,10 +133,10 @@ export class CalendarComponent implements OnInit {
       days.push(this.createCalendarDate(d, false));
     }
 
-    this.days = days;
-    if (!this.focusedDate) {
+    this.days.set(days);
+    if (!this.focusedDate()) {
       const selected = this.selectedDate() ?? this.rangeStart();
-      this.focusedDate = selected ? new Date(selected) : new Date(this.viewDate.getFullYear(), this.viewDate.getMonth(), 1);
+      this.focusedDate.set(selected ? new Date(selected) : new Date(year, month, 1));
     }
   }
 
@@ -195,7 +198,7 @@ export class CalendarComponent implements OnInit {
       !isSingleDayRange;
 
     return cn(
-      'w-8 h-8 flex items-center justify-center text-xs transition-colors duration-200 z-[10]',
+      'w-8 h-8 flex items-center justify-center text-xs transition-colors duration-200 z-10',
       {
         'rounded-full bg-blue-600 text-white font-bold':
           calDate.isSelected || isSingleDayRange,
@@ -217,18 +220,20 @@ export class CalendarComponent implements OnInit {
   }
 
   prevMonth(): void {
-    this.viewDate = new Date(this.viewDate.getFullYear(), this.viewDate.getMonth() - 1, 1);
+    const view = this.viewDate();
+    this.viewDate.set(new Date(view.getFullYear(), view.getMonth() - 1, 1));
     this.generateCalendar();
   }
 
   nextMonth(): void {
-    this.viewDate = new Date(this.viewDate.getFullYear(), this.viewDate.getMonth() + 1, 1);
+    const view = this.viewDate();
+    this.viewDate.set(new Date(view.getFullYear(), view.getMonth() + 1, 1));
     this.generateCalendar();
   }
 
   selectDate(calDate: CalendarDate): void {
     const date = calDate.date;
-    this.focusedDate = new Date(date);
+    this.focusedDate.set(new Date(date));
 
     if (this.mode() === 'single') {
       this.selectedDate.set(date);
@@ -253,7 +258,8 @@ export class CalendarComponent implements OnInit {
   }
 
   isFocused(calDate: CalendarDate): boolean {
-    return this.focusedDate ? this.isSameDate(calDate.date, this.focusedDate) : false;
+    const focused = this.focusedDate();
+    return focused ? this.isSameDate(calDate.date, focused) : false;
   }
 
   dayTabIndex(calDate: CalendarDate): number {
@@ -270,7 +276,8 @@ export class CalendarComponent implements OnInit {
   }
 
   onGridKeydown(event: KeyboardEvent): void {
-    if (!this.focusedDate) return;
+    const focused = this.focusedDate();
+    if (!focused) return;
     const delta: Record<string, number> = {
       ArrowLeft: -1,
       ArrowRight: 1,
@@ -280,25 +287,27 @@ export class CalendarComponent implements OnInit {
 
     if (event.key in delta) {
       event.preventDefault();
-      const next = new Date(this.focusedDate);
+      const next = new Date(focused);
       next.setDate(next.getDate() + delta[event.key]);
-      this.focusedDate = next;
-      if (next.getMonth() !== this.viewDate.getMonth() || next.getFullYear() !== this.viewDate.getFullYear()) {
-        this.viewDate = new Date(next.getFullYear(), next.getMonth(), 1);
+      this.focusedDate.set(next);
+      const view = this.viewDate();
+      if (next.getMonth() !== view.getMonth() || next.getFullYear() !== view.getFullYear()) {
+        this.viewDate.set(new Date(next.getFullYear(), next.getMonth(), 1));
         this.generateCalendar();
       }
       return;
     }
 
+    const view = this.viewDate();
     if (event.key === 'Home') {
       event.preventDefault();
-      this.focusedDate = new Date(this.viewDate.getFullYear(), this.viewDate.getMonth(), 1);
+      this.focusedDate.set(new Date(view.getFullYear(), view.getMonth(), 1));
       return;
     }
 
     if (event.key === 'End') {
       event.preventDefault();
-      this.focusedDate = new Date(this.viewDate.getFullYear(), this.viewDate.getMonth() + 1, 0);
+      this.focusedDate.set(new Date(view.getFullYear(), view.getMonth() + 1, 0));
       return;
     }
 
@@ -316,7 +325,7 @@ export class CalendarComponent implements OnInit {
 
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
-      const match = this.days.find((d) => this.isSameDate(d.date, this.focusedDate!));
+      const match = this.days().find((d) => this.isSameDate(d.date, this.focusedDate()!));
       if (match) this.selectDate(match);
     }
   }

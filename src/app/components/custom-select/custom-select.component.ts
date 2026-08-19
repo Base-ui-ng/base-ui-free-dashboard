@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { Component,
   ElementRef,
@@ -12,8 +12,8 @@ import { Component,
   output,
   signal,
   viewChild,
-  ChangeDetectionStrategy, booleanAttribute } from '@angular/core';
-import { NgStyle } from '@angular/common';
+  ChangeDetectionStrategy, booleanAttribute, PLATFORM_ID } from '@angular/core';
+import { NgStyle, isPlatformBrowser } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { IconComponent } from '../icon/icon.component';
 import { cn } from '../tw-merge/tw-merge';
@@ -41,6 +41,8 @@ let customSelectIdCounter = 0;
   ],
 })
 export class CustomSelectComponent implements ControlValueAccessor, OnDestroy {
+  /** Prerendering destroys the app after render; there is nothing to unbind on the server. */
+  private readonly isSsrSafeBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   readonly extraClass = input('', { alias: 'class' });
   readonly label = input('');
   readonly placeholder = input('Select an option');
@@ -73,8 +75,8 @@ export class CustomSelectComponent implements ControlValueAccessor, OnDestroy {
   private onChange: (v: unknown) => void = () => {};
   private onTouched: () => void = () => {};
   private typeaheadBuffer = '';
-  private typeaheadTimeout?: ReturnType<typeof setTimeout>;
-  private positionTimeout?: ReturnType<typeof setTimeout>;
+  private typeaheadTimeout?: number;
+  private positionTimeout?: number;
 
   /** Returns the id of the currently highlighted option for aria-activedescendant. */
   activeDescendant(): string | null {
@@ -101,8 +103,8 @@ export class CustomSelectComponent implements ControlValueAccessor, OnDestroy {
     this.onTouched();
     const selectedIndex = this.getSelectedIndex();
     this.activeIndex.set(selectedIndex >= 0 ? selectedIndex : 0);
-    clearTimeout(this.positionTimeout);
-    this.positionTimeout = setTimeout(() => {
+    window.clearTimeout(this.positionTimeout);
+    this.positionTimeout = window.setTimeout(() => {
       this.calcPosition();
       this.scrollActiveOptionIntoView();
     });
@@ -111,7 +113,7 @@ export class CustomSelectComponent implements ControlValueAccessor, OnDestroy {
 
   closeDropdown(): void {
     if (!this.isOpen()) return;
-    clearTimeout(this.positionTimeout);
+    window.clearTimeout(this.positionTimeout);
     this.isOpen.set(false);
     this.activeIndex.set(-1);
     this.clearTypeahead();
@@ -253,7 +255,8 @@ export class CustomSelectComponent implements ControlValueAccessor, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    clearTimeout(this.positionTimeout);
+    if (!this.isSsrSafeBrowser) return;
+    window.clearTimeout(this.positionTimeout);
     this.removeOverlayListeners();
     this.clearTypeahead();
   }
@@ -303,8 +306,8 @@ export class CustomSelectComponent implements ControlValueAccessor, OnDestroy {
 
   private setActiveIndex(index: number): void {
     this.activeIndex.set(index);
-    clearTimeout(this.positionTimeout);
-    this.positionTimeout = setTimeout(() => this.scrollActiveOptionIntoView());
+    window.clearTimeout(this.positionTimeout);
+    this.positionTimeout = window.setTimeout(() => this.scrollActiveOptionIntoView());
   }
 
   private scrollActiveOptionIntoView(): void {
@@ -319,8 +322,8 @@ export class CustomSelectComponent implements ControlValueAccessor, OnDestroy {
 
   private handleTypeahead(char: string): void {
     this.typeaheadBuffer += char.toLowerCase();
-    clearTimeout(this.typeaheadTimeout);
-    this.typeaheadTimeout = setTimeout(() => this.clearTypeahead(), 500);
+    window.clearTimeout(this.typeaheadTimeout);
+    this.typeaheadTimeout = window.setTimeout(() => this.clearTypeahead(), 500);
 
     const opts = this.options();
     const start = this.activeIndex() + 1;
@@ -351,6 +354,6 @@ export class CustomSelectComponent implements ControlValueAccessor, OnDestroy {
 
   private clearTypeahead(): void {
     this.typeaheadBuffer = '';
-    clearTimeout(this.typeaheadTimeout);
+    window.clearTimeout(this.typeaheadTimeout);
   }
 }

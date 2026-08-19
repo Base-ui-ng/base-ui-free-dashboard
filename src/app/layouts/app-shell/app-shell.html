@@ -1,66 +1,54 @@
 <div class="h-screen overflow-hidden bg-slate-50 dark:bg-slate-950">
   <base-app-shell class="h-full">
     <base-app-shell-sidebar>
-      <div class="mb-6 flex items-center gap-3 px-2 sm:mb-8">
+      <div class="mb-4 flex items-center gap-3 px-2">
         <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-500 text-white">
-          <base-icon name="layout-grid" class="w-4 h-4 stroke-white"></base-icon>
+          <base-icon name="layout-grid" class="h-4 w-4 stroke-white"></base-icon>
         </span>
-        <div class="min-w-0">
-          <p class="truncate text-sm font-semibold text-slate-900 dark:text-white">Base UI</p>
-          <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Dashboard</p>
+        <div
+          class="min-w-0 overflow-hidden transition-[max-width,opacity] duration-300 ease-in-out"
+          [class]="sidebar.isOpen() ? 'max-w-40 opacity-100' : 'max-w-0 opacity-0'">
+          <p class="m-0! truncate text-sm font-semibold text-slate-900 dark:text-white">Base UI</p>
+          <p class="m-0! text-[10px] uppercase tracking-[0.18em] text-slate-400">Dashboard</p>
         </div>
       </div>
 
-      <!-- Need a nested, multi-level sidebar or a Mega Menu? See the Pro mega-menu and tree components. -->
-      <nav class="space-y-5" aria-label="Main navigation">
-        <div>
-          <p class="mb-1 px-2 text-[10px] font-medium uppercase tracking-widest text-slate-400">App</p>
-          <base-nav-list ariaLabel="App pages">
-            @for (item of appNav; track item.path) {
-              <a
-                base-list-item
-                [routerLink]="item.path"
-                routerLinkActive="!text-blue-500"
-                class="gap-3 rounded-lg px-2">
-                <span class="flex min-w-0 items-center gap-3">
-                  <base-icon [name]="item.icon" class="w-4 h-4 shrink-0"></base-icon>
-                  <span class="truncate">{{ item.label }}</span>
-                </span>
-                @if (item.badge) {
-                  <base-badge color="primary" size="sm" shape="rectangular">{{ item.badge }}</base-badge>
-                }
-              </a>
-            }
-          </base-nav-list>
-        </div>
+      <!-- Need a nested, multi-level sidebar or a Mega Menu? See the Pro mega-menu, tree, and base-shell components. -->
+      <base-scroll-area class="min-h-0 flex-1" aria-label="Main navigation">
+        <base-app-shell-nav-section label="App">
+          @for (item of appNav; track item.path) {
+            <a
+              base-app-shell-nav-item
+              [icon]="item.icon"
+              [badge]="item.badge || ''"
+              [routerLink]="item.path"
+              routerLinkActive="active"
+              [attr.aria-label]="item.label">
+              {{ item.label }}
+            </a>
+          }
+        </base-app-shell-nav-section>
 
-        <div>
-          <p class="mb-1 px-2 text-[10px] font-medium uppercase tracking-widest text-slate-400">
-            Component gallery
-          </p>
-          <base-nav-list ariaLabel="Component gallery">
-            @for (item of uiNav; track item.path) {
-              <a
-                base-list-item
-                [routerLink]="item.path"
-                routerLinkActive="!text-blue-500"
-                class="gap-3 rounded-lg px-2">
-                <span class="flex min-w-0 items-center gap-3">
-                  <base-icon [name]="item.icon" class="w-4 h-4 shrink-0"></base-icon>
-                  <span class="truncate">{{ item.label }}</span>
-                </span>
-              </a>
-            }
-          </base-nav-list>
-        </div>
-      </nav>
+        <base-app-shell-nav-section label="Component gallery">
+          @for (item of uiNav; track item.path) {
+            <a
+              base-app-shell-nav-item
+              [icon]="item.icon"
+              [routerLink]="item.path"
+              routerLinkActive="active"
+              [attr.aria-label]="item.label">
+              {{ item.label }}
+            </a>
+          }
+        </base-app-shell-nav-section>
+      </base-scroll-area>
     </base-app-shell-sidebar>
 
     <base-app-shell-topbar>
       <div class="flex items-center justify-between gap-2">
         <div class="min-w-0 flex-1">
-          <p class="hidden text-[10px] uppercase tracking-[0.2em] text-slate-400 sm:block">Overview</p>
-          <h1 class="truncate text-base font-semibold text-slate-900 sm:text-xl dark:text-white">
+          <p class="m-0! hidden text-[10px] uppercase tracking-[0.2em] text-slate-400 sm:block">Overview</p>
+          <h1 class="m-0! truncate text-base font-semibold text-slate-900 sm:text-xl dark:text-white">
             {{ pageTitle() }}
           </h1>
         </div>
@@ -71,15 +59,20 @@
             base-stroked-icon-button
             size="sm"
             color="default"
-            class="hidden lg:inline-flex"
+            class="hidden min-[1080px]:inline-flex"
+            [attr.aria-expanded]="sidebar.isOpen()"
             aria-label="Collapse sidebar"
             (click)="sidebar.toggle()">
-            <base-icon name="layout-sidebar" class="w-4 h-4"></base-icon>
+            <base-icon [name]="sidebar.isOpen() ? 'chevrons-left' : 'chevrons-right'" class="h-4 w-4"></base-icon>
           </button>
 
-          <base-input-group class="hidden md:flex w-44 lg:w-56">
-            <base-icon base-addon-start name="search" class="w-4 h-4 stroke-slate-400"></base-icon>
-            <input base-input type="search" placeholder="Search…" aria-label="Search" />
+          <base-input-group class="hidden w-44 md:flex lg:w-56">
+            <base-icon base-addon-start name="search" class="h-4 w-4 stroke-slate-400"></base-icon>
+            <input base-input type="search" placeholder="Search…" aria-label="Search" class="appearance-none" />
+            <span base-addon-end class="hidden items-center gap-0.5 lg:inline-flex">
+              <base-kbd>⌘</base-kbd>
+              <base-kbd>K</base-kbd>
+            </span>
           </base-input-group>
 
           <a
@@ -100,23 +93,23 @@
             color="default"
             aria-label="Toggle theme"
             (click)="theme.toggleTheme()">
-            <base-icon [name]="theme.isDarkMode() ? 'light' : 'dark'" class="w-4 h-4"></base-icon>
+            <base-icon [name]="theme.isDarkMode() ? 'light' : 'dark'" class="h-4 w-4"></base-icon>
           </button>
 
           <base-dropdown-menu #userMenu>
             <base-dropdown-menu-item routerLink="/app/settings">
-              <base-icon name="settings" class="w-4 h-4 mr-2"></base-icon>
+              <base-icon name="settings" class="mr-2 h-4 w-4"></base-icon>
               Settings
             </base-dropdown-menu-item>
             <base-dropdown-menu-item (click)="logout()">
-              <base-icon name="arrow-out" class="w-4 h-4 mr-2"></base-icon>
+              <base-icon name="arrow-out" class="mr-2 h-4 w-4"></base-icon>
               Logout
             </base-dropdown-menu-item>
           </base-dropdown-menu>
 
           <button
             type="button"
-            class="flex items-center gap-2 rounded-full border border-slate-200 p-0.5 transition-colors hover:bg-slate-50 sm:py-1 sm:pl-1 sm:pr-2.5 dark:border-slate-700 dark:hover:bg-slate-800"
+            class="flex items-center gap-2 rounded-full border border-slate-200 p-0.5 transition-colors hover:bg-slate-50 sm:py-1 sm:pr-2.5 sm:pl-1 dark:border-slate-700 dark:hover:bg-slate-800"
             [base-dropdown-menu-trigger]="userMenu"
             placement="end"
             aria-label="Open user menu">
@@ -128,7 +121,7 @@
             <span class="hidden max-w-28 truncate text-sm font-medium text-slate-700 lg:inline dark:text-slate-200">
               {{ auth.user()?.name || 'Demo User' }}
             </span>
-            <base-icon name="chevron-down" class="hidden w-4 h-4 stroke-slate-400 sm:inline"></base-icon>
+            <base-icon name="chevron-down" class="hidden h-4 w-4 stroke-slate-400 sm:inline"></base-icon>
           </button>
         </div>
       </div>

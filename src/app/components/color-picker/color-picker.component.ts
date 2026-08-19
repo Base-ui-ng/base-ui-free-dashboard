@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { Component,
   ElementRef,
@@ -13,8 +13,8 @@ import { Component,
   model,
   signal,
   viewChild,
-  ChangeDetectionStrategy, booleanAttribute } from '@angular/core';
-import { CommonModule } from '@angular/common';
+  ChangeDetectionStrategy, booleanAttribute, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { cn } from '../tw-merge/tw-merge';
 
@@ -41,6 +41,8 @@ let colorPickerIdCounter = 0;
     { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => ColorPickerComponent), multi: true }]
 })
 export class ColorPickerComponent implements OnDestroy {
+  /** Prerendering destroys the app after render; there is nothing to unbind on the server. */
+  private readonly isSsrSafeBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   readonly panelId = `base-color-picker-panel-${++colorPickerIdCounter}`;
 
   readonly extraClass = input('', { alias: 'class' });
@@ -126,7 +128,10 @@ export class ColorPickerComponent implements OnDestroy {
     if (this.isOpen()) this.close();
   }
 
-  ngOnDestroy() { this.close(); }
+  ngOnDestroy() {
+    if (!this.isSsrSafeBrowser) return;
+    this.close();
+  }
 
   writeValue(v: string)                    { this.value.set(v ?? '#3b82f6'); this.hexInput.set(this.value()); }
   registerOnChange(fn: (v: string) => void) { this.onChange = fn; }

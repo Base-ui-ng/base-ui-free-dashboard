@@ -120,6 +120,25 @@
     </div>
   </app-showcase-section>
 
+  <app-showcase-section
+    sectionId="currency"
+    title="Currency input"
+    description="Locale-aware amount field. Do not nest inside base-input-group."
+    componentName="base-currency-input">
+    <div class="grid max-w-md gap-4">
+      <div>
+        <base-label>Price (USD)</base-label>
+        <base-currency-input [(ngModel)]="usdPrice" currency="USD" [min]="0"></base-currency-input>
+        <p class="mt-2 mb-0! text-xs text-slate-500">Value: {{ usdPrice }}</p>
+      </div>
+      <div>
+        <base-label>Price (EUR)</base-label>
+        <base-currency-input [(ngModel)]="eurPrice" currency="EUR" locale="de-DE" [min]="0"></base-currency-input>
+        <p class="mt-2 mb-0! text-xs text-slate-500">Value: {{ eurPrice }}</p>
+      </div>
+    </div>
+  </app-showcase-section>
+
   <app-showcase-section sectionId="star-rating" title="Star rating" componentName="base-star-rating">
     <base-star-rating ariaLabel="Product rating">
       <base-star [(rating)]="rating" [editable]="true"></base-star>

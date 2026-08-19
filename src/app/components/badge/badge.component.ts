@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { CommonModule } from '@angular/common';
 import { Component, input, computed ,
@@ -20,8 +20,7 @@ import { cn } from '../tw-merge/tw-merge';
   selector: 'base-badge',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, BaseBadgeAddon],
-  templateUrl: './badge.component.html',
-  host: { class: 'inline-flex w-fit max-w-full' },
+  templateUrl: './badge.component.html'
 })
 export class BadgeComponent {
   /** The visual color mapping. Defaults to 'primary'. */
@@ -35,8 +34,8 @@ export class BadgeComponent {
 
   readonly badgeClasses = computed(() => {
     const classes = [
-      'inline-flex', 'h-6', 'gap-1', 'border', 'border-transparent',
-      'justify-center', 'items-center', 'px-3', '!text-xs',
+      'h-6', 'flex', 'gap-1', 'border', 'border-transparent',
+      'justify-center', 'items-center', 'px-3', 'text-xs!',
       'whitespace-nowrap', 'text-white', 'bg-slate-400'
     ];
 
@@ -45,17 +44,17 @@ export class BadgeComponent {
 
     // Color
     const colorMap: Record<BadgeColor, string> = {
-      'primary': '!bg-blue-500',
-      'danger': '!bg-red-500',
-      'success': '!bg-green-500',
-      'accent': '!bg-purple-500',
-      'warning': '!bg-orange-500',
-      'slate-light': '!bg-slate-200 !border-slate-500 !text-slate-800',
-      'primary-light': '!bg-blue-100 !border-blue-400 !text-blue-800',
-      'danger-light': '!bg-red-100 !border-red-400 !text-red-800',
-      'success-light': '!bg-green-100 !border-green-400 !text-green-800',
-      'accent-light': '!bg-purple-100 !border-purple-400 !text-purple-800',
-      'warning-light': '!bg-orange-100 !border-orange-400 !text-orange-800'
+      'primary': 'bg-blue-500!',
+      'danger': 'bg-red-500!',
+      'success': 'bg-green-500!',
+      'accent': 'bg-purple-500!',
+      'warning': 'bg-orange-500!',
+      'slate-light': 'bg-slate-200! border-slate-500! text-slate-800!',
+      'primary-light': 'bg-blue-100! border-blue-400! text-blue-800!',
+      'danger-light': 'bg-red-100! border-red-400! text-red-800!',
+      'success-light': 'bg-green-100! border-green-400! text-green-800!',
+      'accent-light': 'bg-purple-100! border-purple-400! text-purple-800!',
+      'warning-light': 'bg-orange-100! border-orange-400! text-orange-800!'
 };
     if (colorMap[this.color()]) {
       classes.push(colorMap[this.color()]);
@@ -63,10 +62,10 @@ export class BadgeComponent {
 
     // Size
     const sizeMap: Record<BadgeSize, string> = {
-      'sm': '!h-5 !text-xs !px-2',
-      'md': '!h-6 !text-sm',
-      'lg': '!h-7 !text-base !px-4',
-      'xl': '!h-8 !text-xl !px-4'
+      'sm': 'h-5! text-xs! px-2!',
+      'md': 'h-6! text-sm!',
+      'lg': 'h-7! text-base! px-4!',
+      'xl': 'h-8! text-xl! px-4!'
 };
     if (sizeMap[this.size()]) {
       classes.push(sizeMap[this.size()]);

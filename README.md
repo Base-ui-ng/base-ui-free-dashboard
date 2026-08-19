@@ -20,9 +20,9 @@ Use it as a starter for SaaS-style apps, or as a live gallery to review free Bas
 ## Features
 
 - **Auth flow** — login, register, forgot password (mocked `localStorage` auth)
-- **App shell** — free `base-app-shell` with responsive sidebar drawer and compact topbar
+- **App shell** — free `base-app-shell` with a collapsible mini rail, grouped `base-app-shell-nav-section` links, and a compact topbar
 - **App pages** — dashboard metrics, users CRUD with dialogs, settings with in-page `base-sidenav`
-- **Component gallery** — scroll-nav demos for primitives, forms, feedback, overlays, navigation, data display, and all 19 free form blocks
+- **Component gallery** — scroll-nav demos for primitives, forms, feedback, overlays, navigation, data display, and all 19 free form blocks (including hover-card, menubar, currency-input, kbd, aspect-ratio, scroll-area, loading-overlay, and cookie-banner)
 - **Pro upsell notes** — comments where Pro widgets/layouts would extend the free shell
 
 ---
@@ -122,11 +122,11 @@ Browse under **Component gallery** in the sidebar (requires sign-in).
 
 | Route | Covers |
 | --- | --- |
-| `/app/ui/primitives` | Buttons, badges, chips, avatars, icons, ripple, reveal, screen size |
-| `/app/ui/forms` | Inputs, select, OTP, phone, mask, spinner, color, rating, dual-range, filter |
-| `/app/ui/feedback` | Alert, toast, progress, meter-group, counter, countdown, coming-soon |
-| `/app/ui/overlays` | Dialog, dropdown, context-menu, tooltip, popover, drawer, bottom-sheet, speed-dial |
-| `/app/ui/navigation` | Tabs, breadcrumb, accordion, stepper, scroll-to, scroll buttons |
+| `/app/ui/primitives` | Buttons, badges, chips, avatars, icons, kbd, aspect-ratio, scroll-area, ripple, reveal, screen size |
+| `/app/ui/forms` | Inputs, select, OTP, phone, currency, mask, spinner, color, rating, dual-range, filter |
+| `/app/ui/feedback` | Alert, toast, progress, meter-group, counter, countdown, coming-soon, loading-overlay, cookie-banner |
+| `/app/ui/overlays` | Dialog, dropdown, context-menu, tooltip, popover, hover-card, drawer, bottom-sheet, speed-dial |
+| `/app/ui/navigation` | Tabs, breadcrumb, accordion, menubar, stepper, scroll-to, scroll buttons |
 | `/app/ui/data-display` | Cards, stats, calendar, carousel, code, paginator, timeline, quote |
 | `/app/ui/form-blocks` | All 19 free form blocks (capped at `540px` in the demo) |
 
@@ -170,7 +170,9 @@ Alias mapping: `"Base"` → `src/app/components/index.ts` (see `tsconfig.json`).
 | Need | Use | Tier |
 | --- | --- | --- |
 | App chrome (sidebar + topbar + content) | `base-app-shell` (`layout-app-shell`) + `SidebarService` | Free |
+| Grouped sidebar links (labels fade in the mini rail) | `base-app-shell-nav-section` + `base-app-shell-nav-item` | Free |
 | In-page section nav (Settings, docs TOC) | `base-sidenav` | Free |
+| Unified product chrome (page + dashboard modes) | `base-shell` | Pro |
 | Nested / multi-level nav | `mega-menu`, `tree` | Pro |
 | Full opinionated dashboard page | `layout-dashboard` | Pro |
 

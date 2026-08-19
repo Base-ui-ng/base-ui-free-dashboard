@@ -1,7 +1,7 @@
 <!--
   Base UI (free tier) — https://base-ui.net
   Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-  Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+  Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 -->
 <base-card>
   <div class="p-8 flex flex-col gap-7">
@@ -49,20 +49,20 @@
     <div class="flex flex-col gap-4 animate-in fade-in duration-200">
       <div class="flex gap-4">
         <base-input-group class="flex-1">
-          <base-label class="!text-[10px] uppercase !font-light !tracking-[2px]">First Name</base-label>
+          <base-label class="text-[10px]! uppercase font-light! tracking-[2px]!">First Name</base-label>
           <input base-input placeholder="Jane" />
         </base-input-group>
         <base-input-group class="flex-1">
-          <base-label class="!text-[10px] uppercase !font-light !tracking-[2px]">Last Name</base-label>
+          <base-label class="text-[10px]! uppercase font-light! tracking-[2px]!">Last Name</base-label>
           <input base-input placeholder="Doe" />
         </base-input-group>
       </div>
       <base-input-group>
-        <base-label class="!text-[10px] uppercase !font-light !tracking-[2px]">Work Email</base-label>
+        <base-label class="text-[10px]! uppercase font-light! tracking-[2px]!">Work Email</base-label>
         <input base-input type="email" placeholder="jane@company.com" />
       </base-input-group>
       <base-input-group>
-        <base-label class="!text-[10px] uppercase !font-light !tracking-[2px]">Password</base-label>
+        <base-label class="text-[10px]! uppercase font-light! tracking-[2px]!">Password</base-label>
         <input base-input type="password" placeholder="Min. 8 characters" />
       </base-input-group>
     </div>
@@ -78,7 +78,7 @@
         [class.ring-blue-500]="selectedPlan() === 'starter'"
         class="flex items-center gap-4 p-5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 text-left transition-all hover:border-slate-300 cursor-pointer">
         <div class="w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-700 flex items-center justify-center shrink-0">
-          <base-icon name="zap" class="w-[18px] h-[18px] stroke-slate-500"></base-icon>
+          <base-icon name="zap" class="w-4.5 h-4.5 stroke-slate-500"></base-icon>
         </div>
         <div class="flex-1">
           <p class="text-[13px] font-semibold text-slate-800 dark:text-slate-100">Starter</p>
@@ -86,7 +86,7 @@
         </div>
         @if (selectedPlan() === 'starter') {
         <div class="w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center">
-          <base-icon name="check" class="w-[11px] h-[11px] stroke-white stroke-2"></base-icon>
+          <base-icon name="check" class="w-2.75 h-2.75 stroke-white stroke-2"></base-icon>
         </div>
         }
       </button>
@@ -98,7 +98,7 @@
         [class.ring-blue-500]="selectedPlan() === 'pro'"
         class="flex items-center gap-4 p-5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 text-left transition-all hover:border-slate-300 cursor-pointer">
         <div class="w-9 h-9 rounded-lg bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center shrink-0">
-          <base-icon name="layers" class="w-[18px] h-[18px] stroke-blue-600 dark:stroke-blue-400"></base-icon>
+          <base-icon name="layers" class="w-4.5 h-4.5 stroke-blue-600 dark:stroke-blue-400"></base-icon>
         </div>
         <div class="flex-1">
           <div class="flex items-center gap-2 mb-0.5">
@@ -109,7 +109,7 @@
         </div>
         @if (selectedPlan() === 'pro') {
         <div class="w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center">
-          <base-icon name="check" class="w-[11px] h-[11px] stroke-white stroke-2"></base-icon>
+          <base-icon name="check" class="w-2.75 h-2.75 stroke-white stroke-2"></base-icon>
         </div>
         }
       </button>
@@ -167,7 +167,7 @@
       <button
         type="button"
         base-button color="primary"
-        class="min-w-[120px]">
+        class="min-w-30">
         Create Account
       </button>
       }

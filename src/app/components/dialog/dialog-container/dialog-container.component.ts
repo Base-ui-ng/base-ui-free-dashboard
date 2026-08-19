@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import {
   AfterViewInit,
@@ -11,8 +11,8 @@ import {
   viewChild,
   ViewContainerRef,
   inject,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+  ChangeDetectionStrategy, PLATFORM_ID} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 import { animate, style, transition, trigger, animateChild, query } from '@angular/animations';
 import { FocusTrap, FocusTrapFactory } from '@angular/cdk/a11y';
@@ -54,6 +54,8 @@ let dialogLabelIdCounter = 0;
   host: { '[@host]': 'true' },
 })
 export class DialogContainerComponent implements DialogContainer, AfterViewInit, OnDestroy {
+  /** Browser-only DOM work below; prerendering runs these hooks too. */
+  private readonly isSsrSafeBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   className = '';
 
   readonly container = viewChild.required('container', { read: ViewContainerRef });
@@ -69,6 +71,7 @@ export class DialogContainerComponent implements DialogContainer, AfterViewInit,
   private focusTrapFactory = inject(FocusTrapFactory);
 
   ngAfterViewInit(): void {
+    if (!this.isSsrSafeBrowser) return;
     this.previouslyFocused = document.activeElement as HTMLElement | null;
     this.focusTrap = this.focusTrapFactory.create(this.elementRef.nativeElement);
     this.focusTrap.focusInitialElementWhenReady();

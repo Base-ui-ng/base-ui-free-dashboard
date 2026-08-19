@@ -7,6 +7,7 @@ import {
   BaseTextareaDirective,
   CheckboxComponent,
   ColorPickerComponent,
+  CurrencyInputComponent,
   CustomSelectComponent,
   DualRangeSliderComponent,
   FilterPipe,
@@ -59,6 +60,7 @@ import { ShowcaseSection } from '../showcase-section';
     InputAutocompleteComponent,
     CustomSelectComponent,
     ColorPickerComponent,
+    CurrencyInputComponent,
     StarRatingComponent,
     StarComponent,
     TriStateCheckboxComponent,
@@ -78,6 +80,8 @@ export class UiForms {
   password = '';
   quantity = 2;
   brandColor = '#3b82f6';
+  usdPrice: number | null = 1240;
+  eurPrice: number | null = 990;
   rating = 4;
   triState: boolean | 'indeterminate' = 'indeterminate';
   role = 'editor';
@@ -109,6 +113,7 @@ export class UiForms {
     { id: 'spinner', label: 'Input spinner' },
     { id: 'autocomplete', label: 'Autocomplete' },
     { id: 'color-picker', label: 'Color picker' },
+    { id: 'currency', label: 'Currency input' },
     { id: 'star-rating', label: 'Star rating' },
     { id: 'range-slider', label: 'Range slider' },
     { id: 'dual-range', label: 'Dual range' },

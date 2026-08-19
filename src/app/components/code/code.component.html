@@ -1,15 +1,15 @@
 <!--
   Base UI (free tier) — https://base-ui.net
   Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-  Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+  Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 -->
 <div class="flex flex-col bg-slate-200 dark:bg-slate-900 rounded-lg overflow-hidden">
   <div class="flex justify-between items-center px-4 py-2"
     [class.border-b]="showCode()" [class.border-slate-300]="showCode()" [class.dark:border-slate-700]="showCode()">
-    <h4 class="!m-0 text-sm font-semibold">{{ language() }}</h4>
+    <h4 class="m-0! text-sm font-semibold">{{ language() }}</h4>
     <div class="flex gap-2">
       <button base-icon-button color="transparent" (click)="show()"
-        [base-tooltip]="showCode() ? 'Hide code' : 'Show code'" placement="bottom">
+        [base-tooltip]="showCode() ? 'Hide code' : 'Show code'" tooltipPlacement="bottom">
         <base-icon name="code"></base-icon>
       </button>
       @if (showCode()) {
@@ -20,7 +20,7 @@
         (click)="copyTo()"
         (mouseleave)="resetCopyTooltip()"
         [base-tooltip]="copyTooltip()"
-        placement="bottom"
+        tooltipPlacement="bottom"
       >
         <base-icon name="copy"></base-icon>
       </button>

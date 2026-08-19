@@ -1,12 +1,13 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { AfterViewInit, Component, input, contentChild ,
   ChangeDetectionStrategy
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DialogBodyComponent } from '../dialog-body/dialog-body.component';
+import { injectTimers } from '../../safe-timer/safe-timer';
 
 /**
  * The main wrapper component for dialog/modal content.
@@ -26,17 +27,19 @@ import { DialogBodyComponent } from '../dialog-body/dialog-body.component';
   templateUrl: './dialog.component.html'
 })
 export class DialogComponent implements AfterViewInit {
+  /** Timers cancelled automatically on destroy — see utils/safe-timer. */
+  private readonly timers = injectTimers();
   /** Explicit width in pixels. If not provided, it relies on Tailwind classes or content size. */
-  readonly width = input<number | undefined>();
+  readonly width = input<number>();
   
   /** Explicit height in pixels. Applied dynamically to the `base-dialog-body` for scrolling. */
-  readonly height = input<number | undefined>();
+  readonly height = input<number>();
   
   readonly bodyComponent = contentChild(DialogBodyComponent);
 
   ngAfterViewInit(): void {
     if (this.bodyComponent() && this.height()) {
-      setTimeout(() => {
+      this.timers.setTimeout(() => {
         const bodyComponent = this.bodyComponent();
         if (bodyComponent) {
           bodyComponent.height.set(this.height());

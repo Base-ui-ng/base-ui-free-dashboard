@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 
 import { Component, computed, signal ,
@@ -9,7 +9,14 @@ import { Component, computed, signal ,
 import { IconComponent } from '../icon/icon.component';
 import { ToastItem } from './toast.service';
 import { ToastPosition } from '../types';
+import { injectTimers } from '../safe-timer/safe-timer';
 
+/**
+ * Toast renderer used by {@link ToastService}. Do not place this selector in templates.
+ *
+ * @example
+ * this.toast.success('Saved');
+ */
 @Component({
   selector: 'base-toast-container',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,6 +24,8 @@ import { ToastPosition } from '../types';
   templateUrl: './toast.component.html'
 })
 export class ToastComponent {
+  /** Timers cancelled automatically on destroy — see utils/safe-timer. */
+  private readonly timers = injectTimers();
   readonly toasts = signal<ToastItem[]>([]);
 
   addToast(toast: ToastItem) {
@@ -33,7 +42,7 @@ export class ToastComponent {
 
   dismissToast(toast: ToastItem): void {
     this.removeToast(toast.id);
-    setTimeout(() => this.cleanToast(toast.id), 300);
+    this.timers.setTimeout(() => this.cleanToast(toast.id), 300);
   }
 
   readonly positionGroups = computed(() => {
@@ -90,5 +99,12 @@ export class ToastComponent {
 
   getCloseClasses(): string {
     return 'w-4 h-4 min-w-4 cursor-pointer stroke-slate-400 hover:stroke-slate-600 dark:stroke-slate-500 dark:hover:stroke-slate-300';
+  }
+
+  runAction(toast: ToastItem): void {
+    toast.action?.onClick();
+    if (toast.action?.dismiss !== false) {
+      this.dismissToast(toast);
+    }
   }
 }

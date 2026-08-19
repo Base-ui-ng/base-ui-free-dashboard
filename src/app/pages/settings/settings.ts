@@ -8,6 +8,7 @@ import {
   BaseTextareaDirective,
   CardBodyComponent,
   CardComponent,
+  CurrencyInputComponent,
   FormBillingComponent,
   FormNotificationsComponent,
   IconComponent,
@@ -33,6 +34,7 @@ type SettingsSection = 'profile' | 'billing' | 'notifications';
     BaseListItemDirective,
     CardComponent,
     CardBodyComponent,
+    CurrencyInputComponent,
     InputGroupComponent,
     LabelComponent,
     BaseInputDirective,
@@ -53,6 +55,7 @@ export class Settings {
   name = this.auth.user()?.name || 'Demo User';
   email = this.auth.user()?.email || 'demo@base-ui.net';
   bio = 'Product designer building clean dashboards with Base UI.';
+  spendCap: number | null = 2500;
 
   selectSection(next: SettingsSection): void {
     this.section.set(next);

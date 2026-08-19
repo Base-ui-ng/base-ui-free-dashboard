@@ -1,17 +1,20 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, viewChild } from '@angular/core';
 import {
   AlertComponent,
   AnimatedCounterComponent,
   BaseButtonDirective,
   ComingSoonComponent,
+  CookieBannerComponent,
   CountdownComponent,
   EmptyStateComponent,
+  LoadingOverlayComponent,
   MeterGroupComponent,
   ProgressComponent,
   SkeletonComponent,
   SpinnerComponent,
   ToastService,
 } from 'Base';
+import type { CookieConsent } from 'Base';
 import { ShowcasePage, ShowcaseNavSection } from '../showcase-page';
 import { ShowcaseSection } from '../showcase-section';
 
@@ -30,6 +33,8 @@ import { ShowcaseSection } from '../showcase-section';
     AnimatedCounterComponent,
     CountdownComponent,
     ComingSoonComponent,
+    LoadingOverlayComponent,
+    CookieBannerComponent,
   ],
   templateUrl: './feedback.html',
 })
@@ -53,8 +58,14 @@ export class UiFeedback {
     { id: 'coming-soon', label: 'Coming soon' },
     { id: 'skeleton', label: 'Skeleton' },
     { id: 'spinner', label: 'Spinner' },
+    { id: 'loading-overlay', label: 'Loading overlay' },
     { id: 'empty-state', label: 'Empty state' },
+    { id: 'cookie-banner', label: 'Cookie banner' },
   ];
+
+  protected readonly saving = signal(false);
+  protected readonly lastConsent = signal<CookieConsent | null>(null);
+  private readonly demoBanner = viewChild<CookieBannerComponent>('demoBanner');
 
   showToast(kind: 'success' | 'error' | 'warning' | 'info'): void {
     const messages = {
@@ -64,5 +75,15 @@ export class UiFeedback {
       info: 'New components are available.',
     };
     this.toast[kind === 'info' ? 'info' : kind](messages[kind]);
+  }
+
+  simulateSave(): void {
+    this.saving.set(true);
+    window.setTimeout(() => this.saving.set(false), 1400);
+  }
+
+  resetCookieDemo(): void {
+    this.demoBanner()?.reset();
+    this.lastConsent.set(null);
   }
 }

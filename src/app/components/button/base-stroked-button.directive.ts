@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { Directive, computed, input } from '@angular/core';
 import { StrokedButtonColor, StrokedButtonSize } from "../types";
@@ -8,7 +8,12 @@ import { StrokedButtonColor, StrokedButtonSize } from "../types";
 /**
  * A stroked button directive applying Lussos theme styles.
  * It strictly types its inputs to ensure AI agents construct it properly.
- * 
+ *
+ * Base classes include `relative` and `rounded-lg`. When overriding position,
+ * radius or other baked-in utilities via the `class` attribute, use Tailwind's
+ * important variants (e.g. `!absolute`, `rounded-full!`) — plain conflicting
+ * classes lose the stylesheet tie-break against the base classes.
+ *
  * @example
  * <button base-stroked-button color="primary" size="lg">Submit</button>
  */
@@ -27,7 +32,7 @@ export class StrokedButtonDirective {
   readonly size = input<StrokedButtonSize>('default');
   
   /** Optional custom width (e.g. '100%'). */
-  readonly width = input<string | undefined>();
+  readonly width = input<string>();
 
   readonly classes = computed(() => {
     const baseClasses = 'flex items-center gap-2 relative rounded-lg border text-center justify-center tracking-wide transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 [&_base-icon]:stroke-current [&_base-icon]:fill-current';
@@ -44,11 +49,11 @@ export class StrokedButtonDirective {
     };
 
     const sizeMap: Record<StrokedButtonSize, string> = {
-      sm: 'h-7 text-xs px-4 [&_base-icon]:!w-3 [&_base-icon]:!h-3',
-      default: 'h-9 text-sm px-6 [&_base-icon]:!w-5 [&_base-icon]:!h-5',
-      lg: 'h-10 text-base px-7 [&_base-icon]:!w-6 [&_base-icon]:!h-6',
-      xl: 'h-11 text-base px-8 [&_base-icon]:!w-6 [&_base-icon]:!h-6',
-      xxl: 'h-14 text-lg px-10 [&_base-icon]:!w-7 [&_base-icon]:!h-7',
+      sm: 'h-7 text-xs px-4 [&_base-icon]:w-3! [&_base-icon]:h-3!',
+      default: 'h-9 text-sm px-6 [&_base-icon]:w-5! [&_base-icon]:h-5!',
+      lg: 'h-10 text-base px-7 [&_base-icon]:w-6! [&_base-icon]:h-6!',
+      xl: 'h-11 text-base px-8 [&_base-icon]:w-6! [&_base-icon]:h-6!',
+      xxl: 'h-14 text-lg px-10 [&_base-icon]:w-7! [&_base-icon]:h-7!',
     };
 
     const colorClass = colorMap[this.color()] || colorMap['default'];

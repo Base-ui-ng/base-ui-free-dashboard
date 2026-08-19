@@ -1,7 +1,7 @@
 <!--
   Base UI (free tier) — https://base-ui.net
   Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-  Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+  Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 -->
 <div class="flex justify-between w-full border border-slate-300 dark:border-slate-700 rounded-lg overflow-hidden relative bg-white dark:bg-slate-800 transition-colors duration-200 focus-within:border-blue-500 items-center dark:text-white"
     [class.h-7]="size() === 'sm'"
@@ -9,7 +9,7 @@
     [class.h-11]="size() === 'xl'"
     [class.opacity-50]="disabled()" [class.pointer-events-none]="disabled()">
     <select
-        class="appearance-none bg-transparent border-none w-full h-full z-[2] absolute top-0 left-0 focus:outline-none"
+        class="appearance-none bg-transparent border-none w-full h-full z-2 absolute top-0 left-0 focus:outline-none"
         [class.text-xs]="size() === 'sm'"
         [class.pl-3]="size() === 'sm'"
         [class.pr-7]="size() === 'sm'"
@@ -25,5 +25,5 @@
         }
         <ng-content></ng-content>
     </select>
-    <base-icon name="chevron-down" class="ml-auto w-4 h-4 stroke-slate-500 z-[1] mr-3"></base-icon>
+    <base-icon name="chevron-down" class="ml-auto w-4 h-4 stroke-slate-500 z-1 mr-3"></base-icon>
 </div>

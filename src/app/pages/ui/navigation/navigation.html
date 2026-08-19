@@ -47,13 +47,13 @@
       <base-accordion-item [isOpen]="true">
         <base-accordion-item-header>What is included in Free?</base-accordion-item-header>
         <base-accordion-item-body>
-          Primitives, form blocks, shells like sidenav and app-shell slots, and most interactive widgets.
+          Primitives, form blocks, app-shell with a mini rail and nav sections, and most interactive widgets.
         </base-accordion-item-body>
       </base-accordion-item>
       <base-accordion-item>
         <base-accordion-item-header>When should I upgrade to Pro?</base-accordion-item-header>
         <base-accordion-item-body>
-          When you need data-table, mega-menu, tree, file-upload, or full page layouts like layout-dashboard.
+          When you need data-table, mega-menu, tree, file-upload, the full `base-shell` product chrome, or page layouts like layout-dashboard.
         </base-accordion-item-body>
       </base-accordion-item>
       <base-accordion-item>
@@ -63,6 +63,30 @@
         </base-accordion-item-body>
       </base-accordion-item>
     </base-accordion>
+  </app-showcase-section>
+
+  <app-showcase-section
+    sectionId="menubar"
+    title="Menubar"
+    description="Horizontal application menu. Arrow keys move between menus; hover switches the open panel."
+    componentName="base-menubar">
+    <base-menubar>
+      <base-menubar-menu label="File">
+        <base-dropdown-menu-item>New Tab</base-dropdown-menu-item>
+        <base-dropdown-menu-item>Open…</base-dropdown-menu-item>
+        <base-dropdown-menu-item>Save</base-dropdown-menu-item>
+      </base-menubar-menu>
+      <base-menubar-menu label="Edit">
+        <base-dropdown-menu-item>Undo</base-dropdown-menu-item>
+        <base-dropdown-menu-item>Cut</base-dropdown-menu-item>
+        <base-dropdown-menu-item>Copy</base-dropdown-menu-item>
+        <base-dropdown-menu-item>Paste</base-dropdown-menu-item>
+      </base-menubar-menu>
+      <base-menubar-menu label="View">
+        <base-dropdown-menu-item>Appearance</base-dropdown-menu-item>
+        <base-dropdown-menu-item>Sidebar</base-dropdown-menu-item>
+      </base-menubar-menu>
+    </base-menubar>
   </app-showcase-section>
 
   <app-showcase-section sectionId="stepper" title="Stepper" componentName="base-stepper">

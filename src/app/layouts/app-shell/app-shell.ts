@@ -4,21 +4,23 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, map, startWith } from 'rxjs/operators';
 import {
   AppShellContentComponent,
+  AppShellNavItemComponent,
+  AppShellNavSectionComponent,
   AppShellSidebarComponent,
   AppShellTopbarComponent,
   AvatarComponent,
-  BadgeComponent,
+  BaseAddonEndDirective,
   BaseAddonStartDirective,
   BaseInputDirective,
-  BaseListItemDirective,
   DropdownMenuComponent,
   DropdownMenuDirective,
   DropdownMenuItemComponent,
   IconComponent,
   IconStrokedButtonDirective,
   InputGroupComponent,
+  KbdComponent,
   LayoutAppShellComponent,
-  NavListComponent,
+  ScrollAreaComponent,
   SidebarService,
   ThemeService,
 } from 'Base';
@@ -42,15 +44,17 @@ interface NavItem {
     AppShellSidebarComponent,
     AppShellTopbarComponent,
     AppShellContentComponent,
-    NavListComponent,
-    BaseListItemDirective,
+    AppShellNavSectionComponent,
+    AppShellNavItemComponent,
+    ScrollAreaComponent,
     IconComponent,
     IconStrokedButtonDirective,
     InputGroupComponent,
     BaseInputDirective,
     BaseAddonStartDirective,
+    BaseAddonEndDirective,
+    KbdComponent,
     AvatarComponent,
-    BadgeComponent,
     DropdownMenuComponent,
     DropdownMenuItemComponent,
     DropdownMenuDirective,
@@ -87,9 +91,9 @@ export class AppShell {
     this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd),
       map((event) => event.urlAfterRedirects),
-      startWith(this.router.url)
+      startWith(this.router.url),
     ),
-    { initialValue: this.router.url }
+    { initialValue: this.router.url },
   );
 
   protected readonly pageTitle = computed(() => {

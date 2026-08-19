@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
+  AspectRatioComponent,
   AvatarComponent,
   BadgeComponent,
   BaseButtonDirective,
@@ -12,8 +13,10 @@ import {
   IconButtonDirective,
   IconComponent,
   IconStrokedButtonDirective,
+  KbdComponent,
   RevealDirective,
   RippleDirective,
+  ScrollAreaComponent,
   StrokedButtonDirective,
 } from 'Base';
 import { ShowcasePage, ShowcaseNavSection } from '../showcase-page';
@@ -38,12 +41,25 @@ import { ShowcaseSection } from '../showcase-section';
     DividerComponent,
     RippleDirective,
     RevealDirective,
+    KbdComponent,
+    AspectRatioComponent,
+    ScrollAreaComponent,
   ],
   templateUrl: './primitives.html',
 })
 export class UiPrimitives {
   viewMode: string | number = 'list';
   protected readonly screen = inject(CurrentScreenSizeService);
+  protected readonly scrollTags = [
+    'hover-card',
+    'menubar',
+    'loading-overlay',
+    'currency-input',
+    'kbd',
+    'aspect-ratio',
+    'scroll-area',
+    'cookie-banner',
+  ];
 
   protected readonly sections: ShowcaseNavSection[] = [
     { id: 'buttons', label: 'Buttons' },
@@ -53,6 +69,9 @@ export class UiPrimitives {
     { id: 'icons-divider', label: 'Icons & divider' },
     { id: 'ripple', label: 'Ripple' },
     { id: 'reveal', label: 'Reveal' },
+    { id: 'kbd', label: 'Kbd' },
+    { id: 'aspect-ratio', label: 'Aspect ratio' },
+    { id: 'scroll-area', label: 'Scroll area' },
     { id: 'screen-size', label: 'Screen size' },
   ];
 }

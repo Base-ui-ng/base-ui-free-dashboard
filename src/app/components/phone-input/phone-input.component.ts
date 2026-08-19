@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import {
   Component,
@@ -11,9 +11,8 @@ import {
   ElementRef,
   viewChild,
   OnDestroy,
-  HostListener
-} from '@angular/core';
-import { CommonModule } from '@angular/common';
+  HostListener, PLATFORM_ID, inject } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export interface Country {
@@ -56,6 +55,8 @@ export const COMMON_COUNTRIES: Country[] = [
   templateUrl: './phone-input.component.html'
 })
 export class PhoneInputComponent implements ControlValueAccessor, OnDestroy {
+  /** Prerendering destroys the app after render; there is nothing to unbind on the server. */
+  private readonly isSsrSafeBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   countries = COMMON_COUNTRIES;
   
   selectedCountry = signal<Country>(this.countries[0]);
@@ -90,13 +91,13 @@ export class PhoneInputComponent implements ControlValueAccessor, OnDestroy {
     this.dropdownOpen() ? this.closeDropdown() : this.openDropdown();
   }
 
-  private openDropdownTimeout?: ReturnType<typeof setTimeout>;
+  private openDropdownTimeout?: number;
 
   private openDropdown() {
     if (this.isDisabled()) return;
     this.dropdownOpen.set(true);
-    clearTimeout(this.openDropdownTimeout);
-    this.openDropdownTimeout = setTimeout(() => {
+    window.clearTimeout(this.openDropdownTimeout);
+    this.openDropdownTimeout = window.setTimeout(() => {
       if (!this.dropdownOpen()) return;
       this.calcPosition();
       window.addEventListener('scroll', this.reposition, true);
@@ -105,7 +106,7 @@ export class PhoneInputComponent implements ControlValueAccessor, OnDestroy {
   }
 
   private closeDropdown() {
-    clearTimeout(this.openDropdownTimeout);
+    window.clearTimeout(this.openDropdownTimeout);
     this.dropdownOpen.set(false);
     this.panelStyle.set({
       position: 'fixed', visibility: 'hidden', pointerEvents: 'none',
@@ -154,7 +155,8 @@ export class PhoneInputComponent implements ControlValueAccessor, OnDestroy {
   }
 
   ngOnDestroy() {
-    clearTimeout(this.openDropdownTimeout);
+    if (!this.isSsrSafeBrowser) return;
+    window.clearTimeout(this.openDropdownTimeout);
     window.removeEventListener('scroll', this.reposition, true);
     window.removeEventListener('resize', this.reposition);
   }

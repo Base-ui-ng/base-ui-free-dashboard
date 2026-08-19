@@ -1,15 +1,16 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { Component, HostListener, OnChanges, SimpleChanges, computed, contentChildren, effect, input, output, viewChild, ElementRef, signal,
-  ChangeDetectionStrategy, booleanAttribute } from '@angular/core';
-import { NgTemplateOutlet } from '@angular/common';
+  ChangeDetectionStrategy, booleanAttribute, inject} from '@angular/core';
+import { NgTemplateOutlet, DOCUMENT } from '@angular/common';
 import { Subject } from 'rxjs';
 import { TabComponent } from './tab/tab.component';
 import { IconComponent } from '../icon/icon.component';
 import { IconButtonDirective } from '../button/base-icon-button.directive';
 import { cn } from '../tw-merge/tw-merge';
+import { injectTimers } from '../safe-timer/safe-timer';
 
 /**
  * A container component for rendering tabbed navigation and content.
@@ -27,12 +28,15 @@ import { cn } from '../tw-merge/tw-merge';
   host: { '[class]': 'hostCls()' }
 })
 export class TabsComponent implements OnChanges {
+  /** Timers cancelled automatically on destroy — see utils/safe-timer. */
+  private readonly timers = injectTimers();
+  private readonly ssrDocument = inject(DOCUMENT);
 
   readonly extraClass      = input('', { alias: 'class' });
   readonly defaultTab      = input(0);
-  readonly type            = input<string | undefined>();
-  readonly position        = input<string | undefined>();
-  readonly icon            = input<string | undefined>();
+  readonly type            = input<string | undefined>(undefined);
+  readonly position        = input<string | undefined>(undefined);
+  readonly icon            = input<string | undefined>(undefined);
   readonly scrollRestricted = input(false, { transform: booleanAttribute });
 
   /** Accessible name for the tab list when a visible label is not present elsewhere. */
@@ -50,12 +54,12 @@ export class TabsComponent implements OnChanges {
   protected readonly hostCls = computed(() => cn('block', this.extraClass()));
 
   readonly containerClass = computed(() => cn(
-    'flex justify-start overflow-x-auto scroll-smooth hide-scrollbar flex-1 pb-px [scrollbar-width:none] [&::-webkit-scrollbar]:hidden',
+    'flex justify-start overflow-x-auto scroll-smooth hide-scrollbar flex-1 pb-px scrollbar-none [&::-webkit-scrollbar]:hidden',
     this.type() === 'underline' && 'border-b border-slate-300 dark:border-slate-700',
     this.type() === 'folder' && 'bg-slate-100 dark:bg-slate-900 rounded-t-lg pt-1 px-1',
-    this.position() === 'left' && '!justify-start',
-    this.position() === 'center' && '!justify-center',
-    this.position() === 'right' && '!justify-end'
+    this.position() === 'left' && 'justify-start!',
+    this.position() === 'center' && 'justify-center!',
+    this.position() === 'right' && 'justify-end!'
   ));
 
   activeTab?: TabComponent;
@@ -68,7 +72,7 @@ export class TabsComponent implements OnChanges {
       if (tabs.length > 0 && !this.activeTab) {
         this.selectTab(tabs[this.defaultTab()] ?? tabs[0]);
       }
-      setTimeout(() => this.checkOverflow(), 0);
+      this.timers.setTimeout(() => this.checkOverflow(), 0);
     });
   }
 
@@ -93,7 +97,7 @@ export class TabsComponent implements OnChanges {
     const container = this.tabListContainer()?.nativeElement;
     if (!container) return;
     container.scrollBy({ left: dir === 'left' ? -200 : 200, behavior: 'smooth' });
-    setTimeout(() => this.checkOverflow(), 300);
+    this.timers.setTimeout(() => this.checkOverflow(), 300);
   }
 
   selectTab(tabItem: TabComponent, focusTab = false) {
@@ -154,12 +158,12 @@ export class TabsComponent implements OnChanges {
   }
 
   private focusTab(tabItem: TabComponent): void {
-    setTimeout(() => document.getElementById(tabItem.tabId)?.focus());
+    this.timers.setTimeout(() => this.ssrDocument.getElementById(tabItem.tabId)?.focus());
   }
 
   private scrollTabIntoView(tabItem: TabComponent): void {
-    setTimeout(() =>
-      document.getElementById(tabItem.tabId)?.scrollIntoView({
+    this.timers.setTimeout(() =>
+      this.ssrDocument.getElementById(tabItem.tabId)?.scrollIntoView({
         behavior: 'smooth',
         block: 'nearest',
         inline: 'nearest',
@@ -171,10 +175,10 @@ export class TabsComponent implements OnChanges {
     return cn(
       'px-8 h-10 flex items-center text-sm bg-transparent whitespace-nowrap dark:text-slate-400 border-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900',
       item.tabClass(),
-      this.type() === 'underline' && 'hover:shadow-[0_1px_0_rgba(0,0,0,0.40)]',
-      this.activeTab === item && this.type() === 'underline' && '!text-blue-500 shadow-[0_1px_0_rgb(59,130,246)] hover:shadow-[0_1px_0_rgb(59,130,246)] bg-transparent',
-      this.type() === 'pills' && 'bg-slate-100 dark:bg-slate-600 dark:text-slate-200 !rounded-md mr-2 last-of-type:mr-0 transition-color duration-300',
-      this.activeTab === item && this.type() === 'pills' && '!text-white !bg-blue-500 rounded-md',
+      this.type() === 'underline' && 'hover:shadow-tab',
+      this.activeTab === item && this.type() === 'underline' && 'text-blue-500! shadow-tab-active hover:shadow-tab-active bg-transparent',
+      this.type() === 'pills' && 'bg-slate-100 dark:bg-slate-600 dark:text-slate-200 rounded-md! mr-2 last-of-type:mr-0 transition-color duration-300',
+      this.activeTab === item && this.type() === 'pills' && 'text-white! bg-blue-500! rounded-md',
       this.activeTab === item && this.type() === 'folder' && 'bg-white dark:bg-slate-800 text-blue-500 rounded-t-md',
       this.position() === 'full-width' && 'flex-1 justify-center'
     );

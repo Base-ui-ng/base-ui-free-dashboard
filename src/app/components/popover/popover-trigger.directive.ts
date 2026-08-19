@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { Directive, ElementRef, HostListener, OnDestroy, inject, input } from '@angular/core';
 import { PopoverComponent } from './popover.component';
@@ -27,7 +27,7 @@ export class PopoverTriggerDirective implements OnDestroy {
   onClick() {
     const popover = this.popover();
     if (!popover) return;
-    popover.toggleWithPlacement(this.placement());
+    popover.toggleWithPlacement(this.placement(), this.el.nativeElement);
   }
 
   ngOnDestroy() { this.popover()?.close(); }

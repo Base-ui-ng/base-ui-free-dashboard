@@ -1,6 +1,6 @@
 // Base UI (free tier) — https://base-ui.net
 // Free to use in unlimited projects. Do not redistribute this source as a library, kit, or template collection.
-// Full license terms: https://github.com/lussos/base-theme/blob/main/LICENSE.md
+// Full license terms: https://github.com/Base-ui-ng/base-ui/blob/main/LICENSE.md
 
 import { Component, input, model ,
   ChangeDetectionStrategy
@@ -22,5 +22,5 @@ import { CommonModule } from '@angular/common';
   templateUrl: './dialog-body.component.html'
 })
 export class DialogBodyComponent {
-  readonly height = model<number | undefined>();
+  readonly height = model<number>();
 }
