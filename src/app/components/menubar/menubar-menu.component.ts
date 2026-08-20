@@ -20,7 +20,8 @@ import { cn } from '../tw-merge/tw-merge';
 
 /**
  * One top-level menu inside `base-menubar`. Project `base-dropdown-menu-item`
- * (and optional nested menus) as children.
+ * children, plus nested `base-dropdown-menu` panels on items that use
+ * `[base-dropdown-menu-trigger]` with `placement="right"` (or `left`).
  *
  * @example
  * <base-menubar-menu label="Edit">

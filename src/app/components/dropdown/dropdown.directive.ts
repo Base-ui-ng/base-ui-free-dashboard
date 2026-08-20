@@ -28,7 +28,8 @@ import {
  * A directive that attaches a `base-dropdown-menu` to a trigger element (like a button).
  * Automatically handles overlay positioning, backdrop clicks, and detachment.
  * Supports cascading submenus: put `[base-dropdown-menu-trigger]` on a menu item with
- * `placement="right"` (or `left`) to open a nested menu without closing the parent.
+ * `placement="right"` (or `left`). Nested menus open on hover once the parent cascade
+ * is open; leaf clicks and outside clicks close.
  *
  * @example
  * <button [base-dropdown-menu-trigger]="myMenu" placement="end">Open</button>
@@ -93,6 +94,9 @@ export class DropdownMenuDirective<T> implements OnDestroy, DropdownMenuStackEnt
   /**
    * Toggle on click. Stops propagation so a parent menu does not treat this
    * as a leaf item selection when this trigger is itself a menu item.
+   * Nested submenu triggers stay open on click (they open on hover once the
+   * parent cascade is active); a click would otherwise close the menu that
+   * `pointerenter` just opened.
    *
    * @example
    * // Bound via host `(click)`
@@ -100,7 +104,24 @@ export class DropdownMenuDirective<T> implements OnDestroy, DropdownMenuStackEnt
   onTriggerClick(event: MouseEvent): void {
     event.preventDefault();
     event.stopPropagation();
+    if (this.isNestedTrigger()) {
+      if (!this.isDropdownOpen) this.openDropdown();
+      return;
+    }
     this.isDropdownOpen ? this.menuStack.closeFrom(this, true) : this.openDropdown();
+  }
+
+  /**
+   * Once any menu in the cascade is open, hovering a nested trigger opens it
+   * (classic menubar / cascading-menu behavior).
+   *
+   * @example
+   * // Bound via host `(pointerenter)`
+   */
+  @HostListener('pointerenter')
+  onPointerEnter(): void {
+    if (!this.isNestedTrigger() || this.menuStack.size === 0) return;
+    this.openDropdown(false);
   }
 
   @HostListener('keydown', ['$event'])
@@ -156,10 +177,12 @@ export class DropdownMenuDirective<T> implements OnDestroy, DropdownMenuStackEnt
   /**
    * Open the linked dropdown panel (no-op if already open).
    *
+   * @param focusFirst When `false`, skip moving focus into the panel (hover-open).
+   *
    * @example
    * trigger.openDropdown();
    */
-  openDropdown(): void {
+  openDropdown(focusFirst = true): void {
     const dropdownPanel = this.dropdownPanel();
     if (!dropdownPanel || this.isDropdownOpen) return;
 
@@ -189,7 +212,7 @@ export class DropdownMenuDirective<T> implements OnDestroy, DropdownMenuStackEnt
     this.overlayRef.attach(templatePortal);
     this.menuStack.push(this);
 
-    if (dropdownPanel instanceof DropdownMenuComponent) {
+    if (focusFirst && dropdownPanel instanceof DropdownMenuComponent) {
       dropdownPanel.focusFirstItem();
     }
 
