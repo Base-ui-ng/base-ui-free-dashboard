@@ -6,7 +6,7 @@
 export function getMenuItems(container: ParentNode): HTMLElement[] {
   return Array.from(
     container.querySelectorAll<HTMLElement>(
-      '[role="menuitem"]:not([aria-disabled="true"]):not([disabled])'
+      '[role^="menuitem"]:not([aria-disabled="true"]):not([disabled])'
     )
   );
 }

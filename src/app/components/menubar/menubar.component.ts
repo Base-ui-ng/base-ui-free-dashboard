@@ -19,8 +19,12 @@ import { MenubarMenuComponent } from './menubar-menu.component';
 
 /**
  * Horizontal application menubar. Project `base-menubar-menu` children; each
- * menu opens a `base-dropdown-menu` of actions. Arrow Left/Right move between
- * menus (and switch the open menu); Arrow Down / Enter / Space open; Escape closes.
+ * menu opens a `base-dropdown-menu` of actions. Click a top-level trigger to
+ * open the first menu; after that, hover switches menus and opens nested
+ * submenus. Click a leaf / link or outside to close. Bind `checked` (or
+ * `stayOpen`) on items that should toggle without dismissing the menu.
+ * Arrow Left/Right move between menus (and switch the open menu); Arrow Down /
+ * Enter / Space open; Escape closes.
  *
  * @example
  * <base-menubar>

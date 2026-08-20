@@ -68,25 +68,63 @@
   <app-showcase-section
     sectionId="menubar"
     title="Menubar"
-    description="Horizontal application menu. Arrow keys move between menus; hover switches the open panel."
+    description="Click a top-level menu to open it; then hover to switch menus and nested submenus. Leaf items close; checkbox items stay open."
     componentName="base-menubar">
     <base-menubar>
       <base-menubar-menu label="File">
-        <base-dropdown-menu-item>New Tab</base-dropdown-menu-item>
-        <base-dropdown-menu-item>Open…</base-dropdown-menu-item>
-        <base-dropdown-menu-item>Save</base-dropdown-menu-item>
+        <base-dropdown-menu-item (click)="lastAction.set('New Tab')">New Tab</base-dropdown-menu-item>
+        <base-dropdown-menu-item
+          [base-dropdown-menu-trigger]="openRecent"
+          placement="right">
+          Open Recent
+          <base-icon name="chevron-right" class="ml-auto h-4 w-4 shrink-0 stroke-slate-500"></base-icon>
+        </base-dropdown-menu-item>
+        <base-dropdown-menu #openRecent class="hidden">
+          <base-dropdown-menu-item (click)="lastAction.set('Opened Project A')">Project A</base-dropdown-menu-item>
+          <base-dropdown-menu-item (click)="lastAction.set('Opened Project B')">Project B</base-dropdown-menu-item>
+          <base-dropdown-menu-item
+            [base-dropdown-menu-trigger]="fromSource"
+            placement="right">
+            More
+            <base-icon name="chevron-right" class="ml-auto h-4 w-4 shrink-0 stroke-slate-500"></base-icon>
+          </base-dropdown-menu-item>
+          <base-dropdown-menu #fromSource class="hidden">
+            <base-dropdown-menu-item (click)="lastAction.set('Clone from GitHub')">From GitHub</base-dropdown-menu-item>
+            <base-dropdown-menu-item (click)="lastAction.set('Opened from disk')">From Disk</base-dropdown-menu-item>
+          </base-dropdown-menu>
+        </base-dropdown-menu>
+        <div class="my-1 h-px bg-slate-200 dark:bg-slate-700" role="separator"></div>
+        <base-dropdown-menu-item [(checked)]="wordWrap">Word wrap</base-dropdown-menu-item>
+        <base-dropdown-menu-item [(checked)]="minimap">Show minimap</base-dropdown-menu-item>
+        <div class="my-1 h-px bg-slate-200 dark:bg-slate-700" role="separator"></div>
+        <base-dropdown-menu-item (click)="lastAction.set('Saved')">Save</base-dropdown-menu-item>
       </base-menubar-menu>
       <base-menubar-menu label="Edit">
-        <base-dropdown-menu-item>Undo</base-dropdown-menu-item>
-        <base-dropdown-menu-item>Cut</base-dropdown-menu-item>
-        <base-dropdown-menu-item>Copy</base-dropdown-menu-item>
-        <base-dropdown-menu-item>Paste</base-dropdown-menu-item>
+        <base-dropdown-menu-item (click)="lastAction.set('Undo')">Undo</base-dropdown-menu-item>
+        <base-dropdown-menu-item (click)="lastAction.set('Cut')">Cut</base-dropdown-menu-item>
+        <base-dropdown-menu-item (click)="lastAction.set('Copy')">Copy</base-dropdown-menu-item>
+        <base-dropdown-menu-item (click)="lastAction.set('Paste')">Paste</base-dropdown-menu-item>
       </base-menubar-menu>
       <base-menubar-menu label="View">
-        <base-dropdown-menu-item>Appearance</base-dropdown-menu-item>
-        <base-dropdown-menu-item>Sidebar</base-dropdown-menu-item>
+        <base-dropdown-menu-item
+          [base-dropdown-menu-trigger]="appearance"
+          placement="right">
+          Appearance
+          <base-icon name="chevron-right" class="ml-auto h-4 w-4 shrink-0 stroke-slate-500"></base-icon>
+        </base-dropdown-menu-item>
+        <base-dropdown-menu #appearance class="hidden">
+          <base-dropdown-menu-item (click)="lastAction.set('Zoom in')">Zoom In</base-dropdown-menu-item>
+          <base-dropdown-menu-item (click)="lastAction.set('Zoom out')">Zoom Out</base-dropdown-menu-item>
+          <base-dropdown-menu-item [(checked)]="minimap">Minimap</base-dropdown-menu-item>
+        </base-dropdown-menu>
+        <base-dropdown-menu-item (click)="lastAction.set('Opened documentation')">
+          Documentation
+        </base-dropdown-menu-item>
       </base-menubar-menu>
     </base-menubar>
+    <p class="mt-3 m-0! text-xs text-slate-500">
+      Last action: {{ lastAction() }} · Word wrap {{ wordWrap() ? 'on' : 'off' }} · Minimap {{ minimap() ? 'on' : 'off' }}
+    </p>
   </app-showcase-section>
 
   <app-showcase-section sectionId="stepper" title="Stepper" componentName="base-stepper">

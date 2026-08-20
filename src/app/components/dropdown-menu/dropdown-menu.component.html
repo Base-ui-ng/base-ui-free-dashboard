@@ -6,7 +6,8 @@
 <ng-template>
   <div #menuRoot [id]="menuId" [class]="menuClasses()" role="menu" tabindex="-1"
     (keydown)="onMenuKeydown($event)"
-    (click)="onMenuClick($event)">
+    (click)="onMenuClick($event)"
+    (pointerover)="onMenuPointerOver($event)">
     <ng-content></ng-content>
   </div>
 </ng-template>

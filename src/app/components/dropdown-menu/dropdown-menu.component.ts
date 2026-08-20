@@ -101,7 +101,7 @@ export class DropdownMenuComponent<T> implements DropdownPanel<T> {
         break;
       case 'ArrowRight': {
         // Open cascading submenu when the focused item is a submenu trigger
-        const trigger = active?.closest('[role="menuitem"]') as HTMLElement | null;
+        const trigger = active?.closest('[role^="menuitem"]') as HTMLElement | null;
         if (trigger?.getAttribute('aria-haspopup') === 'menu') {
           event.preventDefault();
           trigger.click();
@@ -136,23 +136,48 @@ export class DropdownMenuComponent<T> implements DropdownPanel<T> {
   }
 
   /**
+   * Hovering a leaf item closes sibling submenus. Submenu triggers open on
+   * `pointerenter` via the dropdown trigger directive.
+   *
+   * @example
+   * // Bound on the menu root `(pointerover)`
+   */
+  onMenuPointerOver(event: PointerEvent): void {
+    const root = this.menuRoot()?.nativeElement;
+    if (!root) return;
+    const item = this.closestMenuItem(event.target);
+    if (!item || !root.contains(item)) return;
+    if (item.getAttribute('aria-haspopup') === 'menu') return;
+    this.menuStack.closeNonAncestors(item);
+  }
+
+  /**
    * Leaf item clicks dismiss the whole cascade. Submenu triggers
-   * (`aria-haspopup="menu"`) keep the parent open so nested menus can cascade.
+   * (`aria-haspopup="menu"`) and selectable / `stayOpen` items keep the parent open.
    *
    * @example
    * // Bound on the menu root `(click)`
    */
   onMenuClick(event: MouseEvent): void {
-    const target = event.target as HTMLElement;
-    const item = target.closest('[role="menuitem"]') as HTMLElement | null;
+    const item = this.closestMenuItem(event.target);
     if (!item) return;
 
-    // Cascading submenu trigger — do not close the parent menu
-    if (item.getAttribute('aria-haspopup') === 'menu') {
-      return;
-    }
+    if (item.getAttribute('aria-haspopup') === 'menu') return;
+    if (this.keepsMenuOpen(item)) return;
 
-    // Leaf action — dismiss the entire cascade (root + nested)
     this.menuStack.closeAll(true);
+  }
+
+  private closestMenuItem(target: EventTarget | null): HTMLElement | null {
+    return (target as HTMLElement | null)?.closest('[role^="menuitem"]') ?? null;
+  }
+
+  private keepsMenuOpen(item: HTMLElement): boolean {
+    const role = item.getAttribute('role');
+    return (
+      item.hasAttribute('data-stay-open') ||
+      role === 'menuitemcheckbox' ||
+      role === 'menuitemradio'
+    );
   }
 }

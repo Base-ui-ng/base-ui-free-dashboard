@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import {
   AccordionComponent,
   AccordionItemBodyComponent,
@@ -7,7 +7,10 @@ import {
   BaseButtonDirective,
   BreadcrumbComponent,
   BreadcrumbItemComponent,
+  DropdownMenuComponent,
+  DropdownMenuDirective,
   DropdownMenuItemComponent,
+  IconComponent,
   MenubarComponent,
   MenubarMenuComponent,
   ScrollBottomComponent,
@@ -38,7 +41,10 @@ import { ShowcaseSection } from '../showcase-section';
     AccordionItemBodyComponent,
     MenubarComponent,
     MenubarMenuComponent,
+    DropdownMenuComponent,
+    DropdownMenuDirective,
     DropdownMenuItemComponent,
+    IconComponent,
     StepperComponent,
     StepComponent,
     ScrollToDirective,
@@ -49,6 +55,9 @@ import { ShowcaseSection } from '../showcase-section';
   templateUrl: './navigation.html',
 })
 export class UiNavigation {
+  protected readonly wordWrap = signal(true);
+  protected readonly minimap = signal(false);
+  protected readonly lastAction = signal('—');
   protected readonly sections: ShowcaseNavSection[] = [
     { id: 'tabs', label: 'Tabs' },
     { id: 'breadcrumb', label: 'Breadcrumb' },
